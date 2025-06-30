@@ -1,10 +1,6 @@
-import {
-  TQRScreen
-} from '@/types'
-
 type TDefineQRScreen = (
   error: number | null
-) => TQRScreen
+) => any
 
 const defineQRScreen: TDefineQRScreen = (
   error

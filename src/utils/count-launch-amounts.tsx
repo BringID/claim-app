@@ -1,5 +1,4 @@
 import { ethers } from 'ethers'
-import { TLaunchAsset } from '@/types'
 
 const countLaunchAmounts = (
   tokensPerClaim: string,

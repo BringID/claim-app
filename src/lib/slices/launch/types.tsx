@@ -1,6 +1,5 @@
 import {
-  TTokenStandard,
-  TLaunchTransactionStage
+  TTokenStandard
 } from '@/types'
 
 export interface TInitialState {
@@ -26,5 +25,5 @@ export interface TInitialState {
   loading: boolean
   approved: boolean | null
   expiration: number
-  transactionStage: TLaunchTransactionStage | null
+  transactionStage: any | null
 }

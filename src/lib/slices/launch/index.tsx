@@ -1,5 +1,4 @@
 import {
-  TLaunchAsset,
   TTokenStandard
 } from '@/types'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
@@ -60,7 +59,7 @@ const launchSlice = createSlice({
       ...state, tokenStandard: action.payload
     }),
 
-    setLaunchAssets: (state, action: PayloadAction<TLaunchAsset[]>) => ({
+    setLaunchAssets: (state, action: PayloadAction<any[]>) => ({
       ...state, assets: action.payload
     }),
 
