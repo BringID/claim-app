@@ -51,7 +51,7 @@ const Content: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={6}
+        stepsCount={4}
         activeStep={4}
       />
     </StepsContainer>
