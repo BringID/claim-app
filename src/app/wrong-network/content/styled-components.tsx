@@ -9,6 +9,7 @@ import {
 
 export const TitleStyled = styled(Title)`
   font-size: 50px;
+  text-align: center;
   line-height: 120%;
   margin: 0 0 20px;
 `
@@ -27,6 +28,9 @@ export const ButtonStyled = styled(Button)`
 
 export const PixeledDropIconStyled = styled(PixeledDropIcon)`
   margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `
 
 export const Container = styled.div`

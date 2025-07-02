@@ -8,7 +8,6 @@ import {
   Button,
   Page
 } from '@/components/common'
-import { SiweMessage } from 'siwe'
 import { useAppSelector } from '@/lib/hooks'
 import { JsonRpcSigner } from 'ethers'
 import { createPublicClient, http } from 'viem'
@@ -24,24 +23,6 @@ import {
 import { ShieldIcon } from '@/components/icons'
 import { SignMessageStyled } from './styled-components'
 import { useRouter } from 'next/navigation'
-
-const createSigMessage = (
-  statement: string,
-  nonce: string,
-  address: string,
-  chainId: number
-) => {
-
-  return new SiweMessage({
-    domain: document.location.host,
-    address: address,
-    chainId: chainId as number,
-    uri: document.location.origin,
-    version: '1',
-    statement,
-    nonce
-  })
-}
 
 const verify = async (
   message: string,
@@ -66,20 +47,12 @@ const prepareMessage = async (
 ) => {
   const timestamp = Date.now()
   const humanReadable = new Date(timestamp).toUTCString()
-  const statement = `I'm signing this message to login to Linkdrop Dashboard at`
+  const statement = `I'm signing this message to login to ZKBring Dashboard at`
   // const { data: { nonce } } = await nonceApi.get(address)
-  const nonce = '1234124314234'
-  const message = createSigMessage(
-    statement,
-    nonce,
-    '0xB4C3d57327D4fC9bcC3499963E21dB1A5435d537',
-    chainId as number
-  )
-
-  const preparedMessage = message.prepareMessage()  
+  const nonce = '1234124314234' 
 
   return {
-    preparedMessage,
+    preparedMessage: statement,
     timestamp
   }
 }
@@ -92,12 +65,7 @@ async function generatePrivateKey(
   
   const sig = await signer.signMessage(String(message))
 
-  const check = await verify(
-    message,
-    sig as `0x${string}`
-  )
-
-  console.log({ check, address })
+  console.log({ address })
 
   // Post a message to the extension content script
   window.postMessage({

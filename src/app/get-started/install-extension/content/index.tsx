@@ -57,6 +57,7 @@ const LaunchTransaction: FC = () => {
   const [ extensionInstalled, setExtensionInstalled ] = useState<boolean | null>(null)
 
   useEffect(() => {
+    console.log(window)
     if ((window as any).tlsn) {
       setExtensionInstalled(true)
     } else {
