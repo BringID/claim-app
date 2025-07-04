@@ -23,23 +23,7 @@ import {
 import { ShieldIcon } from '@/components/icons'
 import { SignMessageStyled } from './styled-components'
 import { useRouter } from 'next/navigation'
-
-const verify = async (
-  message: string,
-  signature: `0x${string}`
-) => {
-  const publicClient = createPublicClient({
-    chain: mainnet,
-    transport: http()
-  })
-
-  const valid = await publicClient.verifySiweMessage({
-    message,
-    signature,
-  })
-
-  return valid
-}
+import { keccak256, toUtf8Bytes } from 'ethers'
 
 const prepareMessage = async (
   address: string,
@@ -64,13 +48,14 @@ async function generatePrivateKey(
 ) {
   
   const sig = await signer.signMessage(String(message))
+  const bytes = toUtf8Bytes(sig)
 
-  console.log({ address })
+  const hash = keccak256(bytes)
 
   // Post a message to the extension content script
   window.postMessage({
     type: 'PRIVATE_KEY',
-    privateKey: sig,
+    privateKey: hash,
     address
   }, '*') // You can restrict the origin in production
 }
@@ -113,7 +98,7 @@ const AuthContent: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={4}
+        stepsCount={5}
         activeStep={3}
       />
     </StepsContainer>

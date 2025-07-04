@@ -78,7 +78,7 @@ const LaunchTransaction: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={4}
+        stepsCount={5}
         activeStep={1}
       />
     </StepsContainer>

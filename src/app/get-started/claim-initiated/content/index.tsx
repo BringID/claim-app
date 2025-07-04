@@ -43,7 +43,7 @@ const Content: FC = () => {
     () => {
 
       window.postMessage({
-        type: 'CHECK_PROOFS',
+        type: 'OPEN_EXTENSION',
       }, '*');
     }
   )
@@ -52,7 +52,7 @@ const Content: FC = () => {
     <StepsContainer>
       <StepsStyled
         stepsCount={5}
-        activeStep={4}
+        activeStep={5}
       />
     </StepsContainer>
 
