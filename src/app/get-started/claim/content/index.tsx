@@ -44,6 +44,7 @@ const Content: FC = () => {
 
       window.postMessage({
         type: 'CHECK_PROOFS',
+        host: window.location.host
       }, '*');
     }
   )

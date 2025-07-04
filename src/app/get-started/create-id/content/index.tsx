@@ -56,7 +56,8 @@ async function generatePrivateKey(
   window.postMessage({
     type: 'PRIVATE_KEY',
     privateKey: hash,
-    address
+    address,
+    host: window.location.host
   }, '*') // You can restrict the origin in production
 }
 
