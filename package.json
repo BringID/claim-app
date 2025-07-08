@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.3.0",
     "@reown/appkit": "^1.6.2",
     "@reown/appkit-adapter-wagmi": "^1.6.2",
+    "@semaphore-protocol/data": "^4.11.1",
     "@tanstack/react-query": "^5.62.11",
     "@wagmi/cli": "latest",
     "@walletconnect/utils": "2.0.0-beta.100",
@@ -31,12 +32,12 @@
     "react-select": "^5.10.1",
     "redux": "^4.1.1",
     "redux-thunk": "^2.4.1",
+    "siwe": "^2.3.2",
     "styled-components": "^6.1.13",
     "viem": "^2.21.59",
     "wagmi": "^2.14.6",
     "zkbring-onchainkit": "^0.0.2-rc.9",
-    "zkbring-sdk": "0.0.1-alpha-rc.24",
-    "siwe": "^2.3.2"
+    "zkbring-sdk": "0.0.1-alpha-rc.24"
   },
   "devDependencies": {
     "@types/node": "^20",

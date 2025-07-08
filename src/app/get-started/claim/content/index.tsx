@@ -44,7 +44,8 @@ const Content: FC = () => {
 
       window.postMessage({
         type: 'CHECK_PROOFS',
-        host: window.location.host
+        host: window.location.host,
+        dropAddress: '0x0ad37502F19ab669A53B9De69841203cb019b056'
       }, '*');
     }
   )
