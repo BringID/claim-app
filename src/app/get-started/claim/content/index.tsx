@@ -68,13 +68,12 @@ const Content: FC = () => {
       }, '*')
 
 
-      window.addEventListener("message", (event) => {
+      window.addEventListener("message", async (event) => {
         switch (event.data.type) {
           //  from client to extension
           case 'CLAIM': {
-            console.log({
-              event
-            })
+            const proofs = event.data
+            console.log({ proofs })
             break
           }
 
