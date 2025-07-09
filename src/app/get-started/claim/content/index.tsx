@@ -72,7 +72,7 @@ const Content: FC = () => {
         switch (event.data.type) {
           //  from client to extension
           case 'CLAIM': {
-            const proofs: any[] = event.data
+            const proofs: any[] = event.data.data
             console.log({ proofs })
 
             const dataToSend = proofs.map(proof => {
@@ -89,7 +89,7 @@ const Content: FC = () => {
               }
             })
 
-            
+
             break
           }
 
