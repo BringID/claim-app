@@ -1,4 +1,4 @@
-import { TTaskServer } from "@/types"
+import { TTaskServer, TSemaphoreProof } from "@/types"
 
 type TAddClaimResponse = Promise<{
   success: boolean
@@ -6,13 +6,7 @@ type TAddClaimResponse = Promise<{
 }>
 
 type TAddClaim = (
-  merkleTreeDepth: number,
-  merkleTreeRoot: string,
-  verificationId: string,
-  nullifier: string,
-  message: string,
-  points: string[],
-  scope: string,
+  proofs: TSemaphoreProof[],
   drop: string,
   to: string
 ) => Promise<TAddClaimResponse>

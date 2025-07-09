@@ -6,13 +6,7 @@ import {
 const TASK_MANAGER_API = 'https://zkbring-task-manager-5000565ab7bd.herokuapp.com'
 
 const addClaim: TAddClaim = (
-  merkleTreeDepth,
-  merkleTreeRoot,
-  verificationId,
-  nullifier,
-  message,
-  points,
-  scope,
+  proofs,
   drop,
   to
 ) => api<TAddClaimResponse>(
@@ -20,13 +14,7 @@ const addClaim: TAddClaim = (
   'POST',
   {},
   {
-    verification_id: verificationId,
-    merkle_tree_depth: merkleTreeDepth,
-    merkle_tree_root: merkleTreeRoot,
-    nullifier,
-    message,
-    points,
-    scope,
+    proofs,
     drop,
     to
   }

@@ -72,8 +72,24 @@ const Content: FC = () => {
         switch (event.data.type) {
           //  from client to extension
           case 'CLAIM': {
-            const proofs = event.data
+            const proofs: any[] = event.data
             console.log({ proofs })
+
+            const dataToSend = proofs.map(proof => {
+              return {
+                verificationId: proof.verificationId,
+                semaphoreProof: {
+                  merkleTreeDepth: proof.merkleTreeDepth,
+                  merkleTreeRoot: proof.merkleTreeRoot,
+                  nullifier: proof.nullifier,
+                  message: proof.message,
+                  scope: proof.scope,
+                  points: proof.points
+                }
+              }
+            })
+
+            
             break
           }
 
