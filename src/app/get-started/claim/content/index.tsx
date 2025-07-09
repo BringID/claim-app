@@ -26,6 +26,7 @@ import {
   useAppDispatch,
   useAppSelector
 } from '@/lib/hooks'
+import taskManager from '@/app/api/claim'
 
 const defineButton = (
   callback: () => void
@@ -40,6 +41,7 @@ const defineButton = (
 }
 
 const Content: FC = () => {
+  const drop = '0x0ad37502F19ab669A53B9De69841203cb019b056'
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -62,7 +64,7 @@ const Content: FC = () => {
       window.postMessage({
         type: 'CHECK_PROOFS',
         host: window.location.host,
-        dropAddress: '0x0ad37502F19ab669A53B9De69841203cb019b056',
+        dropAddress: drop,
         pointsNeeded: 10,
         address: address
       }, '*')
@@ -88,6 +90,12 @@ const Content: FC = () => {
                 }
               }
             })
+
+            await taskManager.addClaim(
+              dataToSend,
+              drop,
+              address as string
+            )
 
 
             break
