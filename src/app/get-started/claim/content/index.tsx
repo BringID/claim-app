@@ -22,6 +22,10 @@ import {
 import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
 import { ShieldIcon } from '@/components/icons'
+import {
+  useAppDispatch,
+  useAppSelector
+} from '@/lib/hooks'
 
 const defineButton = (
   callback: () => void
@@ -39,6 +43,20 @@ const Content: FC = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
+  const {
+    user: {
+      address,
+      chainId
+    },
+  } = useAppSelector(state => (
+    {
+      user: {
+        chainId: state.user.chainId,
+        address: state.user.address
+      }
+    }
+  ))
+
   const button = defineButton(
     () => {
 
@@ -46,8 +64,9 @@ const Content: FC = () => {
         type: 'CHECK_PROOFS',
         host: window.location.host,
         dropAddress: '0x0ad37502F19ab669A53B9De69841203cb019b056',
-        pointsNeeded: 10
-      }, '*');
+        pointsNeeded: 10,
+        address: address
+      }, '*')
     }
   )
 
