@@ -59,7 +59,6 @@ const Content: FC = () => {
 
   const button = defineButton(
     () => {
-
       window.postMessage({
         type: 'CHECK_PROOFS',
         host: window.location.host,
@@ -67,6 +66,20 @@ const Content: FC = () => {
         pointsNeeded: 10,
         address: address
       }, '*')
+
+
+      window.addEventListener("message", (event) => {
+        switch (event.data.type) {
+          //  from client to extension
+          case 'CLAIM': {
+            console.log({
+              event
+            })
+            break
+          }
+
+        }
+      })
     }
   )
 

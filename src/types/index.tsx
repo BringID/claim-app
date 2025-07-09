@@ -10,7 +10,7 @@ import type TClaimError from './claim-error'
 import type TClaimErrorType from './claim-error-type'
 import type TDrop from './drop'
 import type TApiSource from './api-source'
-
+import type TTaskServer from './task-server'
 import type TEnvironment from './environment'
 import type TClaimPattern from "./claim-pattern"
 import type TZerionERC20Item from "./zerion-erc20-item"
@@ -29,6 +29,7 @@ import type IConnectorError from './connector-error'
 export {
   IConnectorError,
   TDropStatus,
+  TTaskServer,
   TFees,
   TAuthorizationStep,
   TClaimErrorType,

@@ -36,6 +36,7 @@ import defineAppNetwork from './define-app-network'
 import formatTokensAmount from './format-tokens-amount'
 import defineNetworkZerionId from './define-network-zerion-id'
 import formatExpiration from './format-expiration'
+import api from './api'
 
 export {
   alertError,
@@ -75,5 +76,6 @@ export {
   toHex,
   switchNetwork,
   defineNetworkZerionId,
-  formatExpiration
+  formatExpiration,
+  api
 }
