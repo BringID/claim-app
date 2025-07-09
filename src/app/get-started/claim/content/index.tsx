@@ -79,10 +79,10 @@ const Content: FC = () => {
 
             const dataToSend = proofs.map(proof => {
               return {
-                verificationId: proof.verificationId,
-                semaphoreProof: {
-                  merkleTreeDepth: proof.merkleTreeDepth,
-                  merkleTreeRoot: proof.merkleTreeRoot,
+                verification_id: proof.verificationId,
+                semaphore_proof: {
+                  merkle_tree_depth: proof.merkleTreeDepth,
+                  merkle_tree_root: proof.merkleTreeRoot,
                   nullifier: proof.nullifier,
                   message: proof.message,
                   scope: proof.scope,

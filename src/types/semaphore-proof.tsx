@@ -1,8 +1,8 @@
 type TSemaphoreProof = {
-  verificationId: string,
-  semaphoreProof: {
-    merkleTreeDepth: number,
-    merkleTreeRoot: string,
+  verification_id: string,
+  semaphore_proof: {
+    merkle_tree_depth: number,
+    merkle_tree_root: string,
     nullifier: string,
     message: string,
     scope: string,
