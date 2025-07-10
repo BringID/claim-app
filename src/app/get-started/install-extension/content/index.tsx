@@ -26,14 +26,25 @@ import { ShieldIcon } from '@/components/icons'
 
 const defineButton = (
   extensionInstalled: boolean | null,
+  extensionInstallationStarted: boolean,
   installedCallback: () => void,
-  notInstalledCallback: () => void
+  notInstalledCallback: () => void,
+  reloadCallback: () => void
 ) => {
   if (extensionInstalled === null) {
     return 'Loading...'
   }
 
   if (!extensionInstalled) {
+
+    if (extensionInstallationStarted) {
+      return <ButtonStyled
+        appearance='action'
+        onClick={reloadCallback}
+      >
+        Reload after installation
+      </ButtonStyled>
+    }
     return <ButtonStyled
       appearance='action'
       onClick={notInstalledCallback}
@@ -54,24 +65,32 @@ const LaunchTransaction: FC = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  const [ extensionInstalled, setExtensionInstalled ] = useState<boolean | null>(null)
+  const [
+    extensionInstalled,
+    setExtensionInstalled
+  ] = useState<boolean | null>(null)
+  const [
+    extensionInstallationStarted,
+    setExtensionInstallationStarted
+  ] = useState<boolean>(false)
 
   useEffect(() => {
     console.log(window)
-    if ((window as any).tlsn) {
-      setExtensionInstalled(true)
-    } else {
-      setExtensionInstalled(false)
-    }
+    setExtensionInstalled((window as any).tlsn)
   }, [])
 
   const button = defineButton(
     extensionInstalled,
+    extensionInstallationStarted,
     () => {
       router.push(`/get-started/connect`)
     },
     () => {
       alert('INSTALL EXTENSION')
+      setExtensionInstallationStarted(true)
+    },
+    () => {
+      window.location.reload()
     }
   )
 
