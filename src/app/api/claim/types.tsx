@@ -1,8 +1,8 @@
-import { TTaskServer, TSemaphoreProof } from "@/types"
+import { TSemaphoreProof } from "@/types"
 
 type TAddClaimResponse = Promise<{
   success: boolean
-  task: TTaskServer
+  tx_hash: string
 }>
 
 type TAddClaim = (

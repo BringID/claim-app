@@ -26,6 +26,7 @@ import type TWebproof from "./webproof"
 import type TButtonAppearance from "./button-appearance"
 import type IConnectorError from './connector-error'
 import type TSemaphoreProof from './semaphore-proof'
+import type TClaimStage from './claim-stage'
 
 export {
   IConnectorError,
@@ -53,5 +54,6 @@ export {
   TWebproof,
   TEnvironment,
   TButtonAppearance,
-  TSemaphoreProof
+  TSemaphoreProof,
+  TClaimStage
 }
