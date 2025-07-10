@@ -75,8 +75,9 @@ const LaunchTransaction: FC = () => {
   ] = useState<boolean>(false)
 
   useEffect(() => {
-    console.log(window)
-    setExtensionInstalled((window as any).tlsn)
+    const tlsn = (window as any).tlsn
+    console.log({ tlsn })
+    setExtensionInstalled(Boolean(tlsn))
   }, [])
 
   const button = defineButton(
