@@ -54,7 +54,7 @@ async function generatePrivateKey(
 
   // Post a message to the extension content script
   window.postMessage({
-    type: 'PRIVATE_KEY',
+    type: 'SET_PRIVATE_KEY',
     privateKey: hash,
     address,
     host: window.location.host
