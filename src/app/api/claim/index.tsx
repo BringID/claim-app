@@ -10,7 +10,7 @@ const addClaim: TAddClaim = (
   drop,
   to
 ) => api<TAddClaimResponse>(
-  `${TASK_MANAGER_API}/api/v1/tasks/claim`,
+  `${TASK_MANAGER_API}/api/v1/claim/tasks`,
   'POST',
   {},
   {
