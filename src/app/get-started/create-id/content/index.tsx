@@ -31,7 +31,7 @@ const prepareMessage = async (
 ) => {
   const timestamp = Date.now()
   const humanReadable = new Date(timestamp).toUTCString()
-  const statement = `Hi, I'm signing this message to login to BringID Dashboard `
+  const statement = `Hello, I'm signing this message to login to BringID Dashboard `
   // const { data: { nonce } } = await nonceApi.get(address)
   const nonce = '1234124314234' 
 
