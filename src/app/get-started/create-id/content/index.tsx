@@ -74,6 +74,7 @@ const AuthContent: FC = () => {
 
   const [ message, setMessage ] = useState<string>('')
   const [ timestamp, setTimestamp ] = useState<number>(0)
+  const [ loading, setLoading ] = useState<boolean>(false)
 
   useEffect(() => {
     if (!address) { return }
@@ -117,20 +118,26 @@ const AuthContent: FC = () => {
       </SignMessageStyled>}
       <ButtonStyled
         appearance='action'
+        loading={loading}
         onClick={async () => {
-          if (!message) {
-            return alert('No message prepared')
+          setLoading(true)
+          try {
+            if (!message) {
+              return alert('No message prepared')
+            }
+            await generatePrivateKey(
+              message as string,
+              signer as JsonRpcSigner,
+              address as string
+            )
+
+            console.log('sss')
+
+            router.push('/get-started/claim')
+          } catch (err) {
+            console.log({ err })
           }
-          await generatePrivateKey(
-            message as string,
-            signer as JsonRpcSigner,
-            address as string
-          )
-
-          console.log('sss')
-
-          router.push('/get-started/claim')
-
+          setLoading(false)
         }}
       >
         Sign message
