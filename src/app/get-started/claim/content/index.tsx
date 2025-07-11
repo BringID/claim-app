@@ -30,8 +30,13 @@ import {
 } from '@/lib/hooks'
 import taskManager from '@/app/api/claim'
 import { defineExplorerURL } from '@/utils'
+import { pointsNeeded } from '@/app/configs'
 
 const defineButton = (
+  loading: boolean,
+  setLoading: (
+    loading: boolean
+  ) => void,
   stage: TClaimStage,
   setStage: (
     stage: TClaimStage
@@ -49,6 +54,7 @@ const defineButton = (
     case 'initial': {
       return <ButtonStyled
         appearance='action'
+        loading={loading}
         onClick={() => {
           window.postMessage({
             type: 'OPEN_EXTENSION'
@@ -63,12 +69,13 @@ const defineButton = (
     case 'started': {
       return <ButtonStyled
         appearance='action'
+        loading={loading}
         onClick={() => {
           window.postMessage({
             type: 'CHECK_PROOFS',
             host: window.location.host,
             dropAddress: dropAddress,
-            pointsNeeded: 10,
+            pointsNeeded,
             address: address as string
           }, '*')
         }}
@@ -80,16 +87,26 @@ const defineButton = (
     case 'ready_to_claim': {
       return <ButtonStyled
         appearance='action'
+        loading={loading}
         onClick={async () => {
-          const result = await taskManager.addClaim(
-            proofs,
-            dropAddress,
-            address as string
-          )
+          setLoading(true)
+          try {
+            const result = await taskManager.addClaim(
+              proofs,
+              dropAddress,
+              address as string
+            )
 
-          const { tx_hash } = result
-          setTxHash(tx_hash)
-          setStage('claim_started')
+            const { tx_hash } = result
+            setTxHash(tx_hash)
+            setStage('claim_started')
+          } catch (err) {
+            console.log({
+              err
+            })
+          }
+          setLoading(false)
+          
         }}
       >
         Claim
@@ -114,6 +131,7 @@ const defineButton = (
 const Content: FC = () => {
   const router = useRouter()
   const dispatch = useDispatch()
+  const [ loading, setLoading ] = useState<boolean>(false)
   const [ stage, setStage ] = useState<TClaimStage>('initial')
   const [ proofs, setProofs ] = useState<TSemaphoreProof[]>([])
   const [ txHash, setTxHash ] = useState<string>('')
@@ -123,26 +141,34 @@ const Content: FC = () => {
       switch (event.data.type) {
         //  from client to extension
         case 'CLAIM': {
-          const proofs: any[] = event.data.data
-          console.log({ proofs })
-
-          const dataToSend = proofs.map(proof => {
-            return {
-              verification_id: proof.verificationId,
-              semaphore_proof: {
-                merkle_tree_depth: proof.merkleTreeDepth,
-                merkle_tree_root: proof.merkleTreeRoot,
-                nullifier: proof.nullifier,
-                message: proof.message,
-                scope: proof.scope,
-                points: proof.points
-              }
+          setLoading(true)
+          try {
+            const proofs: any[] = event.data.data
+            console.log({ proofs })
+            if (!proofs) {
+              return alert('Please try later. Proofs are not ready')
             }
-          })
+            const dataToSend = proofs.map(proof => {
+              return {
+                verification_id: proof.verificationId,
+                semaphore_proof: {
+                  merkle_tree_depth: proof.merkleTreeDepth,
+                  merkle_tree_root: proof.merkleTreeRoot,
+                  nullifier: proof.nullifier,
+                  message: proof.message,
+                  scope: proof.scope,
+                  points: proof.points
+                }
+              }
+            })
 
-          setProofs(dataToSend)
-          setStage('ready_to_claim')
-
+            setProofs(dataToSend)
+            setStage('ready_to_claim')
+          } catch (err) {
+            console.log({ err })
+          }
+          setLoading(false)
+  
           break
         }
 
@@ -168,6 +194,8 @@ const Content: FC = () => {
 
 
   const button = defineButton(
+    loading,
+    setLoading,
     stage,
     setStage,
     txHash,
@@ -179,7 +207,7 @@ const Content: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={5}
+        stepsCount={4}
         activeStep={4}
       />
     </StepsContainer>

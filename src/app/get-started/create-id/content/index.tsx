@@ -99,7 +99,7 @@ const AuthContent: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={5}
+        stepsCount={4}
         activeStep={3}
       />
     </StepsContainer>
