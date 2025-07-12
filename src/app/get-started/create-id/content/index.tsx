@@ -31,7 +31,7 @@ const prepareMessage = async (
 ) => {
   const timestamp = Date.now()
   const humanReadable = new Date(timestamp).toUTCString()
-  const statement = `Hello, now I'm signing this message to login to BringID Dashboard.`
+  const statement = `Sign this message to login to BringID Dashboard`
   // const { data: { nonce } } = await nonceApi.get(address)
   const nonce = '1234124314234' 
 
@@ -130,8 +130,6 @@ const AuthContent: FC = () => {
               signer as JsonRpcSigner,
               address as string
             )
-
-            console.log('sss')
 
             router.push('/get-started/claim')
           } catch (err) {
