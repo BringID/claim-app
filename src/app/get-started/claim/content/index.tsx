@@ -141,6 +141,7 @@ const Content: FC = () => {
       switch (event.data.type) {
         //  from client to extension
         case 'CLAIM': {
+          console.log('HERE', event)
           setLoading(true)
           try {
             const proofs: any[] = event.data.data
