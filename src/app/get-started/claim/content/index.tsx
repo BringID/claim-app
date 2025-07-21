@@ -122,7 +122,7 @@ const defineButton = (
         }}
       >
         Check tx hash
-      </ButtonStyled> 
+      </ButtonStyled>
   }
 
   return 
@@ -173,6 +173,9 @@ const Content: FC = () => {
           break
         }
 
+        case 'SET_PRIVATE_KEY':
+          router.push(`/get-started/create-id`)
+          break
       }
     })
   }, [])
