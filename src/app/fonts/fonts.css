@@ -15,3 +15,9 @@
   font-weight: 400;
   src: url('./Menlo-Regular.ttf') format('truetype');
 }
+
+@font-face {
+  font-family: 'Menlo';
+  font-weight: 700;
+  src: url('./Menlo-Bold.ttf') format('truetype');
+}

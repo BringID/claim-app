@@ -72,7 +72,7 @@ const AuthContent: FC<TProps> = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={4}
+        stepsCount={6}
         activeStep={2}
       />
     </StepsContainer>

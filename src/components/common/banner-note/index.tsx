@@ -5,13 +5,15 @@ import {
   Title
 } from './styled-components'
 
-const SuccessNote: FC<TProps> = ({
+const BannerNote: FC<TProps> = ({
   children,
   className,
-  title
+  title,
+  status
 }) => {
   return <Container
     className={className}
+    status={status}
   >
     {title && <Title>
       {
@@ -22,4 +24,4 @@ const SuccessNote: FC<TProps> = ({
   </Container>
 }
 
-export default SuccessNote
+export default BannerNote

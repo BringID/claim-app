@@ -21,7 +21,11 @@ import {
   ButtonStyled
 } from '../../styled-components'
 import { ShieldIcon } from '@/components/icons'
-import { SignMessageStyled } from './styled-components'
+import {
+  SignMessageStyled,
+  List,
+  ListItem
+} from './styled-components'
 import { useRouter } from 'next/navigation'
 import { keccak256, toUtf8Bytes } from 'ethers'
 
@@ -31,7 +35,7 @@ const prepareMessage = async (
 ) => {
   const timestamp = Date.now()
   const humanReadable = new Date(timestamp).toUTCString()
-  const statement = `Hi. Sign this message to login to BringID Dashboard`
+  const statement = `Welcome!!! Sign this message to login to BringID Dashboard!`
   // const { data: { nonce } } = await nonceApi.get(address)
   const nonce = '1234124314234' 
 
@@ -100,7 +104,7 @@ const AuthContent: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={4}
+        stepsCount={6}
         activeStep={3}
       />
     </StepsContainer>
@@ -110,7 +114,21 @@ const AuthContent: FC = () => {
     >
       <TextStyled>Sign a message to generate your unique identity key</TextStyled>
       <NoteStyled>
-        The Bring ID extension creates zero-knowledge proofs of your web2 accounts without exposing your credentials. It runs locally in your browser and never sends your login information to our servers.
+        How this works: We'll ask you to sign a random nonce with your wallet. This signature, combined with your wallet's public key, generates a deterministic Bring ID key. This means:
+        <List>
+          <ListItem>
+            Your Bring ID is cryptographically tied to your wallet
+          </ListItem>
+          <ListItem>
+            You can always recover it by signing with the same wallet
+          </ListItem>
+          <ListItem>
+            No one else can create or access your Bring ID
+          </ListItem>
+          <ListItem>
+            Your web2 verifications remain private through zkTLS
+          </ListItem>
+        </List>
       </NoteStyled>
 
       {message && <SignMessageStyled>
@@ -125,12 +143,13 @@ const AuthContent: FC = () => {
             if (!message) {
               return alert('No message prepared')
             }
+            console.log('sss1')
             await generatePrivateKey(
               message as string,
               signer as JsonRpcSigner,
               address as string
             )
-
+            console.log('sss2', router)
             router.push('/get-started/claim')
           } catch (err) {
             console.log({ err })

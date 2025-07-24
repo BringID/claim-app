@@ -1,6 +1,9 @@
 import TProps from "./types"
 import { FC } from 'react'
-import { Container } from './styled-components'
+import {
+  Container,
+  Content
+} from './styled-components'
 import { ExclimationIcon } from "@/components/icons"
 
 const Note: FC<TProps> = ({
@@ -11,7 +14,9 @@ const Note: FC<TProps> = ({
     className={className}
   >
     <ExclimationIcon />
-    {children}
+    <Content>
+      {children}
+    </Content>
   </Container>
 }
 

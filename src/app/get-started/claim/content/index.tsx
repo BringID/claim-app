@@ -14,7 +14,6 @@ import {
   TextStyled
 } from '../../styled-components'
 import { TClaimStage, TSemaphoreProof } from '@/types'
-
 import {
   WidgetStyled,
   ButtonStyled,
@@ -31,6 +30,7 @@ import {
 import taskManager from '@/app/api/claim'
 import { defineExplorerURL } from '@/utils'
 import { pointsNeeded } from '@/app/configs'
+import { setTxHash } from '@/lib/slices'
 
 const defineButton = (
   loading: boolean,
@@ -41,10 +41,13 @@ const defineButton = (
   setStage: (
     stage: TClaimStage
   ) => void,
-  txHash: string,
-    setTxHash: (
+  setTxHash: (
     txHash: string
   ) => void,
+  navigate: (
+    location: string
+  ) => void,
+  
   address: string,
   proofs: TSemaphoreProof[]
 
@@ -98,31 +101,19 @@ const defineButton = (
             )
 
             const { tx_hash } = result
+            alert(JSON.stringify(result))
+            
             setTxHash(tx_hash)
-            setStage('claim_started')
+            navigate(`/get-started/claim-initiated`)
           } catch (err) {
-            console.log({
-              err
-            })
+            alert(err)
           }
           setLoading(false)
-          
         }}
       >
-        Claim
+        Claim Verified Human NFT
       </ButtonStyled> 
     }
-
-    case 'claim_started':
-      return <ButtonStyled
-        appearance='action'
-        onClick={async () => {
-          const txHashScannerUrl = defineExplorerURL(84532)
-          window.open(`${txHashScannerUrl}/tx/${txHash}`)
-        }}
-      >
-        Check tx hash
-      </ButtonStyled>
   }
 
   return 
@@ -134,14 +125,12 @@ const Content: FC = () => {
   const [ loading, setLoading ] = useState<boolean>(false)
   const [ stage, setStage ] = useState<TClaimStage>('initial')
   const [ proofs, setProofs ] = useState<TSemaphoreProof[]>([])
-  const [ txHash, setTxHash ] = useState<string>('')
 
   useEffect(() => {
     window.addEventListener("message", async (event) => {
       switch (event.data.type) {
         //  from client to extension
         case 'CLAIM': {
-          console.log('HERE', event)
           setLoading(true)
           try {
             const proofs: any[] = event.data.data
@@ -151,7 +140,7 @@ const Content: FC = () => {
             }
             const dataToSend = proofs.map(proof => {
               return {
-                verification_id: proof.verificationId,
+                verification_id: proof.credentialGroupId,
                 semaphore_proof: {
                   merkle_tree_depth: proof.merkleTreeDepth,
                   merkle_tree_root: proof.merkleTreeRoot,
@@ -195,15 +184,19 @@ const Content: FC = () => {
     }
   ))
 
-
-
   const button = defineButton(
     loading,
     setLoading,
     stage,
     setStage,
-    txHash,
-    setTxHash,
+    (
+      txHash
+    ) => dispatch(setTxHash(txHash)),
+    (
+      location
+    ) => {
+      router.push(location)
+    },
     address as string,
     proofs
   )
@@ -211,18 +204,18 @@ const Content: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={4}
+        stepsCount={6}
         activeStep={4}
       />
     </StepsContainer>
 
     <WidgetStyled
-      title='Claim Your Tokens'
+      title='Claim Your Proof-of-Human NFT'
       image={<ShieldIcon />}
     >
       <TextStyled>Complete verifications to unlock your airdrop</TextStyled>
       <SuccessNoteStyled
-        title='2,500 BRING'
+        title='Verified Human NFT'
       >
         Available for users with Advanced verification level (20+ points)
       </SuccessNoteStyled>

@@ -12,10 +12,10 @@ function api<T>(
       'content-type': 'application/json'
     }
   })
-    .then(response => {
+    .then(async response => {
       if (!response.ok) {
-        console.log({ response })
-        throw new Error(response.statusText)
+        const data = await response.json()
+        throw new Error(data.error)
       }
       return response.json() as Promise<T>
     })

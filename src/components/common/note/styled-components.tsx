@@ -9,3 +9,7 @@ export const Container = styled.div`
   gap: 10px;
   align-items: start;
 `
+
+export const Content = styled.div`
+  
+`

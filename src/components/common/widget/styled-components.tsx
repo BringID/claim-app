@@ -13,7 +13,7 @@ export const WidgetComponent = styled.div<TProps>`
 export const WidgetTitle = styled.h3`
   font-size: 24px;
   margin: 0;
-  font-family: 'Geist', Helvetica, Arial, sans-serif;
+  font-family: 'Menlo', Helvetica, Arial, sans-serif;
   font-weight: 700;
   text-align: center;
   width: 100%;

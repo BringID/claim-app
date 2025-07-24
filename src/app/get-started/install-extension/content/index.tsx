@@ -32,7 +32,12 @@ const defineButton = (
   reloadCallback: () => void
 ) => {
   if (extensionInstalled === null) {
-    return 'Loading...'
+    return <ButtonStyled
+      appearance='action'
+      loading
+    >
+      Install Extension
+    </ButtonStyled>
   }
 
   if (!extensionInstalled) {
@@ -100,7 +105,7 @@ const LaunchTransaction: FC = () => {
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={4}
+        stepsCount={6}
         activeStep={1}
       />
     </StepsContainer>

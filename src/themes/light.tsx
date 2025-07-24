@@ -34,11 +34,12 @@ const theme = {
 
 
   buttonDefaultBackgroundColor: '#FFF',
-  buttonDefaultBackgroundHoverColor: '#FFF',
-  buttonDefaultBackgroundActiveColor: '#FFF',
-  buttonDefaultBorderHoverColor: 'transparent',
-  buttonDefaultBorderActiveColor: 'transparent',
-  buttonDefaultBorderColor: 'transparent',
+  buttonDefaultBackgroundHoverColor: 'rgb(229, 229, 229)',
+  buttonDefaultBackgroundActiveColor: 'rgb(229, 229, 229)',
+
+  buttonDefaultBorderHoverColor: 'rgb(249 250 251)',
+  buttonDefaultBorderActiveColor: 'rgb(249 250 251)',
+  buttonDefaultBorderColor: 'rgb(229, 229, 229)',
 
 
   buttonAdditionalBackgroundColor: 'transparent',
@@ -126,9 +127,18 @@ const theme = {
   successStatusColor: 'rgb(22, 163, 74)',
   errorStatusColor: '#C45E4F',
 
-  successBorderColor: 'rgb(187, 247, 208)',
-  successBackgroundColor: 'rgb(240, 253, 244)',
-  successTextColor: '#229B93',
+  successStatusBorderColor: 'rgb(187, 247, 208)',
+  successStatusBackgroundColor: 'rgb(240, 253, 244)',
+  successStatusTextColor: 'rgb(22, 163, 74)',
+
+  errorStatusBackgroundColor: 'rgb(254, 242, 242)',
+  errorStatusBorderColor: 'rgb(254, 202, 202)',
+  errorStatusTextColor: 'rgb(153, 27, 27)',
+
+  warningStatusBackgroundColor: 'rgb(254, 252, 232)',
+  warningStatusBorderColor: 'rgb(254, 240, 138)',
+  warningStatusTextColor: 'rgb(202, 138, 4)',
+
 
   primaryHighlightColor: '#229B93',
   dropStatusTextColor: '#38966A',
