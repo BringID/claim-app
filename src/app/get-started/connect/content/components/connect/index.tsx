@@ -14,7 +14,6 @@ import { ConnectButtonStyled } from './styled-components'
 import Image from '@/images/connect-image.png'
 import { WalletIcon } from '@/components/icons'
 
-
 const Connect: FC = () => {
   return <WidgetStyled
     title='Connect Your Wallet'

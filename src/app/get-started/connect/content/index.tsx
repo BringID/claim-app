@@ -63,10 +63,16 @@ const AuthContent: FC<TProps> = () => {
     }
   }, [])
 
+  useEffect(() => {
+    if (authorizationStep === 'connected') {
+      router.push(`/get-started/create-id`)
+    }
+  }, [authorizationStep])
+
   return <Page>
     <StepsContainer>
       <StepsStyled
-        stepsCount={6}
+        stepsCount={4}
         activeStep={2}
       />
     </StepsContainer>
