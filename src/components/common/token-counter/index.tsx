@@ -10,9 +10,7 @@ import {
   ToggleStyled
 } from './styled-components'
 import TProps from './types'
-import {
-  TOKEN_BUY_ADDRESS
-} from '@/app/configs/app-token'
+
 
 const defineTexts = (
   valueBN: bigint,
@@ -53,14 +51,16 @@ const defineControl = (
     />
   }
 
-  return <ButtonStyled
-    size='small'
-    target='_blank'
-    href={TOKEN_BUY_ADDRESS}
-    appearance="additional"
-  >
-    {buttonTitle}
-  </ButtonStyled>
+  // return <ButtonStyled
+  //   size='small'
+  //   target='_blank'
+  //   href={TOKEN_BUY_ADDRESS}
+  //   appearance="additional"
+  // >
+  //   {buttonTitle}
+  // </ButtonStyled>
+
+  return null
 }
 
 const TokenCounter: FC<TProps> = ({

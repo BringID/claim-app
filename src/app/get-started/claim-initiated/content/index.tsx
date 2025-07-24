@@ -13,7 +13,7 @@ import {
   StepsStyled,
   TextStyled
 } from '../../styled-components'
-
+import { TOKEN_ADDRESS } from '../../../configs/app-token'
 import {
   WidgetStyled,
   ButtonStyled,
@@ -27,8 +27,10 @@ import {
 } from '@/lib/hooks'
 import {
   defineExplorerURL,
-  shortenString
+  shortenString,
+  checkIfERC721TokenIsClaimed
 } from '@/utils'
+import { JsonRpcSigner } from 'ethers'
 
 const defineButton = (
   txHash: string,
@@ -38,7 +40,6 @@ const defineButton = (
       onClick={async () => {
         const txHashScannerUrl = defineExplorerURL(84532)
         window.open(`${txHashScannerUrl}/tx/${txHash}`)
-        navigate('/get-started/claim-finished')
       }}
     >
       Check tx hash
@@ -49,20 +50,10 @@ const Content: FC = () => {
   const router = useRouter()
   const dispatch = useDispatch()
 
-  useEffect(() => {
-    window.addEventListener("message", async (event) => {
-      switch (event.data.type) {
-        //  from client to extension
-        case 'SET_PRIVATE_KEY':
-          router.push(`/get-started/create-id`)
-          break
-      }
-    })
-  }, [])
-
   const {
     user: {
       address,
+      signer
     },
     claim: {
       txHash
@@ -84,6 +75,28 @@ const Content: FC = () => {
       router.push(location)
     }
   )
+
+  useEffect(() => {
+    const interval = window.setInterval(async () => {
+      const isClaimed = await checkIfERC721TokenIsClaimed(
+        address as string,
+        signer as JsonRpcSigner
+      )
+      console.log({ isClaimed })
+
+      if (isClaimed) {
+        window.clearInterval(interval)
+
+        return 
+      }
+    }, 1000)
+
+
+    return () => {
+      window.clearInterval(interval)
+    }
+
+  }, [])
 
   return <Page>
     <StepsContainer>

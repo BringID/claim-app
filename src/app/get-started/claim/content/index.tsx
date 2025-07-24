@@ -140,7 +140,7 @@ const Content: FC = () => {
             }
             const dataToSend = proofs.map(proof => {
               return {
-                verification_id: proof.credentialGroupId,
+                credential_group_id: proof.credentialGroupId,
                 semaphore_proof: {
                   merkle_tree_depth: proof.merkleTreeDepth,
                   merkle_tree_root: proof.merkleTreeRoot,

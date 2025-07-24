@@ -18,20 +18,14 @@ import {
   ButtonStyled,
   SuccessNoteStyled
 } from './styled-components'
-import { dropAddress } from '@/app/configs'
-import { useRouter } from 'next/navigation'
-import { useDispatch } from 'react-redux'
 import { ShieldIcon } from '@/components/icons'
 import {
   shortenString
 } from '@/utils'
 import {
-  useAppDispatch,
   useAppSelector
 } from '@/lib/hooks'
-import taskManager from '@/app/api/claim'
 import { defineExplorerURL } from '@/utils'
-import { pointsNeeded } from '@/app/configs'
 
 const defineButton = (
   txHash: string

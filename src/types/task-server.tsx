@@ -4,7 +4,7 @@ type TTaskServer = {
   "status": string
   "id_hash": string | null
   "registry": string
-  "verification_id": string
+  "credential_group_id": string
   "verifier_signature": string
   "identity_commitment": string
   "batch_id": null | string,

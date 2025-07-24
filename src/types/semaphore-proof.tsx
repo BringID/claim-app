@@ -1,5 +1,5 @@
 type TSemaphoreProof = {
-  verification_id: string,
+  credential_group_id: string,
   semaphore_proof: {
     merkle_tree_depth: number,
     merkle_tree_root: string,
