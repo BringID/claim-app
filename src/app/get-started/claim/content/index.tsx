@@ -106,7 +106,9 @@ const defineButton = (
             setTxHash(tx_hash)
             navigate(`/get-started/claim-initiated`)
           } catch (err) {
-            alert(err)
+            console.log({ err })
+            // @ts-ignore
+            alert(err.error)
           }
           setLoading(false)
         }}
