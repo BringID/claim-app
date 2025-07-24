@@ -108,7 +108,7 @@ const defineButton = (
           } catch (err) {
             console.log({ err })
             // @ts-ignore
-            alert(err.error)
+            alert(err.message)
           }
           setLoading(false)
         }}
