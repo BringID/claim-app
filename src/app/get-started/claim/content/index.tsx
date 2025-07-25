@@ -54,20 +54,20 @@ const defineButton = (
 ) => {
 
   switch (stage) {
-    case 'initial': {
-      return <ButtonStyled
-        appearance='action'
-        loading={loading}
-        onClick={() => {
-          window.postMessage({
-            type: 'OPEN_EXTENSION'
-          }, '*')
-          setStage('started')
-        }}
-      >
-        Prove you're human
-      </ButtonStyled> 
-    }
+    case 'initial': 
+    //   return <ButtonStyled
+    //     appearance='action'
+    //     loading={loading}
+    //     onClick={() => {
+    //       window.postMessage({
+    //         type: 'OPEN_EXTENSION'
+    //       }, '*')
+    //       setStage('started')
+    //     }}
+    //   >
+    //     Prove you're human
+    //   </ButtonStyled> 
+    // }
 
     case 'started': {
       return <ButtonStyled
