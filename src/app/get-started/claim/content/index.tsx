@@ -29,7 +29,7 @@ import {
 } from '@/lib/hooks'
 import taskManager from '@/app/api/claim'
 import { defineExplorerURL } from '@/utils'
-import { pointsNeeded } from '@/app/configs'
+import { pointsRequired } from '@/app/configs'
 import { setTxHash } from '@/lib/slices'
 
 const defineButton = (
@@ -75,10 +75,10 @@ const defineButton = (
         loading={loading}
         onClick={() => {
           window.postMessage({
-            type: 'CHECK_PROOFS',
+            type: 'REQUEST_POINTS',
             host: window.location.host,
             dropAddress: dropAddress,
-            pointsNeeded,
+            pointsRequired,
             address: address as string
           }, '*')
         }}

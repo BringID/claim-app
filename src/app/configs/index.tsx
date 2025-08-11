@@ -18,4 +18,4 @@ export const zkBringLink = 'https://zkbring.com/'
 export const warpcastLink = 'https://warpcast.com/~/channel/bring'
 export const formLink = 'https://form.typeform.com/to/kmi5YYVY'
 export const dropAddress = '0x48c38c46ed8297a74c4d6fa584e9c5e13c9ff2fa'
-export const pointsNeeded = 10
+export const pointsRequired = 10

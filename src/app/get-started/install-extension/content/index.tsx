@@ -81,9 +81,8 @@ const LaunchTransaction: FC = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      const tlsn = (window as any).tlsn
-      console.log({ tlsn })
-      setExtensionInstalled(Boolean(tlsn))
+      const bringId = (window as any).bringID
+      setExtensionInstalled(Boolean(bringId))
     }, 1500)
   }, [])
 
