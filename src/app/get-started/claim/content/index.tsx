@@ -140,21 +140,8 @@ const Content: FC = () => {
             if (!proofs) {
               return alert('Please try later. Proofs are not ready')
             }
-            const dataToSend = proofs.map(proof => {
-              return {
-                credential_group_id: proof.credentialGroupId,
-                semaphore_proof: {
-                  merkle_tree_depth: proof.merkleTreeDepth,
-                  merkle_tree_root: proof.merkleTreeRoot,
-                  nullifier: proof.nullifier,
-                  message: proof.message,
-                  scope: proof.scope,
-                  points: proof.points
-                }
-              }
-            })
-
-            setProofs(dataToSend)
+            
+            setProofs(proofs)
             setStage('ready_to_claim')
           } catch (err) {
             console.log({ err })
