@@ -38,9 +38,7 @@ const Page: FC<TProps> = ({
     address,
     chain
   } = useAccount()
-
   const { data: walletClient } = useWalletClient()
-
   const [
     userSigner,
     setUserSigner
@@ -72,22 +70,25 @@ const Page: FC<TProps> = ({
   }, [walletClient])
 
   useEffect(() => {
-    if (!address || !chain || !userSigner || !userProvider) {
+    if (!address || !userSigner || !userProvider) {
       dispatch(setConnectedUserData({
-        address: null,
+        address: address || null,
         chainId: null,
-        signer: null,
-        provider: null
+        signer: userSigner || null,
+        provider: userProvider || null
       }))
 
       return
     }
 
     if (!preventSwitchNetworkRedirect) {
-      if (String(chain.id) !== networkId) {
+      if (!chain || String(chain.id) !== networkId) {
+  
         router.push('/wrong-network')
       }
     }
+
+    if (!chain) { return }
 
     dispatch(setConnectedUserData({
       address,

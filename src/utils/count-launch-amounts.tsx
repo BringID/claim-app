@@ -22,12 +22,6 @@ const countLaunchAmounts = (
   const comission: bigint = amount / BigInt(1000) * BigInt(3)
   const totalAmount: bigint = amount + comission
 
-  console.log({
-    amount,
-    comission,
-    totalAmount
-  })
-
   return {
     amount,
     comission,

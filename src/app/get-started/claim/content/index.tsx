@@ -136,7 +136,6 @@ const Content: FC = () => {
           setLoading(true)
           try {
             const proofs: any[] = event.data.data
-            console.log({ proofs })
             if (!proofs) {
               return alert('Please try later. Proofs are not ready')
             }

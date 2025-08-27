@@ -77,8 +77,6 @@ const launchSlice = createSlice({
         loading: false
       }
 
-      console.log({ state })
-
       return state
     }),
 

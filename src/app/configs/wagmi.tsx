@@ -1,15 +1,7 @@
 import { cookieStorage, createStorage } from '@wagmi/core'
 import { WagmiAdapter } from '@reown/appkit-adapter-wagmi'
-import {
-  baseSepolia,
-  base,
-  mainnet,
-  polygon,
-  arbitrum,
-  optimism,
-  avalanche
-} from 'wagmi/chains'
 import { coinbaseWallet, walletConnect } from 'wagmi/connectors'
+import { allChains } from './networks'
 
 import {
   projectId
@@ -19,23 +11,13 @@ if (!projectId) {
   throw new Error('Project ID is not defined')
 }
 
-export const networks = [
-  baseSepolia,
-  base,
-  mainnet,
-  polygon,
-  arbitrum,
-  optimism,
-  avalanche
-]
-
 const wagmiConfig = {
   storage: createStorage({
     storage: cookieStorage
   }),
   ssr: true,
   projectId,
-  networks,
+  networks: allChains,
   connectors: [
     coinbaseWallet()
   ]

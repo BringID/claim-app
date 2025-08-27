@@ -20,12 +20,8 @@ import {
   CupIconStyled
 } from './styled-components'
 import { VerticalWidgets, HorizontalWidgets } from "@/components/common"
-import { SemaphoreSubgraph } from "@semaphore-protocol/data"
-
   
 const HomePageContent = () => {
-
-  console.log({ SemaphoreSubgraph })
   return <Page>
     <MainTag>
       <CodeIconStyled />

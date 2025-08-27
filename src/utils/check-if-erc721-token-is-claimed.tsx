@@ -20,8 +20,6 @@ const checkIfERC721TokenIsClaimed: TCheckIfERC721TokenIsClaimed = async (
 
     const minted = await contract.minted(userAddress)
 
-    console.log({ minted })
-
     return Boolean(minted)
 }
 

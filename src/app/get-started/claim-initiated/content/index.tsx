@@ -82,7 +82,6 @@ const Content: FC = () => {
         address as string,
         signer as JsonRpcSigner
       )
-      console.log({ isClaimed })
 
       if (isClaimed) {
         window.clearInterval(interval)

@@ -143,13 +143,11 @@ const AuthContent: FC = () => {
             if (!message) {
               return alert('No message prepared')
             }
-            console.log('sss1')
             await generatePrivateKey(
               message as string,
               signer as JsonRpcSigner,
               address as string
             )
-            console.log('sss2', router)
             router.push('/get-started/claim')
           } catch (err) {
             console.log({ err })

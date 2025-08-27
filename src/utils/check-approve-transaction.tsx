@@ -11,7 +11,6 @@ const checkApproveTransaction = (
     return new Promise((resolve) => {
       const checkInterval = setInterval(async () => {
         const allowed = await contractInstance.allowance(userAddress, factoryAddress)
-        console.log({ allowed })
         if (allowed >= totalAmount) {
           resolve(true)
           clearInterval(checkInterval)

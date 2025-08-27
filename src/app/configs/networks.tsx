@@ -1,0 +1,43 @@
+import {
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  avalanche,
+  base,
+  baseSepolia,
+  bsc,
+  fantom,
+  gnosis,
+  celo,
+  moonbeam,
+  moonriver,
+  sepolia,
+  polygonMumbai,
+  arbitrumSepolia,
+  scrollSepolia,
+  polygonZkEvm,
+  tron
+} from 'wagmi/chains'
+
+export const allChains = [
+  mainnet,
+  polygon,
+  optimism,
+  arbitrum,
+  avalanche,
+  base,
+  baseSepolia,
+  sepolia,
+  polygonMumbai,
+  arbitrumSepolia,
+  bsc,
+  fantom,
+  gnosis,
+  celo,
+  moonbeam,
+  moonriver,
+  scrollSepolia,
+  polygonZkEvm,
+  tron
+]
