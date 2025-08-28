@@ -31,6 +31,10 @@ const defineButton = (
   txHash: string
 ) => {
 
+  if (!txHash) {
+    return null
+  }
+
   return <ButtonStyled
     onClick={async () => {
       const txHashScannerUrl = defineExplorerURL(84532)

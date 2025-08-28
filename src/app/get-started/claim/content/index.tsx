@@ -113,7 +113,6 @@ const defineButton = (
             )
 
             const { tx_hash } = result
-            alert(JSON.stringify(result))
             
             setTxHash(tx_hash)
             navigate(`/get-started/claim-initiated`)
