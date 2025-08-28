@@ -2779,8 +2779,12 @@ braces@^3.0.3:
   dependencies:
     fill-range "^7.1.1"
 
-"bringid-sdk@file:../bringid-sdk/dist":
-  version "0.0.0"
+bringid-sdk@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/bringid-sdk/-/bringid-sdk-0.0.2.tgz#9c2bd8824dacce7dcfc181081aa8955d9f688a39"
+  integrity sha512-sjeLeh2Rce+SGRo9P0ft9DdDeHMe3Q8UyZsjhXiKVBjvjwxfcxQaO0brcEzNolC5GbzZRb7VVoB5597r3V/AXw==
+  dependencies:
+    typescript "^4.8.2"
 
 brorand@^1.1.0:
   version "1.1.0"
