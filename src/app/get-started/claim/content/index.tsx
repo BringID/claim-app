@@ -28,9 +28,11 @@ import {
   useAppSelector
 } from '@/lib/hooks'
 import taskManager from '@/app/api/claim'
-import { defineExplorerURL } from '@/utils'
+import { checkIfTokenIsClaimed } from '@/utils'
 import { pointsRequired } from '@/app/configs'
 import { setTxHash } from '@/lib/slices'
+import getSDK from '@/app/sdk'
+import { JsonRpcSigner } from 'ethers'
 
 const defineButton = (
   loading: boolean,
@@ -38,49 +40,47 @@ const defineButton = (
     loading: boolean
   ) => void,
   stage: TClaimStage,
-  setStage: (
-    stage: TClaimStage
-  ) => void,
   setTxHash: (
     txHash: string
+  ) => void,
+  setProofs: (
+    proofs: TSemaphoreProof[]
   ) => void,
   navigate: (
     location: string
   ) => void,
   
   address: string,
+  signer: JsonRpcSigner,
   proofs: TSemaphoreProof[]
 
 ) => {
 
   switch (stage) {
     case 'initial': 
-    //   return <ButtonStyled
-    //     appearance='action'
-    //     loading={loading}
-    //     onClick={() => {
-    //       window.postMessage({
-    //         type: 'OPEN_EXTENSION'
-    //       }, '*')
-    //       setStage('started')
-    //     }}
-    //   >
-    //     Prove you're human
-    //   </ButtonStyled> 
-    // }
-
     case 'started': {
       return <ButtonStyled
         appearance='action'
         loading={loading}
-        onClick={() => {
-          window.postMessage({
-            type: 'REQUEST_POINTS',
-            host: window.location.host,
-            dropAddress: dropAddress,
-            pointsRequired,
-            address: address as string
-          }, '*')
+        onClick={async () => {
+          const bringIDSDK = getSDK()
+
+          setLoading(true)
+  
+          const proofs = await bringIDSDK.requestProofs({
+            drop: dropAddress,
+            address: address as string,
+            pointsRequired
+          })
+          if (!proofs) {
+            setLoading(false)
+            return alert('NO PROOFS')
+          }
+          setProofs(proofs)
+          setLoading(false)
+
+
+          // setStage('ready_to_claim')
         }}
       >
         Prove you're human
@@ -94,6 +94,17 @@ const defineButton = (
         onClick={async () => {
           setLoading(true)
           try {
+
+            const isClaimed = await checkIfTokenIsClaimed(
+              address as string,
+              signer as JsonRpcSigner
+            )
+
+            if (isClaimed) {
+              navigate(`/get-started/claim-finished`)
+              return
+            }
+            
             const result = await taskManager.addClaim(
               proofs,
               dropAddress,
@@ -128,46 +139,17 @@ const Content: FC = () => {
   const [ stage, setStage ] = useState<TClaimStage>('initial')
   const [ proofs, setProofs ] = useState<TSemaphoreProof[]>([])
 
-  useEffect(() => {
-    window.addEventListener("message", async (event) => {
-      switch (event.data.type) {
-        //  from client to extension
-        case 'CLAIM': {
-          setLoading(true)
-          try {
-            const proofs: any[] = event.data.data
-            if (!proofs) {
-              return alert('Please try later. Proofs are not ready')
-            }
-            
-            setProofs(proofs)
-            setStage('ready_to_claim')
-          } catch (err) {
-            console.log({ err })
-          }
-          setLoading(false)
-  
-          break
-        }
-
-        case 'SET_PRIVATE_KEY':
-          router.push(`/get-started/create-id`)
-          break
-      }
-    })
-  }, [])
-
-
   const {
     user: {
       address,
-      chainId
+      signer
     },
   } = useAppSelector(state => (
     {
       user: {
         chainId: state.user.chainId,
-        address: state.user.address
+        address: state.user.address,
+        signer: state.user.signer
       }
     }
   ))
@@ -176,16 +158,17 @@ const Content: FC = () => {
     loading,
     setLoading,
     stage,
-    setStage,
     (
       txHash
     ) => dispatch(setTxHash(txHash)),
+    setProofs,
     (
       location
     ) => {
       router.push(location)
     },
     address as string,
+    signer as JsonRpcSigner,
     proofs
   )
 

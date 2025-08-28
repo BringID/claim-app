@@ -37,7 +37,7 @@ import formatTokensAmount from './format-tokens-amount'
 import defineNetworkZerionId from './define-network-zerion-id'
 import formatExpiration from './format-expiration'
 import api from './api'
-import checkIfERC721TokenIsClaimed from './check-if-erc721-token-is-claimed'
+import checkIfTokenIsClaimed from './check-if-token-is-claimed'
 
 export {
   alertError,
@@ -79,5 +79,5 @@ export {
   defineNetworkZerionId,
   formatExpiration,
   api,
-  checkIfERC721TokenIsClaimed
+  checkIfTokenIsClaimed
 }

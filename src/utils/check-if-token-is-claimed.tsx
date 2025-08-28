@@ -3,12 +3,12 @@ import { DropFactory } from '../abi'
 import { dropAddress } from '../app/configs'
 
 
-type TCheckIfERC721TokenIsClaimed = (
+type TCheckIfTokenIsClaimed = (
   userAddress: string,
   signer: JsonRpcSigner
 ) => Promise<boolean>
 
-const checkIfERC721TokenIsClaimed: TCheckIfERC721TokenIsClaimed = async (
+const checkIfTokenIsClaimed: TCheckIfTokenIsClaimed = async (
   userAddress,
   signer
 ) => {
@@ -23,4 +23,4 @@ const checkIfERC721TokenIsClaimed: TCheckIfERC721TokenIsClaimed = async (
     return Boolean(minted)
 }
 
-export default checkIfERC721TokenIsClaimed
+export default checkIfTokenIsClaimed

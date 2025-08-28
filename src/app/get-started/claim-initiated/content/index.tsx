@@ -28,7 +28,7 @@ import {
 import {
   defineExplorerURL,
   shortenString,
-  checkIfERC721TokenIsClaimed
+  checkIfTokenIsClaimed
 } from '@/utils'
 import { JsonRpcSigner } from 'ethers'
 
@@ -78,13 +78,14 @@ const Content: FC = () => {
 
   useEffect(() => {
     const interval = window.setInterval(async () => {
-      const isClaimed = await checkIfERC721TokenIsClaimed(
+      const isClaimed = await checkIfTokenIsClaimed(
         address as string,
         signer as JsonRpcSigner
       )
 
       if (isClaimed) {
         window.clearInterval(interval)
+        router.push('/get-started/claim-finished')
 
         return 
       }

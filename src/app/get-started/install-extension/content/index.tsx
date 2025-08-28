@@ -5,13 +5,11 @@ import {
   useState
 } from 'react'
 import {
-  Page,
-  Button
+  Page
 } from '@/components/common'
 import {
   StepsContainer,
   StepsStyled,
-  TextStyled,
   NoteStyled,
   SmallTextStyled
 } from '../../styled-components'
@@ -19,9 +17,8 @@ import {
   WidgetStyled,
   ButtonStyled
 } from './styled-components'
-
+import getSDK from '@/app/sdk'
 import { useRouter } from 'next/navigation'
-import { useDispatch } from 'react-redux'
 import { ShieldIcon } from '@/components/icons'
 
 const defineButton = (
@@ -68,7 +65,6 @@ const defineButton = (
 
 const LaunchTransaction: FC = () => {
   const router = useRouter()
-  const dispatch = useDispatch()
 
   const [
     extensionInstalled,
@@ -80,10 +76,13 @@ const LaunchTransaction: FC = () => {
   ] = useState<boolean>(false)
 
   useEffect(() => {
-    setTimeout(() => {
-      const bringId = (window as any).bringID
-      setExtensionInstalled(Boolean(bringId))
-    }, 1500)
+    (async () => {
+      const bringIDSDK = getSDK()
+
+      console.log({ bringIDSDK })
+      const isInstalled = await bringIDSDK.isExtensionInstalled()
+      setExtensionInstalled(isInstalled)
+    })()
   }, [])
 
   const button = defineButton(

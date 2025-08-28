@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.3.0",
     "@reown/appkit": "^1.6.2",
     "@reown/appkit-adapter-wagmi": "^1.6.2",
+    "bringid-sdk": "0.0.1",
     "@semaphore-protocol/data": "^4.11.1",
     "@tanstack/react-query": "^5.62.11",
     "@wagmi/cli": "latest",

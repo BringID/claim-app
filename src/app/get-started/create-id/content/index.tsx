@@ -10,8 +10,6 @@ import {
 } from '@/components/common'
 import { useAppSelector } from '@/lib/hooks'
 import { JsonRpcSigner } from 'ethers'
-import { createPublicClient, http } from 'viem'
-import { mainnet } from 'viem/chains'
 import {
   StepsContainer,
   StepsStyled,
@@ -34,10 +32,7 @@ const prepareMessage = async (
   chainId: number
 ) => {
   const timestamp = Date.now()
-  const humanReadable = new Date(timestamp).toUTCString()
-  const statement = `Hello!! Please sign this message to create user key for the BringID dashboard!`
-  // const { data: { nonce } } = await nonceApi.get(address)
-  const nonce = '1234124314234' 
+  const statement = `Hello!!!!!! Please sign this message to create user key for the BringID dashboard!`
 
   return {
     preparedMessage: statement,

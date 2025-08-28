@@ -53,6 +53,7 @@ const Content: FC = () => {
       claim: state.claim
     }
   ))
+
   const button = defineButton(
     txHash as string
   )

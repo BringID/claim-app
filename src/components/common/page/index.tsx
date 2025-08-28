@@ -11,8 +11,7 @@ import { TProps } from './types'
 import { ThemeProvider } from 'styled-components'
 import { light } from '@/themes'
 import {
-  Header,
-  Footer
+  Header
 } from '@/components/common'
 import {
   defineEthersSigner,
@@ -109,7 +108,6 @@ const Page: FC<TProps> = ({
     <Main>
       {children}
     </Main>
-    <Footer />
   </ThemeProvider>
 }
 
