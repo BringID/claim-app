@@ -40,6 +40,7 @@ const defineButton = (
     loading: boolean
   ) => void,
   stage: TClaimStage,
+  setStage: (stage: TClaimStage) => void,
   setTxHash: (
     txHash: string
   ) => void,
@@ -80,7 +81,7 @@ const defineButton = (
           setLoading(false)
 
 
-          // setStage('ready_to_claim')
+          setStage('ready_to_claim')
         }}
       >
         Prove you're human
@@ -158,6 +159,7 @@ const Content: FC = () => {
     loading,
     setLoading,
     stage,
+    setStage,
     (
       txHash
     ) => dispatch(setTxHash(txHash)),
