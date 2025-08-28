@@ -75,7 +75,8 @@ const defineButton = (
           })
           if (!proofs) {
             setLoading(false)
-            return alert('NO PROOFS')
+            
+            return 
           }
           setProofs(proofs)
           setLoading(false)
