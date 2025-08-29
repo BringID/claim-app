@@ -66,7 +66,6 @@ const defineButton = (
         onClick={async () => {
           const bringIDSDK = getSDK()
 
-          setLoading(true)
   
           const proofs = await bringIDSDK.requestProofs({
             drop: dropAddress,
@@ -74,12 +73,10 @@ const defineButton = (
             pointsRequired
           })
           if (!proofs) {
-            setLoading(false)
-            
+
             return 
           }
           setProofs(proofs)
-          setLoading(false)
 
 
           setStage('ready_to_claim')
