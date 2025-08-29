@@ -11,6 +11,7 @@ export const TitleStyled = styled(Title)`
   font-size: 50px;
   line-height: 120%;
   margin: 0 0 20px;
+  text-align: center;
 `
 
 export const Text = styled.p`
@@ -32,4 +33,5 @@ export const PixeledDropIconStyled = styled(PixeledDropIcon)`
 export const Container = styled.div`
   max-width: 1000px;
   margin: 0 auto;
+  padding-top: 40px;
 `

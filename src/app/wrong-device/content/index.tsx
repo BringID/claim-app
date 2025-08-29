@@ -14,7 +14,6 @@ import { useRouter } from 'next/navigation'
 const WrongDevice: FC<TProps> = () => {
   const router = useRouter()
   return <Container>
-    <PixeledDropIconStyled />
     <TitleStyled>
       Use desktop
     </TitleStyled>

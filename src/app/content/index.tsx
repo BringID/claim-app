@@ -1,5 +1,5 @@
 'use client'
-import { FC } from "react"
+import { FC, useEffect } from "react"
 import {
   Page,
   Button,
@@ -20,8 +20,20 @@ import {
   CupIconStyled
 } from './styled-components'
 import { VerticalWidgets, HorizontalWidgets } from "@/components/common"
-  
+import { useRouter } from 'next/navigation'
+import isMobile from "is-mobile"
+
 const HomePageContent = () => {
+  const router = useRouter()
+
+  useEffect(() => {
+    const mobile = isMobile()
+
+    if (mobile) {
+      router.push('/wrong-device')
+    }
+  }, [])
+
   return <Page>
     <MainTag>
       <CodeIconStyled />
