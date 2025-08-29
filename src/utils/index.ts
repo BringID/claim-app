@@ -38,6 +38,7 @@ import defineNetworkZerionId from './define-network-zerion-id'
 import formatExpiration from './format-expiration'
 import api from './api'
 import checkIfTokenIsClaimed from './check-if-token-is-claimed'
+import checkTransactionReceipt from './check-transaction-receipt'
 
 export {
   alertError,
@@ -79,5 +80,6 @@ export {
   defineNetworkZerionId,
   formatExpiration,
   api,
-  checkIfTokenIsClaimed
+  checkIfTokenIsClaimed,
+  checkTransactionReceipt
 }

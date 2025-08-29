@@ -28,9 +28,10 @@ import {
 import {
   defineExplorerURL,
   shortenString,
-  checkIfTokenIsClaimed
+  checkIfTokenIsClaimed,
+  checkTransactionReceipt
 } from '@/utils'
-import { JsonRpcSigner } from 'ethers'
+import { BrowserProvider, JsonRpcProvider, JsonRpcSigner } from 'ethers'
 
 const defineButton = (
   txHash: string,
@@ -53,7 +54,8 @@ const Content: FC = () => {
   const {
     user: {
       address,
-      signer
+      signer,
+      provider
     },
     claim: {
       txHash
@@ -82,14 +84,26 @@ const Content: FC = () => {
         address as string,
         signer as JsonRpcSigner
       )
-
+      console.log({ isClaimed })
       if (isClaimed) {
         window.clearInterval(interval)
         router.push('/get-started/claim-finished')
 
         return 
+      } else {
+        const transactionSuccess = await checkTransactionReceipt(
+          provider as BrowserProvider,
+          txHash as string
+        )
+
+        console.log({ transactionSuccess })
+
+        if (transactionSuccess === false) {
+          alert('Error occured: transaction failed')
+          window.clearInterval(interval)
+        }
       }
-    }, 1000)
+    }, 3000)
 
 
     return () => {

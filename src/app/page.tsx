@@ -19,9 +19,6 @@ export async function generateMetadata(): Promise<Metadata> {
 const defaultLimit = String(dropsAmountPerPage)
 
 export default async function HomePage() {
-
-  return <Content
-  
-  />
+  return <Content />
 }
 
