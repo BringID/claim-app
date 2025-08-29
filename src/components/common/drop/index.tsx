@@ -46,39 +46,6 @@ const Drop: FC<TProps> = ({
   const amountFormatted = formatTokensAmount(amount, decimals)
   const Icon = defineAudiencePreviewIcon(drop.zkPassSchemaId)
 
-  // const schema = configForZKTLS.schemas.find(schema => schema.schemaId === toUtf8String(drop.zkPassSchemaId))
-  // const description = schema ? `For ${schema.serviceName} users` : 'For service users'
-  // return <LinkStyled href={`/drops/${address}`}>
-  //   <Container>
-  //     <AudienceBlock
-  //       icon={Icon}
-  //       color={schema?.color || '#1C1C1C'}
-  //     />
-  //     <Content>
-  //       <AudienceUsers>
-  //         {description}
-  //       </AudienceUsers>
-
-  //       <TitleContainer>
-  //         <Title>
-  //           {amountFormatted} {symbol}
-  //         </Title>
-
-  //         <ImageContainer>
-  //           <ImageStyled
-  //             src={ZKBringLogo}
-  //             width={18}
-  //             height={18}
-  //             alt="Token"
-  //           />
-  //         </ImageContainer>
-  //       </TitleContainer>
-  //       <DropData drop={drop}/>
-  //     </Content>
-      
-  //   </Container>
-  // </LinkStyled>
-
   return null
 }
 

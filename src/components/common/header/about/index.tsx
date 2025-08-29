@@ -37,7 +37,7 @@ const About: FC<TProps> = ({
   >
     <DialogContent>
       <Cards />
-      <DialogTitle>Explore zkTLS-powered airdrops</DialogTitle>
+      <DialogTitle>Explore airdrops</DialogTitle>
       <DialogList>
         {items.map(item => {
           return <DialogListItem>

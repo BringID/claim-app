@@ -99,7 +99,7 @@ const Content: FC = () => {
         console.log({ transactionSuccess })
 
         if (transactionSuccess === false) {
-          alert('Error occured: transaction failed')
+          router.push('/get-started/claim-failed')
           window.clearInterval(interval)
         }
       }

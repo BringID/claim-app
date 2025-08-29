@@ -8,7 +8,7 @@ import Content from './content'
 
 export async function generateMetadata(): Promise<Metadata> {
   return generateMetadataUtil({
-    title: `Explore Active Token Drops Secured by zkTLS | zkBring`,
+    title: `Explore Active Token Drops Secured by BringID`,
     description: 'Authorize to claim tokens by verifying your access to supported web platforms. Safe, seamless, and on-chain.'
   })
 }

@@ -13,7 +13,8 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-export default async function Claim () {
+export default async function ClaimFailed () {
   // const headersList = await headers()
   return <Content />
 }
+

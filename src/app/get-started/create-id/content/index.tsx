@@ -32,7 +32,7 @@ const prepareMessage = async (
   chainId: number
 ) => {
   const timestamp = Date.now()
-  const statement = `Hello!!!!!!!!!!!!!!! Please sign this message to create user key for the BringID dashboard!`
+  const statement = `Hello!!!!!!!!!!!!!!!! Please sign this message to create user key for the BringID dashboard!`
 
   return {
     preparedMessage: statement,
@@ -121,7 +121,7 @@ const AuthContent: FC = () => {
             No one else can create or access your Bring ID
           </ListItem>
           <ListItem>
-            Your web2 verifications remain private through zkTLS
+            Your web2 verifications remain private
           </ListItem>
         </List>
       </NoteStyled>

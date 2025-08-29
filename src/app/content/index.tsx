@@ -91,7 +91,7 @@ const HomePageContent = () => {
         data={[
             {
             icon: <ShieldIconStyled />,
-            title: 'zKTLS: Zero-Knowledge Web Proofs',
+            title: 'Web Proofs',
             text: 'Our browser extension uses zKTLS (zero-knowledge Transport Layer Security) to create cryptographic proofs of your web2 accounts. This means you can prove you have 100+ GitHub stars or 5+ Airbnb stays without revealing your username, repositories, or any personal data.'
           }, 
           {
@@ -119,7 +119,7 @@ Get started in minutes, not hours.
           {
             icon: <WidgetNumber>1</WidgetNumber>,
             title: 'Connect Accounts',
-            text: 'Link web2 accounts via zKTLS'
+            text: 'Link web2 accounts via BringID'
           }, {
             icon: <WidgetNumber>2</WidgetNumber>,
             title: 'Build Score',
