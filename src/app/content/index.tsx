@@ -1,140 +1,79 @@
 'use client'
-import { FC, useEffect } from "react"
 import {
-  Page,
-  Button,
-} from "@/components/common"
+  FC,
+  useEffect,
+  useState
+} from 'react'
 import {
-  TitleStyled,
-  SubtitleStyled,
-  IntroTextStyled,
-  Section,
-  TextStyled,
-  WidgetNumber,
-  MainTag,
-  CodeIconStyled,
-  ShieldIconStyled,
-  KeyIconStyled,
-  PlanetIconStyled,
-  LockIconStyled,
-  CupIconStyled
+  Page
+} from '@/components/common'
+import {
+  StepsContainer,
+  StepsStyled,
+  SmallTextStyled
+} from '../styled-components'
+import {
+  WidgetStyled,
+  ButtonStyled,
+  OptionWidgetsStyled,
+  LightningIconStyled,
+  TokenCounterStyled
 } from './styled-components'
-import { VerticalWidgets, HorizontalWidgets } from "@/components/common"
 import { useRouter } from 'next/navigation'
-import isMobile from "is-mobile"
+import { ShieldIcon } from '@/components/icons'
+import { TokenCounter } from '../components'
+import { TOKEN_SYMBOL } from '@/app/configs/app-token'
+import tiers from '../configs/tiers'
 
-const HomePageContent = () => {
+const defineButton = (redirect: () => void) => {
+  return <ButtonStyled
+    appearance='action'
+    onClick={redirect}
+  >
+    Claim {TOKEN_SYMBOL} <LightningIconStyled />
+  </ButtonStyled> 
+}
+
+const LaunchTransaction: FC = () => {
   const router = useRouter()
 
-  useEffect(() => {
-    const mobile = isMobile()
 
-    if (mobile) {
-      router.push('/wrong-device')
-    }
-  }, [])
+  const button = defineButton(
+    () => {
+      router.push(`/install-extension`)
+    },
+  )
+
 
   return <Page>
-    <MainTag>
-      <CodeIconStyled />
-      identity-system
-    </MainTag>
-    <TitleStyled>Setup Bring ID and Claim BRING Tokens</TitleStyled>
-    <Section>
-      <IntroTextStyled>Transform your web2 accounts into private, verifiable credentials and earn rewards for being human.</IntroTextStyled>
-
-      <Button to="/get-started/install-extension" appearance="action">
-        Get started
-      </Button>
-
-
-    </Section>
-
-    <Section>
-      <SubtitleStyled>
-        What is Bring ID?
-      </SubtitleStyled>
-
-      <TextStyled>
-        A privacy-preserving identity system that lets you prove you're a real human without revealing who you are. By leveraging your existing web2 accounts (GitHub, Twitter, Steam, etc.), you can create a composable digital identity that unlocks access to airdrops, DAO voting, and exclusive communities.
-      </TextStyled>
-
-      <HorizontalWidgets
-          data={[
-            {
-              icon: <PlanetIconStyled />,
-              title: 'Universal',
-              text: 'Works with any web2 data'
-            }, {
-              icon: <LockIconStyled />,
-              title: 'Zero Knowledge',
-              text: 'Your data stays private'
-            }, {
-              icon: <CupIconStyled />,
-              title: 'Earn Rewards',
-              text: 'Get BRING tokens for verifying'
-            }
-          ]}
+    <StepsContainer>
+      <StepsStyled
+        stepsCount={7}
+        activeStep={1}
       />
-    </Section>
+    </StepsContainer>
 
-    <Section>
-      <SubtitleStyled>
-      Privacy-First Architecture
-      </SubtitleStyled>
+    <WidgetStyled
+      title="Prove You're Human & Claim BRING"
+      image={<ShieldIcon />}
+    >
+      <SmallTextStyled>Start by installing our browser extension to enable verification</SmallTextStyled>
+      <TokenCounterStyled />
 
-      <TextStyled>
-        Built with cutting-edge cryptographic protocols.
-      </TextStyled>
-
-      <VerticalWidgets
-        data={[
-            {
-            icon: <ShieldIconStyled />,
-            title: 'Web Proofs',
-            text: 'Our browser extension uses zKTLS (zero-knowledge Transport Layer Security) to create cryptographic proofs of your web2 accounts. This means you can prove you have 100+ GitHub stars or 5+ Airbnb stays without revealing your username, repositories, or any personal data.'
-          }, 
-          {
-            icon: <KeyIconStyled />,
-            title: 'ZKPs: Anonymous Claiming',
-            text: 'When you claim tokens or participate in DAOs, you generate Zero-Knowledge Proofs (ZKPs) that demonstrate your humanity and reputation score without linking back to your specific accounts. Using Semaphore-style nullifiers, we ensure you can\'t double-claim while keeping your identity completely private.'
-          }
-        ]}
+      <OptionWidgetsStyled
+        data={tiers.map(tier => ({
+          title: tier.name,
+          description: tier.description,
+          subtitle: `${tier.min}+ pts.`,
+          value: tier.value,
+          id: tier.id
+        }))}
       />
 
-    </Section>
-
-
-    <Section>
-      <SubtitleStyled>
-      Simple 3-Step Process
-      </SubtitleStyled>
-
-      <TextStyled>
-Get started in minutes, not hours.
-      </TextStyled>
-
-      <HorizontalWidgets
-        data={[
-          {
-            icon: <WidgetNumber>1</WidgetNumber>,
-            title: 'Connect Accounts',
-            text: 'Link web2 accounts via BringID'
-          }, {
-            icon: <WidgetNumber>2</WidgetNumber>,
-            title: 'Build Score',
-            text: 'Verify more to increase reputation'
-          }, {
-            icon: <WidgetNumber>3</WidgetNumber>,
-            title: 'Claim Tokens',
-            text: 'Earn BRING based on your score'
-          }
-        ]}
-      />
-
-    </Section>
-
+      {button}
+    </WidgetStyled>
+    
   </Page>
 }
 
-export default HomePageContent
+export default LaunchTransaction

@@ -16,7 +16,7 @@ const theme = {
   primaryBackgroundColor: 'rgb(249 250 251)',
   secondaryBackgroundColor: '#000',
   additionalBackgroundColor: 'rgb(244, 244, 245)',
-  extraBackgroundColor: '#1B1B1E',
+  extraBackgroundColor: 'rgb(245, 245, 245)',
 
   mobileBreakpoint: '600px',
 

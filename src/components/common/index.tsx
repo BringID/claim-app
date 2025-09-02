@@ -24,7 +24,6 @@ import LaunchWidget from './launch-widget'
 import Page from './page'
 import ButtonsContainer from './buttons-container'
 import Toggle from './toggle'
-import TokenCounter from './token-counter'
 import Switcher from './switcher'
 import Select from './select'
 import Tooltip from './tooltip'
@@ -55,6 +54,7 @@ import IntroText from './intro-text'
 import ExtraSubtitle from './extra-subtitle'
 import VerticalWidgets from './vertical-widgets'
 import HorizontalWidgets from './horizontal-widgets'
+import OptionWidgets from './option-widgets'
 
 export {
   Spinner,
@@ -88,7 +88,6 @@ export {
   Page,
   ButtonsContainer,
   Toggle,
-  TokenCounter,
   Select,
   Switcher,
   Tooltip,
@@ -111,5 +110,6 @@ export {
   IntroText,
   ExtraSubtitle,
   VerticalWidgets,
-  HorizontalWidgets
+  HorizontalWidgets,
+  OptionWidgets
 }
