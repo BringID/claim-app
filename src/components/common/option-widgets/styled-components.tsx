@@ -9,6 +9,7 @@ export const WidgetStyled = styled(Widget)<{
 
   ${props => props.active && css`
     opacity: 1;
+    border-color: ${props => props.theme.secondaryBorderColor};
   `}
 `
 
@@ -38,8 +39,9 @@ export const Title = styled(ExtraSubtitle)`
 `
 
 export const Subtitle = styled(ExtraSubtitle)`
-  margin: 0px 0 8px;
+  margin: 0px 0 4px;
   font-size: 12px;
+  line-height: 1;
   font-family: SFMono-Regular, Menlo, "Courier New", monospace;
 `
 
