@@ -39,6 +39,8 @@ import formatExpiration from './format-expiration'
 import api from './api'
 import checkIfTokenIsClaimed from './check-if-token-is-claimed'
 import checkTransactionReceipt from './check-transaction-receipt'
+import defineCurrentTier from './define-current-tier'
+import defineTierData from './define-tier-data'
 
 export {
   alertError,
@@ -81,5 +83,7 @@ export {
   formatExpiration,
   api,
   checkIfTokenIsClaimed,
-  checkTransactionReceipt
+  checkTransactionReceipt,
+  defineCurrentTier,
+  defineTierData
 }

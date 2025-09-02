@@ -52,6 +52,8 @@ import PlanetIcon from './planet-icon'
 import KeyIcon from './key-icon'
 import CupIcon from './cup-icon'
 import CodeIcon from './code-icon'
+import UsersIcon from './users-icon'
+import LightningIcon from './lightning-icon'
 
 export {
   PlanetIcon,
@@ -107,5 +109,7 @@ export {
   ChromeExtensionStoreIcon,
   ShieldIcon,
   WalletIcon,
-  ExclimationIcon
+  ExclimationIcon,
+  UsersIcon,
+  LightningIcon
 }

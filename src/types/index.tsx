@@ -27,6 +27,7 @@ import type TButtonAppearance from "./button-appearance"
 import type IConnectorError from './connector-error'
 import type TSemaphoreProof from './semaphore-proof'
 import type TClaimStage from './claim-stage'
+import type TTier from './tier'
 
 export {
   IConnectorError,
@@ -55,5 +56,6 @@ export {
   TEnvironment,
   TButtonAppearance,
   TSemaphoreProof,
-  TClaimStage
+  TClaimStage,
+  TTier
 }

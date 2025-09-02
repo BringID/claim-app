@@ -5,21 +5,51 @@ import {
 } from '@/components/common'
 
 export const Footer = styled.footer`
-  display: flex;
   padding: 32px 16px;
   color: ${props => props.theme.primaryTextColor};
   max-width: 896px;
   margin: 0 auto;
 `
 
+export const FooterDescription = styled.div`
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 24px;
+`
+
+export const FooterMenu = styled.ul`
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin: 0 0 24px;
+  justify-content: center;
+`
+
+export const FooterMenuItem = styled.li`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  line-height: 1;
+`
+
+
 export const FooterContent = styled.div`
   display: flex;
-  gap: 10px;
   align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid ${props => props.theme.primaryBorderColor};
+  padding: 16px 0 0;
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
     gap: 20px;
   }
+`
+
+export const FooterContentMain = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
 `
 
 export const FooterMeta = styled.div`
