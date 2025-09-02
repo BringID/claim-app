@@ -209,7 +209,7 @@ const Content: FC = () => {
           title: tier.name,
           description: tier.description,
           subtitle: `${tier.min}+ pts.` ,
-          value: tier.value,
+          value: `${tier.value} ${TOKEN_SYMBOL}`,
           id: tier.id
         }))}
       />
