@@ -41,6 +41,8 @@ import checkIfTokenIsClaimed from './check-if-token-is-claimed'
 import checkTransactionReceipt from './check-transaction-receipt'
 import defineCurrentTier from './define-current-tier'
 import defineTierData from './define-tier-data'
+import convertNumber from './convert-number'
+import getTokensLeftCount from './get-tokens-left-count'
 
 export {
   alertError,
@@ -85,5 +87,7 @@ export {
   checkIfTokenIsClaimed,
   checkTransactionReceipt,
   defineCurrentTier,
-  defineTierData
+  defineTierData,
+  convertNumber,
+  getTokensLeftCount
 }

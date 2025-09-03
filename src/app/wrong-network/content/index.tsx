@@ -70,7 +70,7 @@ const WrongNetwork: FC<TProps> = () => {
     </TitleStyled>
     <Text>
       You’re currently connected to a different network.
-      Please switch your wallet to {networkToConnect} to use zkBring.
+      Please switch your wallet to {networkToConnect} to use BringID.
     </Text>
     {launchDropButton}
   </Container>

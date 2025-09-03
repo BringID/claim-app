@@ -13,7 +13,7 @@ import {
 } from './styled-components'
 
 import {
-  zkBringLink
+  bringIDLink
 } from '@/app/configs'
 
 const FooterComponent = () => {
@@ -63,7 +63,7 @@ const FooterComponent = () => {
 
     <FooterContent>
       <FooterContentMain>
-        <LinkStyled href={zkBringLink} target='_blank'>
+        <LinkStyled href={bringIDLink} target='_blank'>
           bring-id
         </LinkStyled>
         <FooterLicense>

@@ -13,7 +13,7 @@ import { plausibleDomain } from '@/app/configs'
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: 'zkBring platform'
+    title: 'BringID platform'
   }
 }
 

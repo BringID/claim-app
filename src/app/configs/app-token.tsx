@@ -1,2 +1,4 @@
-export const TOKEN_ADDRESS = '0x48c38c46ed8297a74c4d6fa584e9c5e13c9ff2fa'
-export const TOKEN_SYMBOL = 'BRING'
+export const TOKEN_ADDRESS = '0x76d96db3b60167b340b4ed936c86b0ef98b7c7fc'
+export const TOKEN_SYMBOL = 'TESTO'
+export const TOKEN_DECIMALS = 18
+export const TOKEN_MAX_SUPPLY = 1000000000n

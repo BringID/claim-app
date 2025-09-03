@@ -16,16 +16,16 @@ const generateMetadataUtil: TGenerateMetadata = ({
   image
 }) => {
   return {
-    title: title || 'zkBring Platform',
+    title: title || 'BringID Platform',
     description,
     openGraph: {
-      title: title || 'zkBring Platform',
+      title: title || 'BringID Platform',
       images: [image || '/meta-image.png'],
       description,
       type: 'website'
     },
     twitter: {
-      title: title || 'zkBring Platform',
+      title: title || 'BringID Platform',
       images: [image || '/meta-image.png'],
       description,
       type: 'website',

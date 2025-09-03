@@ -9,10 +9,16 @@ import {
 } from './styled-components'
 import { TOKEN_SYMBOL } from '@/app/configs/app-token'
 import TProps from './types'
+import { convertNumber } from '../../../utils'
 
 const TokenCounter: FC<TProps> = ({
-  className
+  className,
+  currentValue,
+  max,
 }) => {
+
+  const percentage = (currentValue * BigInt(100))  / max
+
   return <WidgetStyled className={className}>
     <Texts>
       <UsersIconStyled />
@@ -20,11 +26,11 @@ const TokenCounter: FC<TProps> = ({
         First Come First Served
       </Title>
       <Value>
-        848M / 1000M {TOKEN_SYMBOL} remaining
+        {convertNumber(currentValue)} / {convertNumber(max)} {TOKEN_SYMBOL} remaining
       </Value>
     </Texts>
     <ProgressBarStyled
-      current={84}
+      current={Number(percentage)}
       max={100}
     />
   </WidgetStyled>
