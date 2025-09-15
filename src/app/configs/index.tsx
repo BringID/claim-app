@@ -13,6 +13,6 @@ export const extensionDownloadLink = 'https://chromewebstore.google.com/detail/z
 export const xLink = 'https://x.com/bring_id'
 export const warpcastLink = 'https://warpcast.com/~/channel/bring'
 export const formLink = 'https://form.typeform.com/to/kmi5YYVY'
-export const dropAddress = '0x36A21650d5d0b50b76bb6D128fc9C71082d15F0f'
+export const dropAddress = '0x19b0FDF17a5768f286C36Ed5617Aa4dCeB19d410'
 export const pointsRequired = 10
 export const bringIDLink = 'https://bringid.org'
