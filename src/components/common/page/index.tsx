@@ -29,6 +29,7 @@ import {
 import { useWalletClient } from 'wagmi'
 import { networkId } from '@/app/configs'
 import { useRouter } from 'next/navigation'
+import isMobile from 'is-mobile'
 
 const Page: FC<TProps> = ({
   children,
@@ -50,6 +51,12 @@ const Page: FC<TProps> = ({
 
   const dispatch = useAppDispatch()
   const router = useRouter()
+
+  useEffect(() => {
+    if (isMobile()) {
+      router.push('/wrong-device')
+    }
+  }, [])
 
   useEffect(() => {
     if (!walletClient) {

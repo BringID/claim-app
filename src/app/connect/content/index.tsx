@@ -9,11 +9,9 @@ import {
 } from '@/components/common'
 import { TAuthorizationStep } from '@/types'
 import {
-  Connect,
-  WrongDevice
+  Connect
 } from './components'
 import { useAppSelector } from '@/lib/hooks'
-import isMobile from 'is-mobile'
 import { useDispatch } from 'react-redux'
 import {
   setAuthorizationStep
@@ -28,12 +26,8 @@ const defineContent = (
   step: TAuthorizationStep
 ) => {
   switch (step) {
-    case 'initial':
-      return null
     case 'connect':
       return <Connect />
-    case 'wrong_device':
-      return <WrongDevice />
     default:
       return null
   }
@@ -55,12 +49,8 @@ const AuthContent: FC<TProps> = () => {
 
   const content = defineContent(authorizationStep)
 
-  useEffect(() => {
-    if (isMobile()) {
-      dispatch(setAuthorizationStep('wrong_device'))
-    } else {
-      dispatch(setAuthorizationStep('connect'))
-    }
+  useEffect(() => {  
+    dispatch(setAuthorizationStep('connect'))
   }, [])
 
   useEffect(() => {

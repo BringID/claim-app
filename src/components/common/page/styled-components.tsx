@@ -10,7 +10,7 @@ export const Main = styled.main`
   min-height: calc(100vh - 190px - 40px);
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
-    padding: 0 20px 20px;
+    padding: 20px;
     min-height: calc(100vh - 140px - 40px);
   }
 `

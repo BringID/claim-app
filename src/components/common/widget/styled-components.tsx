@@ -64,8 +64,8 @@ export const WidgetTitleImageContainer = styled.div<{
   }
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
-    min-width: 28px;
-    height: 28px;
+    min-width: 20px;
+    min-height: 20px;
   }
 `
 

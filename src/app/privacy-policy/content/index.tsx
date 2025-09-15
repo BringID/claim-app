@@ -9,7 +9,7 @@ import {
 } from './styled-components'
 import { Strong } from '@/components/common/strong/styled-components'
 
-const WrongDevice: FC = () => {
+const PrivacyPolicy: FC = () => {
   return <Container>
     <TitleStyled>
       Privacy Policy
@@ -166,4 +166,4 @@ const WrongDevice: FC = () => {
   </Container>
 }
 
-export default WrongDevice
+export default PrivacyPolicy

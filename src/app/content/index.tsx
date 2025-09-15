@@ -49,9 +49,6 @@ const defineButton = (
 const LaunchTransaction: FC = () => {
   const router = useRouter()
 
-
-
-
   const [ currentSupply, setCurrentSupple ] = useState<bigint>(TOKEN_MAX_SUPPLY)
   const button = defineButton(
     currentSupply,
