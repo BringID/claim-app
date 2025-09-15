@@ -200,7 +200,10 @@ const Content: FC = () => {
       image={<ShieldIcon />}
     >
       <TextStyled>Complete verifications to unlock your airdrop</TextStyled>
-      <TokenCounterStyled />
+      <TokenCounterStyled
+        currentValue={84000000n}
+        max={100000000n}
+      />
 
       <OptionWidgetsStyled
         activeOption={currentTierId}

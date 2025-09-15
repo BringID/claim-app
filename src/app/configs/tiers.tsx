@@ -4,7 +4,7 @@ const tiers: TTier[] = [
   {
     min: 20,
     max: Infinity,
-    name: 'Elite',
+    name: 'Max',
     id: '1',
     value: '10M',
     description: 'Maximum Sybil resistance, most trusted proofs'

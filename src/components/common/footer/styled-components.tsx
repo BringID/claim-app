@@ -23,6 +23,13 @@ export const FooterMenu = styled.ul`
   gap: 24px;
   margin: 0 0 24px;
   justify-content: center;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+    font-size: 12px;
+  }
 `
 
 export const FooterMenuItem = styled.li`

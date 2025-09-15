@@ -36,7 +36,6 @@ import SmallText from './small-text'
 import IconedList from './iconed-list'
 import EditableWidget from './editable-widget'
 import ConnectButton from './connect-button'
-import Pagination from './pagination'
 import {
   TableRow,
   TableText,
@@ -99,7 +98,6 @@ export {
   Header,
   EditableWidget,
   ConnectButton,
-  Pagination,
   Footer,
   DatePicker,
   Steps,

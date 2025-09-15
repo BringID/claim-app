@@ -27,4 +27,8 @@ export const LightningIconStyled = styled(LightningIcon)`
 
 export const TokenCounterStyled = styled(TokenCounter)`
   margin: 24px 0;
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    display: none;
+  }
 `

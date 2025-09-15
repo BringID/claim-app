@@ -7,15 +7,12 @@ export const onchainApiKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY
 export const environment = process.env.NEXT_PUBLIC_ENVIRONMENT
 export const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
 
-export const dropsAmountPerPage = 10
-
 export const networkId = process.env.NEXT_PUBLIC_NETWORK_ID
 
-export const docsLink = 'https://zkbring.com/'
 export const extensionDownloadLink = 'https://chromewebstore.google.com/detail/zkpass-transgate/afkoofjocpbclhnldmmaphappihehpma'
-export const xLink = 'https://x.com/zkBring'
-export const zkBringLink = 'https://zkbring.com/'
+export const xLink = 'https://x.com/bring_id'
 export const warpcastLink = 'https://warpcast.com/~/channel/bring'
 export const formLink = 'https://form.typeform.com/to/kmi5YYVY'
-export const dropAddress = '0x48c38c46ed8297a74c4d6fa584e9c5e13c9ff2fa'
+export const dropAddress = '0x19b0FDF17a5768f286C36Ed5617Aa4dCeB19d410'
 export const pointsRequired = 10
+export const bringIDLink = 'https://bringid.org'

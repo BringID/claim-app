@@ -22,10 +22,22 @@ import {
 import { useRouter } from 'next/navigation'
 import { ShieldIcon } from '@/components/icons'
 import { TokenCounter } from '../components'
-import { TOKEN_SYMBOL } from '@/app/configs/app-token'
+import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
 import tiers from '../configs/tiers'
+import { getTokensLeftCount } from '@/utils'
 
-const defineButton = (redirect: () => void) => {
+const defineButton = (
+  currentSupply: bigint,
+  redirect: () => void
+) => {
+  if (currentSupply <= 0) {
+    return <ButtonStyled
+      appearance='action'
+      onClick={redirect}
+    >
+      Claim {TOKEN_SYMBOL} <LightningIconStyled />
+    </ButtonStyled> 
+  }
   return <ButtonStyled
     appearance='action'
     onClick={redirect}
@@ -37,12 +49,20 @@ const defineButton = (redirect: () => void) => {
 const LaunchTransaction: FC = () => {
   const router = useRouter()
 
-
+  const [ currentSupply, setCurrentSupple ] = useState<bigint>(TOKEN_MAX_SUPPLY)
   const button = defineButton(
+    currentSupply,
     () => {
       router.push(`/install-extension`)
     },
   )
+
+  useEffect(() => {
+    (async () => {
+      const balanceLeft = await getTokensLeftCount()
+      setCurrentSupple(balanceLeft)
+    })()
+  }, [])
 
 
   return <Page>
@@ -58,7 +78,11 @@ const LaunchTransaction: FC = () => {
       image={<ShieldIcon />}
     >
       <SmallTextStyled>Start by installing our browser extension to enable verification</SmallTextStyled>
-      <TokenCounterStyled />
+
+      <TokenCounterStyled
+        currentValue={currentSupply}
+        max={TOKEN_MAX_SUPPLY}
+      />
 
       <OptionWidgetsStyled
         data={tiers.map(tier => ({

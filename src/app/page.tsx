@@ -1,4 +1,4 @@
-'use client'
+'use server'
 import Content from "./content"
 
 const GetStarted = () => {

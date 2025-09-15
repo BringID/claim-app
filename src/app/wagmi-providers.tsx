@@ -26,7 +26,7 @@ function Provider (props: {
           projectId={projectId}
           config={{
             appearance: {
-              name: 'zkBring',        // Displayed in modal header
+              name: 'BringID',        // Displayed in modal header
               logo: '/sign-in-wallet.png',// Displayed in modal header
               mode: 'dark',                 // 'light' | 'dark' | 'auto'
               theme: 'default',             // 'default' or custom theme
