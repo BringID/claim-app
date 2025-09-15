@@ -12,9 +12,6 @@ import TProps from './types'
 import {
   Button
 } from '@/components/common'
-import {
-  docsLink
-} from '@/app/configs'
 import Cards from './cards'
 
 const items = [
@@ -48,12 +45,7 @@ const About: FC<TProps> = ({
         })}
       </DialogList>
       <Buttons>
-        <Button
-          href={docsLink}
-          target='_blank'
-        >
-          Learn more
-        </Button>
+
 
         <Button
           onClick={onClose}
