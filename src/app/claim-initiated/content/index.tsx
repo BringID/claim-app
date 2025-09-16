@@ -125,10 +125,10 @@ const Content: FC = () => {
       image={<ShieldIcon />}
     >
       <TextStyled>
-        Your Proof-of-Human NFT is scheduled for delivery
+        Your tokens is scheduled for delivery
       </TextStyled>
       <SuccessNoteStyled
-        title='Verified Human NFT'
+        title='Bring tokens'
         status='warning'
       >
         Will be sent to {shortenString(address as string)}

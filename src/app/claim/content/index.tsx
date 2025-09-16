@@ -196,7 +196,7 @@ const Content: FC = () => {
     </StepsContainer>
 
     <WidgetStyled
-      title='Claim Your Proof-of-Human NFT'
+      title='Claim Your Bring Tokens'
       image={<ShieldIcon />}
     >
       <TextStyled>Complete verifications to unlock your airdrop</TextStyled>
