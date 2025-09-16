@@ -80,12 +80,12 @@ const Content: FC = () => {
     </StepsContainer>
 
     <WidgetStyled
-      title='NFT Claimed!'
+      title='Bring tokens Claimed!'
       image={<ShieldIcon />}
     >
-      <TextStyled>Your Proof-of-Human NFT has been successfully delivered</TextStyled>
+      <TextStyled>Your tokens has been successfully delivered</TextStyled>
       <SuccessNoteStyled
-        title='Verified Human NFT'
+        title='Bring tokens'
       >
         Were sent to {shortenString(address as string)}
       </SuccessNoteStyled>

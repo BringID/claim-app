@@ -80,13 +80,13 @@ const Content: FC = () => {
     </StepsContainer>
 
     <WidgetStyled
-      title='NFT transaction failed!'
+      title='Tokens transaction failed!'
       image={<ShieldIcon />}
     >
-      <TextStyled>Your Proof-of-Human NFT transaction has been failed</TextStyled>
+      <TextStyled>Your tokens transaction has been failed</TextStyled>
       <SuccessNoteStyled
         status='error'
-        title='Verified Human NFT'
+        title='Tokens'
       >
         Attempted to send to {shortenString(address as string)}
       </SuccessNoteStyled>
