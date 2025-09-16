@@ -125,7 +125,7 @@ const Content: FC = () => {
       image={<ShieldIcon />}
     >
       <TextStyled>
-        Your Bring tokens is scheduled for delivery
+        Your tokens is scheduled for delivery
       </TextStyled>
       <SuccessNoteStyled
         title='Bring tokens'

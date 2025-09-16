@@ -80,13 +80,13 @@ const Content: FC = () => {
     </StepsContainer>
 
     <WidgetStyled
-      title='Tokens transaction failed!'
+      title='Bring tokens transaction failed!'
       image={<ShieldIcon />}
     >
       <TextStyled>Your tokens transaction has been failed</TextStyled>
       <SuccessNoteStyled
         status='error'
-        title='Tokens'
+        title='Bring tokens'
       >
         Attempted to send to {shortenString(address as string)}
       </SuccessNoteStyled>
