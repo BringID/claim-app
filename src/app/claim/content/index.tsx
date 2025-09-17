@@ -105,15 +105,15 @@ const defineButton = (
           setLoading(true)
           try {
 
-            const isClaimed = await checkIfTokenIsClaimed(
-              address as string,
-              signer as JsonRpcSigner
-            )
+            // const isClaimed = await checkIfTokenIsClaimed(
+            //   address as string,
+            //   signer as JsonRpcSigner
+            // )
 
-            if (isClaimed) {
-              navigate(`/claim-finished`)
-              return
-            }
+            // if (isClaimed) {
+            //   navigate(`/claim-finished`)
+            //   return
+            // }
             
             const result = await taskManager.addClaim(
               proofs,
