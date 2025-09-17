@@ -1,7 +1,8 @@
 'use client'
 import {
   FC,
-  useState
+  useState,
+  useEffect
 } from 'react'
 import {
   Page
@@ -19,7 +20,7 @@ import {
   TokenCounterStyled,
   CurrentScoreStyled
 } from './styled-components'
-import { TOKEN_SYMBOL } from '@/app/configs/app-token'
+import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
 import { dropAddress } from '@/app/configs'
 import { useRouter } from 'next/navigation'
 import { useDispatch } from 'react-redux'
@@ -37,7 +38,7 @@ import {
 } from '@/utils'
 import { JsonRpcSigner } from 'ethers'
 import tiers from '@/app/configs/tiers'
-
+import { getTokensLeftCount } from '@/utils'
 
 const defineButton = (
   loading: boolean,
@@ -165,6 +166,13 @@ const Content: FC = () => {
 
   const currentTierId = defineCurrentTier(selectedPoints)
   const currentTier = defineTierData(currentTierId)
+  const [ currentSupply, setCurrentSupply ] = useState<bigint>(TOKEN_MAX_SUPPLY)
+  useEffect(() => {
+    (async () => {
+      const balanceLeft = await getTokensLeftCount()
+      setCurrentSupply(balanceLeft)
+    })()
+  }, [])
 
   const button = defineButton(
     loading,
@@ -201,8 +209,8 @@ const Content: FC = () => {
     >
       <TextStyled>Complete verifications to unlock your airdrop</TextStyled>
       <TokenCounterStyled
-        currentValue={84000000n}
-        max={100000000n}
+        currentValue={currentSupply}
+        max={TOKEN_MAX_SUPPLY}
       />
 
       <OptionWidgetsStyled
