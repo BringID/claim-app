@@ -7,7 +7,8 @@ import {
   Steps,
   Note,
   SmallText,
-  ConnectButton
+  ConnectButton,
+  SuccessNote
 } from '@/components/common'
 import { LightningIcon } from '@/components/icons'
 import { TokenCounter } from '../../components'
@@ -63,4 +64,8 @@ export const NoteStyled = styled(Note)`
 
 export const SmallTextStyled = styled(SmallText)`
   text-align: center;
+`
+
+export const SuccessNoteStyled = styled(SuccessNote)`
+  margin: 24px 0;
 `
