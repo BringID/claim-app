@@ -60,7 +60,6 @@ const Page: FC<TProps> = ({
 
   useEffect(() => {
     window.addEventListener("message", (event) => {
-      console.log(event.data?.type)
       if (event.data?.type === 'LOGOUT') {
         router.push('/connect')
       }
