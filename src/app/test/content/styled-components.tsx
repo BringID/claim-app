@@ -6,11 +6,15 @@ import {
   Text,
   Steps,
   Note,
-  SmallText
+  SmallText,
+  ConnectButton
 } from '@/components/common'
 import { LightningIcon } from '@/components/icons'
 import { TokenCounter } from '../../components'
 
+export const ConnectButtonStyled = styled(ConnectButton)`
+  width: 100%;
+`
 
 export const ButtonStyled = styled(Button)`
   width: 100%;

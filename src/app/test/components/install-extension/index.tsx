@@ -1,6 +1,102 @@
+'use client'
+import {
+  FC,
+  useEffect,
+  useState
+} from 'react'
+import {
+  WidgetStyled,
+  NoteStyled,
+  SmallTextStyled,
+  ButtonStyled
+} from '../../content/styled-components'
+import { useRouter } from 'next/navigation'
+import { ShieldIcon } from '@/components/icons'
+import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
+import tiers from '../../../configs/tiers'
+import { getTokensLeftCount } from '@/utils'
+import getSDK from '@/app/sdk'
 
+const defineButton = (
+  extensionInstalled: boolean | null,
+  extensionInstallationStarted: boolean,
+  installedCallback: () => void,
+  notInstalledCallback: () => void,
+  reloadCallback: () => void
+) => {
+  if (extensionInstalled === null) {
+    return <ButtonStyled
+      appearance='action'
+      loading
+    >
+      Install Extension
+    </ButtonStyled>
+  }
+
+  if (!extensionInstalled) {
+
+    if (extensionInstallationStarted) {
+      return <ButtonStyled
+        appearance='action'
+        onClick={reloadCallback}
+      >
+        Reload after installation
+      </ButtonStyled>
+    }
+    return <ButtonStyled
+      appearance='action'
+      onClick={notInstalledCallback}
+    >
+      Install Extension
+    </ButtonStyled>
+  }
+
+  return <ButtonStyled
+    appearance='action'
+    onClick={installedCallback}
+  >
+    Next step
+  </ButtonStyled> 
+}
 
 const InstallExtension = () => {
+
+  const router = useRouter()
+
+  const [
+    extensionInstalled,
+    setExtensionInstalled
+  ] = useState<boolean | null>(null)
+  const [
+    extensionInstallationStarted,
+    setExtensionInstallationStarted
+  ] = useState<boolean>(false)
+
+  useEffect(() => {
+    (async () => {
+      const bringIDSDK = getSDK()
+
+      console.log({ bringIDSDK })
+      const isInstalled = await bringIDSDK.isExtensionInstalled()
+      setExtensionInstalled(isInstalled)
+    })()
+  }, [])
+
+  const button = defineButton(
+    extensionInstalled,
+    extensionInstallationStarted,
+    () => {
+      router.push(`/connect`)
+    },
+    () => {
+      alert('INSTALL EXTENSION')
+      setExtensionInstallationStarted(true)
+    },
+    () => {
+      window.location.reload()
+    }
+  )
+
   return <WidgetStyled
     title='Install Bring ID Extension'
     image={<ShieldIcon />}
