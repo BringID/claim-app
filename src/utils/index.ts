@@ -11,7 +11,6 @@ import ipfsRedefineURL from './ipfs-redefine-url'
 import getValidImage from './get-valid-image'
 import getAlchemyTokenImage from './get-alchemy-token-image'
 import shortenString from './shorten-string'
-import defineInitialClaimScreen from './define-initial-claim-screen'
 import defineQRScreen from './define-qr-screen'
 import resolveAddress from './resolve-address'
 import defineNetworkIcon from './define-network-icon'
@@ -59,7 +58,6 @@ export {
   defineNetworkIcon,
   resolveAddress,
   defineQRScreen,
-  defineInitialClaimScreen,
   getAlchemyTokenImage,
   shortenString,
   getValidImage,

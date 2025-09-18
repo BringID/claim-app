@@ -61,7 +61,7 @@ const Page: FC<TProps> = ({
   useEffect(() => {
     window.addEventListener("message", (event) => {
       if (event.data?.type === 'LOGOUT') {
-        router.push('/connect')
+        router.push('/test?stage=connect')
       }
     });
   }, [])

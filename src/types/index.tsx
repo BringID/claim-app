@@ -2,7 +2,7 @@ import type TWalletName from "./wallet-name"
 import type TTokenStandard from "./token-standard"
 import type TTokenData from './token-data'
 import type TLinkItemStatus from './links-status'
-import type TClaimScreen from './claim-screen'
+import type TClaimScreen from './process-stage'
 import type TLinkParams from './links-params'
 import type TAlchemyNFTData from './alchemy-nft-data'
 import type TMetadataArgs from './metadata-args'
@@ -28,6 +28,7 @@ import type IConnectorError from './connector-error'
 import type TSemaphoreProof from './semaphore-proof'
 import type TClaimStage from './claim-stage'
 import type TTier from './tier'
+import type TProcessStage from "./process-stage"
 
 export {
   IConnectorError,
@@ -57,5 +58,6 @@ export {
   TButtonAppearance,
   TSemaphoreProof,
   TClaimStage,
-  TTier
+  TTier,
+  TProcessStage
 }

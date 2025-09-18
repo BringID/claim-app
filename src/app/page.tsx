@@ -5,5 +5,4 @@ const GetStarted = () => {
   return <Content />
 }
 
-
 export default GetStarted
