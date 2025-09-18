@@ -2,12 +2,19 @@ import styled from "styled-components"
 import { Widget } from "@/components/common"
 import {
   Button,
-  OptionWidgets
+  OptionWidgets,
+  Text,
+  Steps,
+  Note,
+  SmallText,
+  ConnectButton,
+  SuccessNote
 } from '@/components/common'
 import { LightningIcon } from '@/components/icons'
 import { TokenCounter } from '../components'
-export const WidgetStyled = styled(Widget)`
 
+export const ConnectButtonStyled = styled(ConnectButton)`
+  width: 100%;
 `
 
 export const ButtonStyled = styled(Button)`
@@ -31,4 +38,34 @@ export const TokenCounterStyled = styled(TokenCounter)`
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
     display: none;
   }
+`
+
+
+export const StepsStyled = styled(Steps)`
+
+`
+
+export const StepsContainer = styled.div`
+  padding: 0  0 16px 0;
+`
+
+export const WidgetStyled = styled(Widget)`
+
+`
+
+
+export const TextStyled = styled(Text)`
+  text-align: center;
+`
+
+export const NoteStyled = styled(Note)`
+  margin: 24px 0;
+`
+
+export const SmallTextStyled = styled(SmallText)`
+  text-align: center;
+`
+
+export const SuccessNoteStyled = styled(SuccessNote)`
+  margin: 24px 0;
 `

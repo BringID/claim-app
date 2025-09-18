@@ -9,94 +9,90 @@ import {
 } from '@/components/common'
 import {
   StepsContainer,
-  StepsStyled,
-  SmallTextStyled
-} from '../styled-components'
-import {
-  WidgetStyled,
-  ButtonStyled,
-  OptionWidgetsStyled,
-  LightningIconStyled,
-  TokenCounterStyled
+  StepsStyled
 } from './styled-components'
-import { useRouter } from 'next/navigation'
-import { ShieldIcon } from '@/components/icons'
-import { TokenCounter } from '../components'
-import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
-import tiers from '../configs/tiers'
-import { getTokensLeftCount } from '@/utils'
+import { TProcessStage } from '@/types'
+import {
+  Start,
+  Claim,
+  ClaimFinished,
+  ClaimStarted,
+  Connect,
+  CreateID,
+  InstallExtension,
+  ClaimFailed
+} from '../stages'
+import { useSearchParams } from 'next/navigation'
 
-const defineButton = (
-  currentSupply: bigint,
-  redirect: () => void
-) => {
-  if (currentSupply <= 0) {
-    return <ButtonStyled
-      appearance='action'
-      onClick={redirect}
-    >
-      Claim {TOKEN_SYMBOL} <LightningIconStyled />
-    </ButtonStyled> 
+const defineStageNumber = (stage: TProcessStage) => {
+  switch (stage) {
+    case 'start':
+      return 1
+    case 'install_extension':
+      return 2
+    case 'connect':
+      return 3
+    case 'create_id':
+      return 4
+    case 'claim':
+      return 5
+    case 'claim_started':
+      return 6
+    case 'claim_failed':
+    case 'claim_finished':
+      return 7
   }
-  return <ButtonStyled
-    appearance='action'
-    onClick={redirect}
-  >
-    Claim {TOKEN_SYMBOL} <LightningIconStyled />
-  </ButtonStyled> 
+}
+
+const defineStage = (
+  stage: TProcessStage,
+  setStage: (stage: TProcessStage) => void
+) => {
+  switch (stage) {
+    case 'start':
+      return <Start setStage={setStage} />
+    case 'install_extension':
+      return <InstallExtension setStage={setStage} />
+    case 'connect':
+      return <Connect setStage={setStage} />
+    case 'create_id':
+      return <CreateID setStage={setStage} />
+    case 'claim':
+      return <Claim setStage={setStage} />
+    case 'claim_started':
+      return <ClaimStarted setStage={setStage} />
+    case 'claim_failed':
+      return <ClaimFailed setStage={setStage} />
+    case 'claim_finished':
+      return <ClaimFinished setStage={setStage} />
+  }
 }
 
 const LaunchTransaction: FC = () => {
-  const router = useRouter()
+  const searchParams = useSearchParams()
+ 
+  const initialStage: TProcessStage = searchParams.get('stage') as TProcessStage || 'start'
 
-  const [ currentSupply, setCurrentSupply ] = useState<bigint>(TOKEN_MAX_SUPPLY)
-  const button = defineButton(
-    currentSupply,
-    () => {
-      router.push(`/install-extension`)
-    },
+  const [
+    stage,
+    setStage
+  ] = useState<TProcessStage>(initialStage)
+
+  const stageNumber = defineStageNumber(stage)
+
+  const content = defineStage(
+    stage,
+    setStage
   )
-
-  useEffect(() => {
-    (async () => {
-      const balanceLeft = await getTokensLeftCount()
-      setCurrentSupply(balanceLeft)
-    })()
-  }, [])
-
 
   return <Page>
     <StepsContainer>
       <StepsStyled
         stepsCount={7}
-        activeStep={1}
+        activeStep={stageNumber}
       />
     </StepsContainer>
-
-    <WidgetStyled
-      title="Prove You're Human & Claim BRING"
-      image={<ShieldIcon />}
-    >
-      <SmallTextStyled>Start by installing our browser extension to enable verification</SmallTextStyled>
-
-      <TokenCounterStyled
-        currentValue={currentSupply}
-        max={TOKEN_MAX_SUPPLY}
-      />
-
-      <OptionWidgetsStyled
-        data={tiers.map(tier => ({
-          title: tier.name,
-          description: tier.description,
-          subtitle: `${tier.min}+ pts.`,
-          value: `${tier.value} ${TOKEN_SYMBOL}`,
-          id: tier.id
-        }))}
-      />
-
-      {button}
-    </WidgetStyled>
-    
+    {content}
   </Page>
 }
 
