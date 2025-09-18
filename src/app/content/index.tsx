@@ -70,13 +70,17 @@ const defineStage = (
 
 const LaunchTransaction: FC = () => {
   const searchParams = useSearchParams()
- 
   const initialStage: TProcessStage = searchParams.get('stage') as TProcessStage || 'start'
+
 
   const [
     stage,
     setStage
   ] = useState<TProcessStage>(initialStage)
+
+  useEffect(() => {
+    setStage(initialStage)
+  }, [initialStage])
 
   const stageNumber = defineStageNumber(stage)
 
