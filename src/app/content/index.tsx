@@ -23,7 +23,6 @@ import {
   ClaimFailed,
   DropFinished
 } from '../stages'
-import { useSearchParams } from 'next/navigation'
 
 const defineStageNumber = (stage: TProcessStage) => {
   switch (stage) {
@@ -50,7 +49,6 @@ const defineStage = (
   stage: TProcessStage,
   setStage: (stage: TProcessStage) => void
 ) => {
-  console.log({ stage })
   switch (stage) {
     case 'start':
       return <Start setStage={setStage} />
@@ -69,7 +67,6 @@ const defineStage = (
     case 'claim_finished':
       return <ClaimFinished setStage={setStage} />
     case 'drop_finished':
-      console.log('!!!!')
       return <DropFinished setStage={setStage} />
   }
 }
