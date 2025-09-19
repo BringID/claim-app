@@ -41,6 +41,7 @@ const DropFinished: FC<TProps> = ({ setStage }) => {
       currentValue={0n}
       finished
       max={TOKEN_MAX_SUPPLY}
+      title='All Tokens Claimed'
       subtitle='The BRING token airdrop has ended. All tokens have been distributed to verified users.'
     />
 
