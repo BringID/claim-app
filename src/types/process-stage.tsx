@@ -5,6 +5,7 @@ type TProcessStage = 'start' |
               'claim_failed' |
               'create_id' |
               'install_extension' |
-              'connect'
+              'connect' |
+              'drop_finished'
 
 export default TProcessStage

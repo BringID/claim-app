@@ -1,66 +1,48 @@
 'use client'
 import {
-  FC,
-  useEffect,
-  useState
+  FC
 } from 'react'
 import {
   WidgetStyled,
   OptionWidgetsStyled,
-  TokenCounterStyled,
   ButtonStyled,
-  LightningIconStyled,
   SmallTextStyled
 } from '../../content/styled-components'
+import { 
+  TokenCounterStyled,
+  ExternalLinkIconStyled
+} from './styled-components'
 import { ShieldIcon } from '@/components/icons'
 import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
 import tiers from '../../configs/tiers'
-import { getTokensLeftCount } from '@/utils'
 import TProps from './types'
+import { xLink } from '@/app/configs'
 
-const defineButton = (
-  redirect: () => void
-) => {
+const defineButton = () => {
   return <ButtonStyled
     appearance='action'
-    onClick={redirect}
+    href={xLink}
+    target='_blank'
   >
-    Claim {TOKEN_SYMBOL} <LightningIconStyled />
+    Follow @BringID on X <ExternalLinkIconStyled />
   </ButtonStyled> 
 }
 
 
-const Start: FC<TProps> = ({ setStage }) => {
-
-
-  const [ currentSupply, setCurrentSupply ] = useState<bigint>(TOKEN_MAX_SUPPLY)
-  const button = defineButton(
-    () => {
-      setStage('install_extension')
-    },
-  )
-
-  useEffect(() => {
-    (async () => {
-      const balanceLeft = await getTokensLeftCount()
-
-      if (balanceLeft === 0n) {
-        setStage('drop_finished')
-        return
-      }
-      setCurrentSupply(balanceLeft)
-    })()
-  }, [])
+const DropFinished: FC<TProps> = ({ setStage }) => {
+  const button = defineButton()
 
   return <WidgetStyled
     title="Prove You're Human & Claim BRING"
     image={<ShieldIcon />}
   >
     <SmallTextStyled>Start by installing our browser extension to enable verification</SmallTextStyled>
-
     <TokenCounterStyled
-      currentValue={currentSupply}
+      currentValue={0n}
+      finished
       max={TOKEN_MAX_SUPPLY}
+      title='All Tokens Claimed'
+      subtitle='The BRING token airdrop has ended. All tokens have been distributed to verified users.'
     />
 
     <OptionWidgetsStyled
@@ -77,4 +59,4 @@ const Start: FC<TProps> = ({ setStage }) => {
   </WidgetStyled>
 }
 
-export default Start
+export default DropFinished

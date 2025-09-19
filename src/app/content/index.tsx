@@ -20,9 +20,9 @@ import {
   Connect,
   CreateID,
   InstallExtension,
-  ClaimFailed
+  ClaimFailed,
+  DropFinished
 } from '../stages'
-import { useSearchParams } from 'next/navigation'
 
 const defineStageNumber = (stage: TProcessStage) => {
   switch (stage) {
@@ -40,6 +40,7 @@ const defineStageNumber = (stage: TProcessStage) => {
       return 6
     case 'claim_failed':
     case 'claim_finished':
+    case 'drop_finished':
       return 7
   }
 }
@@ -65,22 +66,17 @@ const defineStage = (
       return <ClaimFailed setStage={setStage} />
     case 'claim_finished':
       return <ClaimFinished setStage={setStage} />
+    case 'drop_finished':
+      return <DropFinished setStage={setStage} />
   }
 }
 
 const LaunchTransaction: FC = () => {
-  const searchParams = useSearchParams()
-  const initialStage: TProcessStage = searchParams.get('stage') as TProcessStage || 'start'
-
 
   const [
     stage,
     setStage
-  ] = useState<TProcessStage>(initialStage)
-
-  useEffect(() => {
-    setStage(initialStage)
-  }, [initialStage])
+  ] = useState<TProcessStage>('start')
 
   const stageNumber = defineStageNumber(stage)
 

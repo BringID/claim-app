@@ -54,6 +54,7 @@ import CupIcon from './cup-icon'
 import CodeIcon from './code-icon'
 import UsersIcon from './users-icon'
 import LightningIcon from './lightning-icon'
+import ExternalLinkIcon from './external-link-icon'
 
 export {
   PlanetIcon,
@@ -111,5 +112,6 @@ export {
   WalletIcon,
   ExclimationIcon,
   UsersIcon,
-  LightningIcon
+  LightningIcon,
+  ExternalLinkIcon
 }

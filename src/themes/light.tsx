@@ -124,6 +124,7 @@ const theme = {
 
   dashedProgressBarEmpty: '#2D2D30',
   dashedProgressBarFilled: '#1A7771',
+  progressBarWarningColor: 'rgb(245, 158, 11)',
   successStatusColor: 'rgb(22, 163, 74)',
   errorStatusColor: '#C45E4F',
 
@@ -137,7 +138,7 @@ const theme = {
 
   warningStatusBackgroundColor: 'rgb(254, 252, 232)',
   warningStatusBorderColor: 'rgb(254, 240, 138)',
-  warningStatusTextColor: 'rgb(202, 138, 4)',
+  warningStatusTextColor: 'rgb(180, 83, 9)',
 
 
   primaryHighlightColor: '#229B93',

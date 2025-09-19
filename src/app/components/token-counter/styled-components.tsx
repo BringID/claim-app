@@ -1,23 +1,39 @@
 import {
   Widget,
-  ProgressBar
+  ProgressBar,
+  SmallText
 } from "@/components/common"
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { UsersIcon } from '@/components/icons'
 
 export const WidgetStyled = styled(Widget)`
   padding: 16px;
 `
 
-export const ProgressBarStyled = styled(ProgressBar)`
+export const ProgressBarStyled = styled(ProgressBar)<{
+  finished?: boolean
+}>`
   margin-top: 8px;
+
+  ${props => props.finished && css`
+    
+    
+      background-color: ${props => props.theme.progressBarWarningColor};
+    
+  `}
 `
 
-export const Texts = styled.div`
+export const Texts = styled.div<{
+  finished?: boolean
+}>`
   display: grid;
   grid-template-columns: 20px 1fr max-content;
   column-gap: 8px;
   margin: 0 0 8px;
+
+  ${props => props.finished && css`
+    color: ${props.theme.warningStatusTextColor}
+  `}
 `
 
 export const Title = styled.h3`
@@ -35,4 +51,9 @@ export const Value = styled.p`
 
 export const UsersIconStyled = styled(UsersIcon)`
   max-width: 16px;
+`
+
+export const SmallTextStyled = styled(SmallText)`
+  color: ${props => props.theme.warningStatusTextColor};
+  margin-top: 8px;
 `
