@@ -5,7 +5,8 @@ import {
   Value,
   Title,
   ProgressBarStyled,
-  UsersIconStyled
+  UsersIconStyled,
+  SmallTextStyled
 } from './styled-components'
 import { TOKEN_SYMBOL } from '@/app/configs/app-token'
 import TProps from './types'
@@ -15,15 +16,18 @@ const TokenCounter: FC<TProps> = ({
   className,
   currentValue,
   max,
+  subtitle,
+  title,
+  finished
 }) => {
 
   const percentage = (currentValue * BigInt(100))  / max
 
   return <WidgetStyled className={className}>
-    <Texts>
+    <Texts finished={finished}>
       <UsersIconStyled />
       <Title>
-        First Come First Served
+        {title || 'First Come First Served'}
       </Title>
       <Value>
         {convertNumber(currentValue)} / {convertNumber(max)} {TOKEN_SYMBOL} remaining
@@ -32,7 +36,10 @@ const TokenCounter: FC<TProps> = ({
     <ProgressBarStyled
       current={Number(percentage)}
       max={100}
+      finished={finished}
     />
+
+    {subtitle && <SmallTextStyled>{subtitle}</SmallTextStyled>}
   </WidgetStyled>
 }
 

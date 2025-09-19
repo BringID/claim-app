@@ -139,7 +139,7 @@ export const Button = styled.button.attrs((props) => ({
 
 export const ExternalLink = styled.a`
   text-decoration: none;
-  width: max-content;
+  width: 100%;
   display: inline-block;
 `
 
