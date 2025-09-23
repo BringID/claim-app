@@ -2,59 +2,57 @@ import { FC } from 'react'
 import {
   Footer,
   FooterContent,
-  FooterMeta,
-  FooterLicense,
   LinkStyled,
-  FooterMetaItem,
   FooterDescription,
   FooterMenu,
-  FooterMenuItem,
-  FooterContentMain
+  FooterMenuItem
 } from './styled-components'
 
 import {
-  bringIDLink
+  bringIDLink,
+  xLink,
+  telegramChatLink,
+  whitepaperLink,
+  githubLink,
+  bringTokenUrl
 } from '@/app/configs'
 
 const FooterComponent = () => {
   return <Footer>
-    <FooterDescription>
-      BringID - privacy-focused antisybil solution, powered by zero-knowledge proofs
-    </FooterDescription>
 
     <FooterMenu>
       <FooterMenuItem>
-        <LinkStyled href='/'>
+        <LinkStyled href='https://www.bringid.org/' target='_blank'>
+        About us
+        </LinkStyled>
+      </FooterMenuItem>
+
+      <FooterMenuItem>
+        <LinkStyled href={bringTokenUrl} target='_blank'>
+        $bring
+        </LinkStyled>
+      </FooterMenuItem>
+
+      <FooterMenuItem>
+        <LinkStyled href={githubLink} target='_blank'>
         GitHub
         </LinkStyled>
       </FooterMenuItem>
 
       <FooterMenuItem>
-        <LinkStyled href='/'>
-        X / Twitter
-        </LinkStyled>
-      </FooterMenuItem>
-
-      <FooterMenuItem>
-        <LinkStyled href='/'>
-        Warpcast
-        </LinkStyled>
-      </FooterMenuItem>
-
-      <FooterMenuItem>
-        <LinkStyled href='/'>
-        $BRING Token
-        </LinkStyled>
-      </FooterMenuItem>
-
-      <FooterMenuItem>
-        <LinkStyled href='/'>
+        <LinkStyled href={whitepaperLink} target='_blank'>
         Whitepaper
         </LinkStyled>
       </FooterMenuItem>
 
       <FooterMenuItem>
-        <LinkStyled href='/'>
+        <LinkStyled href={xLink} target='_blank'>
+        X / Twitter
+        </LinkStyled>
+      </FooterMenuItem>
+
+      <FooterMenuItem>
+        <LinkStyled href={telegramChatLink} target='_blank'> 
         Telegram
         </LinkStyled>
       </FooterMenuItem>
@@ -62,23 +60,7 @@ const FooterComponent = () => {
 
 
     <FooterContent>
-      <FooterContentMain>
-        <LinkStyled href={bringIDLink} target='_blank'>
-          bring-id
-        </LinkStyled>
-        <FooterLicense>
-          MIT License
-        </FooterLicense>
-      </FooterContentMain>
-
-      <FooterMeta>
-        <FooterMetaItem>
-          Built with TLSNotary
-        </FooterMetaItem>
-        <FooterMetaItem>
-          Privacy-first
-        </FooterMetaItem>
-      </FooterMeta>
+      © 2025 BringID. Powered by zero knowledge proofs. Deployed on Base.
       
     </FooterContent>
 

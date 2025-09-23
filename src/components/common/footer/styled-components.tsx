@@ -44,44 +44,15 @@ export const FooterMenuItem = styled.li`
 export const FooterContent = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   border-top: 1px solid ${props => props.theme.primaryBorderColor};
   padding: 16px 0 0;
+  font-size: 14px;
+  text-align: center;
 
   @media (max-width: ${props => props.theme.mobileBreakpoint}) {
     gap: 20px;
   }
-`
-
-export const FooterContentMain = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-`
-
-export const FooterMeta = styled.div`
-  display: flex;
-  margin-left: auto;
-  gap: 40px;
-  align-items: center;
-  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
-    display: none;
-  }
-`
-
-export const FooterLicense = styled.span`
-  font-size: 12px;
-  display: inline-block;
-  line-height: 1;
-  color: ${props => props.theme.primaryTextColor};
-  border: 1px solid ${props => props.theme.primaryBorderColor};
-  padding: 4px 10px;
-  font-weight: 700;
-  border-radius: 999px;
-`
-
-export const FooterMetaItem = styled(SmallText)`
-  
 `
 
 export const LinkStyled = styled(Link)`

@@ -1,16 +1,11 @@
 'use client'
 import {
   FC,
-  useEffect,
   useState
 } from 'react'
 import {
   Page
 } from '@/components/common'
-import {
-  StepsContainer,
-  StepsStyled
-} from './styled-components'
 import { TProcessStage } from '@/types'
 import {
   Start,
@@ -23,27 +18,6 @@ import {
   ClaimFailed,
   DropFinished
 } from '../stages'
-
-const defineStageNumber = (stage: TProcessStage) => {
-  switch (stage) {
-    case 'start':
-      return 1
-    case 'install_extension':
-      return 2
-    case 'connect':
-      return 3
-    case 'create_id':
-      return 4
-    case 'claim':
-      return 5
-    case 'claim_started':
-      return 6
-    case 'claim_failed':
-    case 'claim_finished':
-    case 'drop_finished':
-      return 7
-  }
-}
 
 const defineStage = (
   stage: TProcessStage,
@@ -78,20 +52,12 @@ const LaunchTransaction: FC = () => {
     setStage
   ] = useState<TProcessStage>('start')
 
-  const stageNumber = defineStageNumber(stage)
-
   const content = defineStage(
     stage,
     setStage
   )
 
   return <Page>
-    <StepsContainer>
-      <StepsStyled
-        stepsCount={7}
-        activeStep={stageNumber}
-      />
-    </StepsContainer>
     {content}
   </Page>
 }
