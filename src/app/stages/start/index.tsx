@@ -17,6 +17,8 @@ import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
 import tiers from '../../configs/tiers'
 import { getTokensLeftCount } from '@/utils'
 import TProps from './types'
+import { useRouter } from 'next/navigation'
+import isMobile from 'is-mobile'
 
 const defineButton = (
   redirect: () => void
@@ -31,11 +33,17 @@ const defineButton = (
 
 
 const Start: FC<TProps> = ({ setStage }) => {
-
+  const router = useRouter()
 
   const [ currentSupply, setCurrentSupply ] = useState<bigint>(TOKEN_MAX_SUPPLY)
   const button = defineButton(
     () => {
+
+      if (isMobile()) {
+        router.push('/wrong-device')
+        return
+      }
+
       setStage('install_extension')
     },
   )

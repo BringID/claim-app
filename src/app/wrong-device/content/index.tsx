@@ -15,10 +15,10 @@ const WrongDevice: FC<TProps> = () => {
   const router = useRouter()
   return <Container>
     <TitleStyled>
-      Use desktop
+      Bring is desktop-only (for now)
     </TitleStyled>
     <Text>
-      This experience is not available on mobile yet. Please switch to a desktop to claim or launch drops.
+      We’re building mobile support 🤓. In the meantime, please switch to your desktop to claim tokens.
     </Text>
     <ButtonStyled
       appearance='default'

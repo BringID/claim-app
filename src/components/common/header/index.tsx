@@ -7,18 +7,22 @@ import {
   Header,
   LogoLink,
   Content,
-  Logo
+  ImageStyled
 } from './styled-components'
+import LogoImage from '@/images/bring-logo.png'
 
 import Account from './account'
+import Menu from './menu'
 
 const PageHeader: FC = () => {
   return <Header>
     <Content>
       <LogoLink to='/'>
-        <Logo />
-        bring-id
+        <ImageStyled src={LogoImage} alt='bring' width={32} height={32}/>
+        BringID
       </LogoLink>
+
+      <Menu />
       <Account />
     </Content>
   </Header>
