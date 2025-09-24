@@ -10,11 +10,7 @@ import {
   SmallTextStyled,
   ButtonStyled
 } from '../../content/styled-components'
-import { useRouter } from 'next/navigation'
 import { ShieldIcon } from '@/components/icons'
-import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
-import tiers from '../../configs/tiers'
-import { getTokensLeftCount } from '@/utils'
 import getSDK from '@/app/sdk'
 import TProps from './types'
 
@@ -66,6 +62,7 @@ const InstallExtension: FC<TProps> = ({ setStage }) => {
     extensionInstalled,
     setExtensionInstalled
   ] = useState<boolean | null>(null)
+
   const [
     extensionInstallationStarted,
     setExtensionInstallationStarted

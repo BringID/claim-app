@@ -17,6 +17,28 @@ import {
   setAuthorizationStep
 } from '@/lib/slices'
 
+const defineIfKeyHasAlreadyBeenCreated = async () => {
+    window.postMessage({
+      type: 'HAS_USER_KEY',
+    }, '*') // You can restrict the origin in production
+
+    return new Promise((resolve, reject) => {
+      const listener = (event: any) => {
+        switch (event.data.type) {
+          //  from client to extension
+          case 'HAS_USER_KEY_RESPONSE': {
+            resolve(event.data.data.hasUserKey)
+            window.removeEventListener("message", listener)
+            break
+          }
+        }
+      }
+  
+      window.addEventListener("message", listener)
+    })
+}
+
+
 const Connect: FC<TProps> = ({ setStage }) => {
 
   const {
@@ -35,9 +57,19 @@ const Connect: FC<TProps> = ({ setStage }) => {
   }, [])
 
   useEffect(() => {
-    if (authorizationStep === 'connected') {
-      setStage('create_id')
-    }
+
+    (async () => {
+      if (authorizationStep === 'connected') {
+        const hasUserKey = await defineIfKeyHasAlreadyBeenCreated()
+
+        if (hasUserKey) {
+          setStage('claim')
+        } else {
+          setStage('create_id')
+        }
+      }
+    })()
+    
   }, [authorizationStep])
 
   return <WidgetStyled

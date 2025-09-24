@@ -19,28 +19,48 @@ import { getTokensLeftCount } from '@/utils'
 import TProps from './types'
 import { useRouter } from 'next/navigation'
 import isMobile from 'is-mobile'
+import getSDK from '@/app/sdk'
 
 const defineButton = (
+  extensionInstallationStarted: boolean,
   redirect: () => void
 ) => {
   return <ButtonStyled
     appearance='action'
     onClick={redirect}
+    loading={extensionInstallationStarted}
   >
     Claim {TOKEN_SYMBOL} <LightningIconStyled />
   </ButtonStyled> 
 }
 
-
 const Start: FC<TProps> = ({ setStage }) => {
   const router = useRouter()
+  const [
+    extensionInstallationStarted,
+    setExtensionInstallationStarted
+  ] = useState<boolean>(false)
 
   const [ currentSupply, setCurrentSupply ] = useState<bigint>(TOKEN_MAX_SUPPLY)
   const button = defineButton(
-    () => {
+    extensionInstallationStarted,
+    async () => {
 
       if (isMobile()) {
         router.push('/wrong-device')
+        return
+      }
+      setExtensionInstallationStarted(true)
+
+
+
+      const bringIDSDK = getSDK()
+
+      const isInstalled = await bringIDSDK.isExtensionInstalled()
+      setExtensionInstallationStarted(false)
+
+      if (isInstalled) {
+        setStage('connect')
         return
       }
 
