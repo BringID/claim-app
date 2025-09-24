@@ -56,15 +56,12 @@ const Connect: FC<TProps> = ({ setStage }) => {
     dispatch(setAuthorizationStep('connect'))
   }, [])
 
-  console.log({ authorizationStep })
-
   useEffect(() => {
 
     (async () => {
       if (authorizationStep === 'connected') {
         const hasUserKey = await defineIfKeyHasAlreadyBeenCreated()
 
-        console.log({ hasUserKey })
         if (hasUserKey) {
           setStage('claim')
         } else {
