@@ -21,12 +21,14 @@ const defineIfKeyHasAlreadyBeenCreated = async () => {
     window.postMessage({
       type: 'HAS_USER_KEY',
     }, '*') // You can restrict the origin in production
-
+    console.log('SENT!!!')
     return new Promise((resolve, reject) => {
       const listener = (event: any) => {
         switch (event.data.type) {
           //  from client to extension
           case 'HAS_USER_KEY_RESPONSE': {
+                console.log('CATCHED!!!')
+
             resolve(event.data.data.hasUserKey)
             window.removeEventListener("message", listener)
             break
@@ -60,7 +62,9 @@ const Connect: FC<TProps> = ({ setStage }) => {
 
     (async () => {
       if (authorizationStep === 'connected') {
+        console.log(111)
         const hasUserKey = await defineIfKeyHasAlreadyBeenCreated()
+        console.log(222)
 
         if (hasUserKey) {
           setStage('claim')
