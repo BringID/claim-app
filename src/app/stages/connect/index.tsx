@@ -27,8 +27,6 @@ const defineIfKeyHasAlreadyBeenCreated = async () => {
         switch (event.data.type) {
           //  from client to extension
           case 'HAS_USER_KEY_RESPONSE': {
-                console.log('CATCHED!!!')
-
             resolve(event.data.data.hasUserKey)
             window.removeEventListener("message", listener)
             break
@@ -37,6 +35,11 @@ const defineIfKeyHasAlreadyBeenCreated = async () => {
       }
   
       window.addEventListener("message", listener)
+
+      window.setTimeout(() => {
+        resolve(false)
+        window.removeEventListener("message", listener)
+      }, 1500)
     })
 }
 
