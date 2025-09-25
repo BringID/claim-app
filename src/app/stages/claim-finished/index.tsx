@@ -70,28 +70,18 @@ const ClaimFinished: FC<TProps> = ({ setStage }) => {
   }))
 
 
-  return <Page>
-    <StepsContainer>
-      <StepsStyled
-        stepsCount={7}
-        activeStep={7}
-      />
-    </StepsContainer>
-
-    <WidgetStyled
-      title='Bring tokens Claimed!'
-      image={<ShieldIcon />}
+  return <WidgetStyled
+    title='Bring tokens Claimed!'
+    image={<ShieldIcon />}
+  >
+    <TextStyled>Your tokens has been successfully delivered</TextStyled>
+    <SuccessNoteStyled
+      title='Bring tokens'
     >
-      <TextStyled>Your tokens has been successfully delivered</TextStyled>
-      <SuccessNoteStyled
-        title='Bring tokens'
-      >
-        Were sent to {shortenString(address as string)}
-      </SuccessNoteStyled>
-      {button}
-    </WidgetStyled>
-    
-  </Page>
+      Were sent to {shortenString(address as string)}
+    </SuccessNoteStyled>
+    {button}
+  </WidgetStyled>    
 }
 
 export default ClaimFinished
