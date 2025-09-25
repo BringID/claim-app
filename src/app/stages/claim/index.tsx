@@ -124,6 +124,7 @@ const defineButton = (
             console.log({ err })
             // @ts-ignore
             alert(err.message)
+            setStage('claim_failed')
           }
           setLoading(false)
         }}
