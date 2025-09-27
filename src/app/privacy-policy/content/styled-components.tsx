@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import {
   Title,
   Text,
-  Subtitle
+  Subtitle,
+  List,
+  Link
 } from '@/components/common'
 
 
@@ -26,4 +28,13 @@ export const Container = styled.div`
 export const SubtitleStyled = styled(Subtitle)`
   margin-bottom: 16px;
   margin-top: 30px;
+`
+
+export const ListStyled = styled(List)`
+  list-style: decimal;
+  color: ${props => props.theme.extraTextColor};
+`
+
+export const LinkStyled = styled(Link)`
+  
 `

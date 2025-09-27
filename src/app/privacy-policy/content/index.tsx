@@ -5,7 +5,9 @@ import {
   TitleStyled,
   TextStyled,
   Container,
-  SubtitleStyled
+  SubtitleStyled,
+  ListStyled,
+  LinkStyled
 } from './styled-components'
 import { Strong } from '@/components/common/strong/styled-components'
 
@@ -18,150 +20,153 @@ const PrivacyPolicy: FC = () => {
       Summary
     </SubtitleStyled>
     <TextStyled>
-      We don’t collect your data. All processing happens locally, and when a notary is needed, we use our own TLS Notary instance that only sees what you choose to disclose for proof generation. Nothing is stored or shared.  
-    </TextStyled>
-    <TextStyled>
-      BringID (“we,” “our,” “us”) respects your privacy. This Privacy Policy explains how the BringID browser extension (“Extension”) handles information.  
+      BringID is designed to provide privacy-preserving identity verification without collecting or storing personal data. This Privacy Policy explains what information is processed, how it is used, and the guarantees provided by the BringID extension and airdrop claim page.
     </TextStyled>
 
     <SubtitleStyled>
-      Introduction
+      1. Data We Do Not Collect
     </SubtitleStyled>
 
-    <TextStyled>
-      BringID is a privacy-first identity extension. Processing happens primarily on your device, and you remain in full control of your data. We do not collect, store, or sell your personal information.  
-    </TextStyled>
-
-
+    <ListStyled
+      items={[
+        <>We do <Strong>not</Strong> collect, store, or monetize personal data.</>,
+        <>We do <Strong>not</Strong> access your browsing history, communications, location data, or financial information.</>,
+        <>We do <Strong>not</Strong> require you to provide personal details such as name, email, or address.</>
+      ]}
+    />
 
     <SubtitleStyled>
-      Information We Collect
+      2. How Verification Works
     </SubtitleStyled>
 
     <TextStyled>
-      <Strong>No Personal Data Collection by BringID</Strong>: The Extension itself does not collect or transmit any personal information (such as your name, email, browsing history, or wallet activity) to our servers. 
+      BringID uses <Strong>Multi-Party Computation over TLS (MPC-TLS)</Strong> combined with <Strong>Semaphore zero-knowledge proofs</Strong> to verify web-based activity in a privacy-preserving way.
     </TextStyled>
 
-    <TextStyled>
-      <Strong>Local Processing First</Strong>: Most operations — including generating proofs and commitments — are executed entirely on your device. 
-    </TextStyled>
+    <ListStyled
+      items={[
+        <><Strong>Encrypted traffic:</Strong> The notary only sees encrypted TLS traffic and cannot reconstruct plaintext credentials.</>,
+        <><Strong>Selective disclosure:</Strong> Only specific values necessary for verification (e.g. account IDs, verified follower counts, ride IDs, or device IDs) are revealed.</>,
+        <><Strong>Notary attestation:</Strong> The notary signs an attestation of the disclosed values.</>,
+        <><Strong>Hashing & commitments:</Strong> Disclosed values (e.g. account IDs) are hashed and committed on-chain as Semaphore identity commitments.</>,
+        <><Strong>Zero-knowledge proofs:</Strong> Users generate unlinkable proofs from these commitments to demonstrate humanity and uniqueness without exposing their exact identity.</>
+      ]}
+    />
 
-    <TextStyled>
-      <Strong>TLS Notary Involvement</Strong>: When generating certain proofs, BringID uses a forked instance of <Strong>TLS Notary</Strong> that we operate ourselves. The notary may temporarily access the specific information you choose to disclose (for example, your account ID or activity on a given service) in order to verify authenticity. This information is only used to create a cryptographic proof and is not stored by BringID.  
-    </TextStyled>
-
-    <SubtitleStyled>
-      How BringID Works
-    </SubtitleStyled>
-
-    <TextStyled>
-      Raw data from supported platforms (e.g., ride-sharing, booking, contributions) is either processed locally or verified through our notary service. 
-    </TextStyled>
-
-    <TextStyled>
-      The result is a <Strong>cryptographic commitment</Strong>, which can be published on-chain (currently on Base) as a proof of inclusion.   
-    </TextStyled>
-
-    <TextStyled>
-      <Strong>Important</Strong>: Raw data never leaves your device or the verification session with the notary. Only the proof (linked to your chosen address) is recorded on-chain. 
-    </TextStyled>
 
 
 
 
     <SubtitleStyled>
-      Data Storage & Security
+      3. Group Membership and Inference
     </SubtitleStyled>
 
     <TextStyled>
-      <Strong>Local Only</Strong>: All user data remains in your browser extension’s local storage.
+      By design, successful proofs may indicate that a user belongs to a verified group (for example: Uber riders, Twitter verified accounts, or Apple device owners).
+    </TextStyled>
+
+    <ListStyled
+      items={[
+        <>This information is used <Strong>only</Strong> to demonstrate uniqueness and prevent Sybil attacks.</>,
+        <>No raw account data is disclosed.</>,
+        <>Identity commitments cannot be linked across different proofs, preserving unlinkability.</>
+      ]}
+    />
+
+
+    <SubtitleStyled>
+      4. Use of Data
+    </SubtitleStyled>
+
+    <TextStyled>
+      Any data revealed during MPC-TLS verification is: 
+    </TextStyled>
+
+    <ListStyled
+      items={[
+        <>Processed <Strong>ephemerally</Strong> in memory for proof generation.</>,
+        <>Never stored, logged, or sold by BringID.</>,
+        <>Never used for advertising, profiling, or cross-site tracking.</>
+      ]}
+    />
+
+
+
+    <SubtitleStyled>
+      5. Airdrop Claim Page & Analytics
+    </SubtitleStyled>
+
+    <TextStyled>
+      When you use the BringID airdrop claim page at <Strong>app.bringid.org</Strong>, we may process your wallet address and transaction data solely to deliver tokens and prevent abuse.
     </TextStyled>
 
     <TextStyled>
-      <Strong>Temporary Notary Access</Strong>: When TLS Notary is involved, the disclosed information is visible only during the verification session and is not stored by the notary.   
-    </TextStyled>
-
-    <TextStyled>
-      <Strong>No Sensitive Data Stored</Strong>: BringID does not persist sensitive information.   
-    </TextStyled>
-
-    <TextStyled>
-      <Strong>Uninstall = Delete</Strong>: If you uninstall the extension, all locally stored information is permanently deleted.    
+      We also use <Strong>Plausible Analytics</Strong> on the claim page to measure usage and conversion. Plausible does not use cookies, does not collect personal data, and does not allow us to identify individual users. Data collected is anonymized and used only to understand claim page performance.
     </TextStyled>
 
 
 
     <SubtitleStyled>
-      Data Sharing
+      6. Open-Source and Auditability
     </SubtitleStyled>
 
     <TextStyled>
-      <Strong>No Third-Party Sharing</Strong>: BringID does not share your data with advertisers, analytics providers, or external services.  
-    </TextStyled>
-
-    <TextStyled>
-      <Strong>Controlled Proof Generation</Strong>: The only time information leaves your device is during a TLS Notary verification session, which is operated by BringID’s own notary instance.   
-    </TextStyled>
-
-    <TextStyled>
-      <Strong>User-Controlled On-Chain Publishing</Strong>: You decide what to publish on-chain. BringID never posts data or proofs without your explicit action.    
+      BringID is built on top of open-source projects including TLS Notary and Semaphore. 
     </TextStyled>
 
 
+    <ListStyled
+      items={[
+        <>Our codebase is fully open and available on GitHub: <LinkStyled href="https://github.com/BringID" target="_blank">https://github.com/BringID</LinkStyled></>,
+        <>Independent review and community audit are encouraged.</>,
+      ]}
+    />
 
     <SubtitleStyled>
-      Your Rights
+      7. Data Retention
     </SubtitleStyled>
 
     <TextStyled>
-      <Strong>Control</Strong>: You control what stays local, what is deleted, and what is published.
-    </TextStyled>
-
-    <TextStyled>
-      <Strong>Deletion</Strong>: Uninstalling the extension deletes all local data. 
-    </TextStyled>
-
-    <TextStyled>
-      <Strong>Export Requests</Strong>: We do not provide data exports under GDPR/CCPA because we do not collect or store personal data.    
-    </TextStyled>
-
-
-
-    <SubtitleStyled>
-      Children’s Privacy
-    </SubtitleStyled>
-
-    <TextStyled>
-      BringID is not directed to individuals under the age of 13. If you are under this age, you may not use BringID.  
-    </TextStyled>
-
-
-
-    <SubtitleStyled>
-      Legal Jurisdiction
-    </SubtitleStyled>
-
-    <TextStyled>
-      This Privacy Policy is governed by the laws of the State of Delaware, United States, without regard to conflict of law provisions.  
+      BringID does not retain user data. All disclosed values (e.g. account IDs, follower counts) are processed ephemerally during the verification session. No logs or databases of user data are maintained.
     </TextStyled>
 
 
     <SubtitleStyled>
-      Changes to This Policy
+      8. User Rights
     </SubtitleStyled>
 
     <TextStyled>
-      We may update this Privacy Policy from time to time. Updates will be reflected in the “Last Updated” date above.   
+      Since BringID does not collect or store user data:
     </TextStyled>
+
+    <ListStyled
+      items={[
+        <>There is no personal information to access, modify, or delete.</>,
+        <>Users retain complete control over what information is disclosed during verification.</>
+      ]}
+    />
+
+
+
 
 
     <SubtitleStyled>
-      Contact Us
+      9. Contact
     </SubtitleStyled>
 
     <TextStyled>
-      If you have questions about this Privacy Policy, please contact us at: 📧 <Strong>hi@bringid.org</Strong>
+      If you have questions about this Privacy Policy or BringID’s data handling practices, you can reach us at:
     </TextStyled>
+
+    <ListStyled
+      items={[
+        <>Website: <LinkStyled href="https://bringid.org" target="_blank">https://bringid.org</LinkStyled></>,
+        <>GitHub: <LinkStyled href="https://github.com/BringID" target="_blank">https://github.com/BringID</LinkStyled></>,
+        <>Email: <LinkStyled href="mailto:dev@bringid.org" target="_blank">dev@bringid.org</LinkStyled></>,
+      ]}
+    />
+
+
 
   </Container>
 }
