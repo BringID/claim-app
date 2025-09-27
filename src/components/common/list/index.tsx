@@ -8,9 +8,10 @@ import {
 } from './styled-components'
 
 const List: FC<TProps> = ({
-  items
+  items,
+  className
 }) => {
-  return <Container>
+  return <Container className={className}>
     {items.map(item => <ListItem>{item}</ListItem>)}
   </Container>
 }
