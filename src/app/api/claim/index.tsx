@@ -3,7 +3,7 @@ import {
   TAddClaim,
   TAddClaimResponse
 } from './types'
-const TASK_MANAGER_API = 'https://task-manager-production-4062.up.railway.app';
+const TASK_MANAGER_API = 'https://task-manager.bringid.org';
 
 const addClaim: TAddClaim = (
   proofs,
