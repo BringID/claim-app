@@ -25,7 +25,7 @@ const prepareMessage = async (
 
 ) => {
   const timestamp = Date.now()
-  const statement = `Hello>>>>>>> Please sign this message to create user key for the BringID dashboard!`
+  const statement = `Hello>>>>> Please sign this message to create user key for the BringID dashboard!`
 
   return {
     preparedMessage: statement,
