@@ -3,7 +3,7 @@ import {
   TAddClaim,
   TAddClaimResponse
 } from './types'
-const TASK_MANAGER_API = 'https://task-manager.bringid.org';
+const TASK_MANAGER_API = 'https://task-manager-base-sepolia.bringid.org';
 
 const addClaim: TAddClaim = (
   proofs,
