@@ -14,7 +14,6 @@ import {
   WidgetStyled,
   SuccessNoteStyled
 } from '../../content/styled-components'
-import { TClaimStage, TSemaphoreProof } from '@/types'
 import TProps from './types'
 
 import { ShieldIcon } from '@/components/icons'
@@ -25,6 +24,7 @@ import {
   useAppSelector
 } from '@/lib/hooks'
 import { defineExplorerURL } from '@/utils'
+import { networkId } from '@/app/configs'
 
 const defineButton = (
   txHash: string
@@ -36,7 +36,7 @@ const defineButton = (
 
   return <ButtonStyled
     onClick={async () => {
-      const txHashScannerUrl = defineExplorerURL(84532)
+      const txHashScannerUrl = defineExplorerURL(Number(networkId))
       window.open(`${txHashScannerUrl}/tx/${txHash}`)
     }}
   >

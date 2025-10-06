@@ -24,13 +24,14 @@ import {
 } from '@/utils'
 import { BrowserProvider, JsonRpcSigner } from 'ethers'
 import TProps from './types'
+import { networkId } from '@/app/configs'
 
 const defineButton = (
   txHash: string
 ) => {
     return <ButtonStyled
       onClick={async () => {
-        const txHashScannerUrl = defineExplorerURL(84532)
+      const txHashScannerUrl = defineExplorerURL(Number(networkId))
         window.open(`${txHashScannerUrl}/tx/${txHash}`)
       }}
     >

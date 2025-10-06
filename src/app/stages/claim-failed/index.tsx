@@ -8,6 +8,7 @@ import {
   ButtonStyled,
   SuccessNoteStyled
 } from '../../content/styled-components'
+import { networkId } from '@/app/configs'
 
 import { ShieldIcon } from '@/components/icons'
 import {
@@ -29,7 +30,7 @@ const defineButton = (
 
   return <ButtonStyled
     onClick={async () => {
-      const txHashScannerUrl = defineExplorerURL(84532)
+      const txHashScannerUrl = defineExplorerURL(Number(networkId))
       window.open(`${txHashScannerUrl}/tx/${txHash}`)
     }}
   >
