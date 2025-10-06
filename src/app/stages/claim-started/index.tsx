@@ -64,16 +64,16 @@ const ClaimStarted: FC<TProps> = ({ setStage }) => {
 
   useEffect(() => {
     const interval = window.setInterval(async () => {
-      // const isClaimed = await checkIfTokenIsClaimed(
-      //   address as string,
-      //   signer as JsonRpcSigner
-      // )
-      // if (isClaimed) {
-      //   window.clearInterval(interval)
-      //   setStage('claim_finished')
+      const isClaimed = await checkIfTokenIsClaimed(
+        address as string,
+        signer as JsonRpcSigner
+      )
+      if (isClaimed) {
+        window.clearInterval(interval)
+        setStage('claim_finished')
 
-      //   return 
-      // } else {
+        return 
+      } else {
         const transactionSuccess = await checkTransactionReceipt(
           provider as BrowserProvider,
           txHash as string
@@ -89,7 +89,7 @@ const ClaimStarted: FC<TProps> = ({ setStage }) => {
         if (transactionSuccess) {
           setStage('claim_finished')
         }
-      // }
+      }
     }, 3000)
 
 
