@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 BringID Claim app
 
-## Getting Started
+This project is a web application that works with BringID extension. Follow the instructions below to run the project in development or production mode.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ⚙️ Requirements
+
+- **Node.js** version **20** or higher
+- **Yarn** package manager
+- A valid `.env` file (see below)
+
+---
+
+## 📁 Environment Variables
+
+Create a `.env` file in the root directory using the following format:
+
+```
+NEXT_PUBLIC_PROJECT_ID=e4...
+NEXT_PUBLIC_ENVIRONMENT=dev
+NEXT_PUBLIC_ONCHAINKIT_API_KEY=e7...
+NEXT_PUBLIC_NETWORK_ID=84532
+NEXT_PUBLIC_ZUPLO_KEY=zpka_...
+NEXT_PUBLIC_ZUPLO_API_URL=https://api.bringid.org
+
+# JSON RPC URLs
+NEXT_PUBLIC_JSON_RPC_URL=https://...
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> 💡 Make sure your API keys and URLs are valid for your target environment.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📦 Install Dependencies
 
-## Learn More
+Install the required packages using Yarn:
 
-To learn more about Next.js, take a look at the following resources:
+```
+yarn
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👨‍💻 Development Mode
 
-## Deploy on Vercel
+To start the application in development mode:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This runs the app locally with hot reloading.
+
+---
+
+## 🏗 Production Build
+
+To build the application for production:
+
+```
+yarn build
+```
+
+This generates an optimized build in the `.next` or `out` folder (depending on your framework).
+
+---
+
+## 🧪 Running the Production Server (optional)
+
+If you're using Next.js or a similar framework and want to test the production build locally:
+
+```
+yarn start
+```
+
+---
+
+## ✨ Credits
+
+Built with ❤️ by BringID

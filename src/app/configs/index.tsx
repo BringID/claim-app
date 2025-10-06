@@ -1,7 +1,5 @@
 export const projectId = process.env.NEXT_PUBLIC_PROJECT_ID
-export const alchemyApiKey = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY
 export const jsonRPCUrl = process.env.NEXT_PUBLIC_JSON_RPC_URL
-export const zerionApiKey = process.env.NEXT_PUBLIC_ZERION_API_KEY
 export const onchainApiKey = process.env.NEXT_PUBLIC_ONCHAINKIT_API_KEY
 export const zuploKey = process.env.NEXT_PUBLIC_ZUPLO_KEY
 export const zuploApiUrl = process.env.NEXT_PUBLIC_ZUPLO_API_URL

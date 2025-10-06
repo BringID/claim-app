@@ -2,8 +2,6 @@ import toHex from './to-hex'
 import alertError from './alert-error'
 import switchNetwork from './switch-network'
 import defineAlchemyNetwork from "./define-alchemy-network"
-import createAlchemyInstance from "./create-alchemy-instance"
-import getTokenERC20Data from './get-erc20-token-data'
 import defineJSONRPC from './define-json-rpc'
 import defineNetworkName from './define-network-name'
 import defineExplorerURL from "./define-explorer-url"
@@ -19,7 +17,6 @@ import metadataUrlResolve from './metadata-resolve-url'
 import createQueryString from './create-query-string'
 import defineIfUserOwnsContractERC20 from './define-if-user-owns-erc20-contract'
 import countLaunchAmounts from './count-launch-amounts'
-import getTokenERC20TokenList from './get-erc20-token-list'
 import getERC20TokenBalance from './get-erc20-token-balance'
 import defineEthersSigner from './define-ethers-signer'
 import copyToClipboard from './copy-to-clipboard'
@@ -51,7 +48,6 @@ export {
   formatTime,
   copyToClipboard,
   defineEthersSigner,
-  getTokenERC20Data,
   metadataUrlResolve,
   createQueryString,
   generateMetadataUtil,
@@ -61,7 +57,6 @@ export {
   getAlchemyTokenImage,
   shortenString,
   getValidImage,
-  createAlchemyInstance,
   ipfsRedefineURL,
   defineAlchemyNetwork,
   defineJSONRPC,
@@ -69,7 +64,6 @@ export {
   defineExplorerURL,
   defineIfUserOwnsContractERC20,
   countLaunchAmounts,
-  getTokenERC20TokenList,
   getERC20TokenBalance,
   createSDK,
   createWarpcastShareLink,
