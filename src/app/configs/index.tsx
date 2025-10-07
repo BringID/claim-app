@@ -8,13 +8,15 @@ export const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
 
 export const networkId = process.env.NEXT_PUBLIC_NETWORK_ID
 
-export const extensionDownloadLink = 'https://chromewebstore.google.com/detail/zkpass-transgate/afkoofjocpbclhnldmmaphappihehpma'
+export const extensionDownloadLink = 'https://chromewebstore.google.com/detail/bringid/fjlmbkpfjmbjokokgmfcijlliceljbeh'
 
 export const xLink = 'https://x.com/bring_id'
 export const whitepaperLink = 'https://github.com/BringID/whitepaper'
 export const telegramChatLink = 'https://t.me/bringid_chat'
 export const githubLink = 'https://github.com/BringID'
-export const dropAddress = '0x9821dbaC1C9AbE875cE78cf577C97Bf540c70C32'
+// sepolia
+// export const dropAddress = '0x9821dbaC1C9AbE875cE78cf577C97Bf540c70C32'
+export const dropAddress = '0x58fE662dFB96f4C90bf430F390241cd92B2a8FAe'
 export const pointsRequired = 10
 export const bringIDLink = 'https://www.bringid.org/'
 export const bringTokenUrl = 'https://dexscreener.com/base/0xceb9ce741dc04e87366198c7dc96d76ed74dce6c'

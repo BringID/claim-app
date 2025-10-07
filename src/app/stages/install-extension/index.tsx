@@ -13,6 +13,7 @@ import {
 import { ShieldIcon } from '@/components/icons'
 import getSDK from '@/app/sdk'
 import TProps from './types'
+import { extensionDownloadLink } from '@/app/configs'
 
 const defineButton = (
   extensionInstalled: boolean | null,
@@ -85,7 +86,7 @@ const InstallExtension: FC<TProps> = ({ setStage }) => {
       setStage('connect')
     },
     () => {
-      alert('INSTALL EXTENSION')
+      window.open(extensionDownloadLink, '_blank')
       setExtensionInstallationStarted(true)
     },
     () => {

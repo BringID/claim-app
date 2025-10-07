@@ -28,7 +28,13 @@ const FooterComponent = () => {
       </FooterMenuItem>
 
       <FooterMenuItem>
-        <LinkStyled href={bringTokenUrl} target='_blank'>
+        <LinkStyled href='/privacy-policy' target='_blank'>
+        Privacy policy
+        </LinkStyled>
+      </FooterMenuItem>
+
+      <FooterMenuItem>
+        <LinkStyled href={bringTokenUrl}>
         $bring
         </LinkStyled>
       </FooterMenuItem>
