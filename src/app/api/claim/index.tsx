@@ -24,7 +24,6 @@ const addClaim: TAddClaim = (
     to
   }
 )
-
 const taskManager = {
   addClaim
 }
