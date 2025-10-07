@@ -16,7 +16,7 @@ export const telegramChatLink = 'https://t.me/bringid_chat'
 export const githubLink = 'https://github.com/BringID'
 // sepolia
 // export const dropAddress = '0x9821dbaC1C9AbE875cE78cf577C97Bf540c70C32'
-export const dropAddress = '0x58fE662dFB96f4C90bf430F390241cd92B2a8FAe'
+export const dropAddress = '0x1C62c9ea820a89EB57FE8993563A4AbAC399653A'
 export const pointsRequired = 10
 export const bringIDLink = 'https://www.bringid.org/'
 export const bringTokenUrl = 'https://dexscreener.com/base/0xceb9ce741dc04e87366198c7dc96d76ed74dce6c'
