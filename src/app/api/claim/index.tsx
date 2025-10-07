@@ -13,7 +13,7 @@ const addClaim: TAddClaim = (
   drop,
   to
 ) => api<TAddClaimResponse>(
-  `${zuploApiUrl}/v1/task-manager/base-sepolia/claim/tasks`,
+  `${zuploApiUrl}/v1/task-manager/base/claim/tasks`,
   'POST',
   {
     'Authorization': `Bearer ${zuploKey}`,
