@@ -18,9 +18,9 @@ const checkIfTokenIsClaimed: TCheckIfTokenIsClaimed = async (
       signer as JsonRpcSigner
     )
 
-    const minted = await contract.minted(userAddress)
+    const isClaimed = await contract.isClaimed(userAddress)
 
-    return Boolean(minted)
+    return Boolean(isClaimed)
 }
 
 export default checkIfTokenIsClaimed
