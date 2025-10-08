@@ -13,7 +13,9 @@ import {
 import { ShieldIcon } from '@/components/icons'
 import getSDK from '@/app/sdk'
 import TProps from './types'
-import { extensionDownloadLink } from '@/app/configs'
+import { Link, ExternalLinkIconStyled } from './styled-components'
+
+import { extensionDownloadLink, githubLink } from '@/app/configs'
 
 const defineButton = (
   extensionInstalled: boolean | null,
@@ -103,6 +105,14 @@ const InstallExtension: FC<TProps> = ({ setStage }) => {
       The Bring ID extension creates proofs of your web2 accounts without exposing your credentials. It runs locally in your browser and never sends your login information to our servers.
     </NoteStyled>
     {button}
+
+    <Link
+      href={githubLink}
+      target='_blank'
+    >
+      <ExternalLinkIconStyled />
+      View source on GitHub
+    </Link>
   </WidgetStyled>
 }
 
