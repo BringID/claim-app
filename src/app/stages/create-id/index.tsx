@@ -25,7 +25,9 @@ const prepareMessage = async (
 
 ) => {
   const timestamp = Date.now()
-  const statement = `Hello>>>>>>>>>>>>>>>>>>>> Please sign this message to create user key for the BringID dashboard!`
+  const statement = `Sign to derive your BringID Semaphore key (used for private proofs).
+Recoverable by re-signing with the same wallet.
+Only sign this message on bringid.org.`
 
   return {
     preparedMessage: statement,
