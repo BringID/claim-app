@@ -5,11 +5,11 @@ import {
   LinkStyled,
   FooterDescription,
   FooterMenu,
-  FooterMenuItem
+  FooterMenuItem,
+  LinkSmallStyled
 } from './styled-components'
 
 import {
-  bringIDLink,
   xLink,
   telegramChatLink,
   whitepaperLink,
@@ -24,12 +24,6 @@ const FooterComponent = () => {
       <FooterMenuItem>
         <LinkStyled href='https://www.bringid.org/' target='_blank'>
         About us
-        </LinkStyled>
-      </FooterMenuItem>
-
-      <FooterMenuItem>
-        <LinkStyled href='/privacy-policy' target='_blank'>
-        Privacy policy
         </LinkStyled>
       </FooterMenuItem>
 
@@ -64,10 +58,23 @@ const FooterComponent = () => {
       </FooterMenuItem>
     </FooterMenu>
 
+    <FooterDescription>
+      <FooterMenuItem>
+        <LinkSmallStyled href='/privacy-policy' target='_blank'>
+        Privacy
+        </LinkSmallStyled>
+      </FooterMenuItem>
+
+      <FooterMenuItem>
+        <LinkSmallStyled href='/privacy-policy' target='_blank'>
+        Terms
+        </LinkSmallStyled>
+      </FooterMenuItem>
+    </FooterDescription>
+
 
     <FooterContent>
       © 2025 BringID. Powered by zero knowledge proofs. Deployed on Base.
-      
     </FooterContent>
 
     

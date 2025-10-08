@@ -15,6 +15,18 @@ export const FooterDescription = styled.div`
   font-size: 14px;
   text-align: center;
   margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 0 0;
+  border-top: 1px solid ${props => props.theme.primaryBorderColor};
+
+  @media (max-width: ${props => props.theme.mobileBreakpoint}) {
+    flex-direction: column;
+    align-items: start;
+    gap: 16px;
+  }
 `
 
 export const FooterMenu = styled.ul`
@@ -45,8 +57,6 @@ export const FooterContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top: 1px solid ${props => props.theme.primaryBorderColor};
-  padding: 16px 0 0;
   font-size: 14px;
   text-align: center;
 
@@ -60,3 +70,8 @@ export const LinkStyled = styled(Link)`
   color: ${props => props.theme.primaryTextColor};
 `
 
+
+export const LinkSmallStyled = styled(Link)`
+    font-size: 12px;
+    color: ${props => props.theme.extraTextColor};
+`

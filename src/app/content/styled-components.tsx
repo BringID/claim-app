@@ -8,7 +8,8 @@ import {
   Note,
   SmallText,
   ConnectButton,
-  SuccessNote
+  SuccessNote,
+  Link
 } from '@/components/common'
 import { LightningIcon } from '@/components/icons'
 import { TokenCounter } from '../components'
@@ -68,4 +69,14 @@ export const SmallTextStyled = styled(SmallText)`
 
 export const SuccessNoteStyled = styled(SuccessNote)`
   margin: 24px 0;
+`
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
+
+export const LinkStyled = styled(Link)`
+  color: ${props => props.theme.extraTextColor};
 `

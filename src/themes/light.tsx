@@ -3,7 +3,7 @@ const theme = {
   secondaryTextColor: 'rgb(255, 255, 255)',
   additionalTextColor: 'rgb(228, 228, 231)',
   extraTextColor: 'rgb(113, 113, 122)',
-  hoverLinkTextColor: '#EEE',
+  hoverLinkTextColor: 'rgb(113, 113, 122)',
 
   placeholderTextColor: 'rgba(255, 255, 255, .3)',
   dangerTextColor: '#FF2C2C',

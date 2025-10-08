@@ -1,32 +1,27 @@
 'use client'
 import {
-  FC,
-  useState
+  FC
 } from 'react'
+
 import {
-  Page
-} from '@/components/common'
-import {
-  StepsContainer,
-  StepsStyled,
   TextStyled,
   ButtonStyled,
   WidgetStyled,
   SuccessNoteStyled
 } from '../../content/styled-components'
 import TProps from './types'
-
 import { ShieldIcon } from '@/components/icons'
 import {
   shortenString
 } from '@/utils'
+import { Buttons } from '../../content/styled-components'
 import {
   useAppSelector
 } from '@/lib/hooks'
 import { defineExplorerURL } from '@/utils'
-import { networkId } from '@/app/configs'
+import { networkId, telegramChatLink } from '@/app/configs'
 
-const defineButton = (
+const defineSecondaryButton = (
   txHash: string
 ) => {
 
@@ -46,6 +41,19 @@ const defineButton = (
   return 
 }
 
+const definePrimaryButton = () => {
+
+  return <ButtonStyled
+    href={telegramChatLink}
+    target='_blank'
+    appearance='action'
+  >
+    Join Telegram group
+  </ButtonStyled>
+
+  return 
+}
+
 const ClaimFinished: FC<TProps> = ({ setStage }) => {
   const {
     claim: {
@@ -57,9 +65,11 @@ const ClaimFinished: FC<TProps> = ({ setStage }) => {
     }
   ))
 
-  const button = defineButton(
-    txHash as string
+  const secondaryButton = defineSecondaryButton(
+   txHash as string
   )
+
+  const primaryButton = definePrimaryButton()
 
   const {
     user: {
@@ -80,7 +90,11 @@ const ClaimFinished: FC<TProps> = ({ setStage }) => {
     >
       Were sent to {shortenString(address as string)}
     </SuccessNoteStyled>
-    {button}
+    <Buttons>
+      {primaryButton}
+      {secondaryButton}
+    </Buttons>
+
   </WidgetStyled>    
 }
 
