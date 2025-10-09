@@ -15,6 +15,7 @@ function Provider (props: {
   children: ReactNode;
   initialState?: State;
 }) {
+
   const queryClient = new QueryClient()
   return (
     <WagmiProvider config={config} initialState={props.initialState}>
