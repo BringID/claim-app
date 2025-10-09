@@ -2,6 +2,11 @@ function defineIfBrowserIsValid(): boolean {
   const ua = navigator.userAgent;
 
   // Detect Brave using its unique navigator.brave property
+
+  if (getComputedStyle(document.documentElement).getPropertyValue('--arc-palette-title')) {
+    return false
+  }
+
   const isBrave =
     typeof (navigator as any).brave !== 'undefined' &&
     typeof (navigator as any).brave.isBrave === 'function';
