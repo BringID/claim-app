@@ -15,7 +15,7 @@ import {
 import { ShieldIcon } from '@/components/icons'
 import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
 import tiers from '../../configs/tiers'
-import { getTokensLeftCount } from '@/utils'
+import { getTokensLeftCount, defineIfBrowserIsValid } from '@/utils'
 import TProps from './types'
 import { useRouter } from 'next/navigation'
 import isMobile from 'is-mobile'
@@ -45,6 +45,13 @@ const Start: FC<TProps> = ({ setStage }) => {
   const button = defineButton(
     extensionInstallationStarted,
     async () => {
+
+      const browserIsValid = defineIfBrowserIsValid()
+
+      if (!browserIsValid) {
+        router.push('/wrong-browser')
+        return
+      }
 
       if (isMobile()) {
         router.push('/wrong-device')
