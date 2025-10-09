@@ -65,27 +65,45 @@ const defineButton = (
         appearance='action'
         loading={loading}
         onClick={async () => {
-          const bringIDSDK = getSDK()
 
-          const data = await bringIDSDK.requestProofs({
-            drop: dropAddress,
-            address: address as string,
-            pointsRequired
-          })
-          console.log({
-            data
-          })
-          const {
-            proofs,
-            points
-          } = data
-          if (!proofs) {
-            return 
+          try {
+            const isClaimed = await checkIfTokenIsClaimed(
+              address as string,
+              signer as JsonRpcSigner
+            )
+
+            if (isClaimed) {
+              setStage(`claim_finished`)
+              return
+            }
+
+            const bringIDSDK = getSDK()
+
+            const data = await bringIDSDK.requestProofs({
+              drop: dropAddress,
+              address: address as string,
+              pointsRequired
+            })
+            console.log({
+              data
+            })
+            const {
+              proofs,
+              points
+            } = data
+            if (!proofs) {
+              return 
+            }
+            setProofs(proofs)
+            setSelectedPoints(points)
+
+            setClaimStage('ready_to_claim')
+          } catch (err) {
+            console.log({ err })
+            // @ts-ignore
+            alert(err.message)
           }
-          setProofs(proofs)
-          setSelectedPoints(points)
-
-          setClaimStage('ready_to_claim')
+          
         }}
       >
         Prove you're human
@@ -99,15 +117,6 @@ const defineButton = (
         onClick={async () => {
           setLoading(true)
           try {
-            const isClaimed = await checkIfTokenIsClaimed(
-              address as string,
-              signer as JsonRpcSigner
-            )
-
-            if (isClaimed) {
-              setStage(`claim_finished`)
-              return
-            }
             
             const result = await taskManager.addClaim(
               proofs,
