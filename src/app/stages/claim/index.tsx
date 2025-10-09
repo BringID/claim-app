@@ -65,6 +65,17 @@ const defineButton = (
         appearance='action'
         loading={loading}
         onClick={async () => {
+
+          const isClaimed = await checkIfTokenIsClaimed(
+            address as string,
+            signer as JsonRpcSigner
+          )
+
+          if (isClaimed) {
+            setStage(`claim_finished`)
+            return
+          }
+
           const bringIDSDK = getSDK()
 
           const data = await bringIDSDK.requestProofs({
@@ -99,15 +110,6 @@ const defineButton = (
         onClick={async () => {
           setLoading(true)
           try {
-            const isClaimed = await checkIfTokenIsClaimed(
-              address as string,
-              signer as JsonRpcSigner
-            )
-
-            if (isClaimed) {
-              setStage(`claim_finished`)
-              return
-            }
             
             const result = await taskManager.addClaim(
               proofs,
