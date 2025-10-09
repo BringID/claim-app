@@ -11,6 +11,7 @@ function defineIfBrowserIsValid(): boolean {
     typeof (navigator as any).brave !== 'undefined' &&
     typeof (navigator as any).brave.isBrave === 'function';
 
+    
   // Detect Chrome ONLY if it's not another Chromium-based browser
   const isChrome =
     /Chrome\/\d+/.test(ua) &&
