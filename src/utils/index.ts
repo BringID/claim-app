@@ -39,6 +39,7 @@ import defineCurrentTier from './define-current-tier'
 import defineTierData from './define-tier-data'
 import convertNumber from './convert-number'
 import getTokensLeftCount from './get-tokens-left-count'
+import defineIfBrowserIsValid from './define-if-browser-is-valid'
 
 export {
   alertError,
@@ -81,5 +82,6 @@ export {
   defineCurrentTier,
   defineTierData,
   convertNumber,
-  getTokensLeftCount
+  getTokensLeftCount,
+  defineIfBrowserIsValid
 }
