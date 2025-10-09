@@ -1,16 +1,23 @@
 function defineIfBrowserIsValid(): boolean {
   const ua = navigator.userAgent;
 
-  const isBrave = (navigator as any).brave && typeof (navigator as any).brave.isBrave === 'function';
-  const isChrome = /Chrome\/\d+/.test(ua) &&
-                   !/Edg\//.test(ua) &&
-                   !/OPR\//.test(ua) &&
-                   !/YaBrowser\//.test(ua) &&
-                   !/Vivaldi\//.test(ua) &&
-                   !/SamsungBrowser\//.test(ua) &&
-                   !/DuckDuckGo\//.test(ua);
+  // Detect Brave using its unique navigator.brave property
+  const isBrave =
+    typeof (navigator as any).brave !== 'undefined' &&
+    typeof (navigator as any).brave.isBrave === 'function';
+
+  // Detect Chrome ONLY if it's not another Chromium-based browser
+  const isChrome =
+    /Chrome\/\d+/.test(ua) &&
+    /Google Inc/.test(navigator.vendor) && // Chrome only
+    !/Edg\//.test(ua) &&                   // Not Edge
+    !/OPR\//.test(ua) &&                   // Not Opera
+    !/YaBrowser\//.test(ua) &&             // Not Yandex
+    !/Vivaldi/.test(ua) &&                 // Not Vivaldi
+    !/SamsungBrowser\//.test(ua) &&        // Not Samsung
+    !/DuckDuckGo\//.test(ua) &&            // Not DuckDuckGo
+    !/Arc\//.test(ua);                     // Not Arc
 
   return isBrave || isChrome;
 }
-
 export default defineIfBrowserIsValid
