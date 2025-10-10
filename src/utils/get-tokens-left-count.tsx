@@ -1,16 +1,14 @@
 import { TOKEN_ADDRESS, TOKEN_DECIMALS } from "@/app/configs/app-token";
-import { dropAddress, jsonRPCUrl } from "@/app/configs";
+import { dropAddress } from "@/app/configs";
 import { ERC20Contract } from "@/abi";
 import { ethers } from "ethers";
+import defineJSONRpcUrl from "./define-json-rpc";
+import * as configs from '@/app/configs'
 
 
 const getTokensLeftCount = async () => {
+  const jsonRPCUrl = defineJSONRpcUrl(configs.networkId)
   const provider = new ethers.JsonRpcProvider(jsonRPCUrl);
-  console.log({
-    TOKEN_ADDRESS,
-    dropAddress,
-    jsonRPCUrl
-  })
   const tokenContract = new ethers.Contract(TOKEN_ADDRESS, ERC20Contract, provider);
   
   const balance: bigint = await tokenContract.balanceOf(dropAddress);
