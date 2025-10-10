@@ -76,7 +76,11 @@ const defineButton = (
               setStage(`claim_finished`)
               return
             }
+          } catch (err) {
+            console.error({ err })
+          }
 
+          try {
             const bringIDSDK = getSDK()
 
             const data = await bringIDSDK.requestProofs({
