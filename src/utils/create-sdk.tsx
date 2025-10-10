@@ -32,7 +32,8 @@ const createSDK: TCreateSDK = async ({
         walletOrProvider: signer
       })
     }
-    const jsonRpcUrl = defineJSONRPC()
+
+    const jsonRpcUrl = defineJSONRPC(configs.networkId)
 
     const provider = new ethers.JsonRpcProvider(jsonRpcUrl, Number(configs.networkId), {
       staticNetwork: true

@@ -23,9 +23,6 @@ NEXT_PUBLIC_ONCHAINKIT_API_KEY=e7...
 NEXT_PUBLIC_NETWORK_ID=84532
 NEXT_PUBLIC_ZUPLO_KEY=zpka_...
 NEXT_PUBLIC_ZUPLO_API_URL=https://api.bringid.org
-
-# JSON RPC URLs
-NEXT_PUBLIC_JSON_RPC_URL=https://...
 ```
 
 > Make sure your API keys and URLs are valid for your target environment.
