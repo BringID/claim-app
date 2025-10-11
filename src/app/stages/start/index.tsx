@@ -46,6 +46,10 @@ const Start: FC<TProps> = ({ setStage }) => {
     extensionInstallationStarted,
     async () => {
 
+      if (isMobile()) {
+        router.push('/wrong-device')
+        return
+      }
       const browserIsValid = defineIfBrowserIsValid()
 
       if (!browserIsValid) {
@@ -53,13 +57,7 @@ const Start: FC<TProps> = ({ setStage }) => {
         return
       }
 
-      if (isMobile()) {
-        router.push('/wrong-device')
-        return
-      }
       setExtensionInstallationStarted(true)
-
-
 
       const bringIDSDK = getSDK()
 
