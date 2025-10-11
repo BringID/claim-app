@@ -16,7 +16,9 @@ import {
   CreateID,
   InstallExtension,
   ClaimFailed,
-  DropFinished
+  DropFinished,
+  WrongDevice,
+  WrongBrowser
 } from '../stages'
 
 const defineStage = (
@@ -42,6 +44,11 @@ const defineStage = (
       return <ClaimFinished setStage={setStage} />
     case 'drop_finished':
       return <DropFinished setStage={setStage} />
+    case 'wrong_device':
+      return <WrongDevice setStage={setStage} />
+    case 'wrong_browser':
+      return <WrongBrowser setStage={setStage} />
+
   }
 }
 
