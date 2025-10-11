@@ -5,14 +5,13 @@ import {
   TitleStyled,
   Text,
   ButtonStyled,
-  PixeledDropIconStyled,
   Container
 } from './styled-components'
 import TProps from './types'
-import { useRouter } from 'next/navigation'
 
-const WrongDevice: FC<TProps> = () => {
-  const router = useRouter()
+const WrongDevice: FC<TProps> = ({
+  setStage
+}) => {
   return <Container>
     <TitleStyled>
       Browser Not Supported
@@ -22,7 +21,7 @@ const WrongDevice: FC<TProps> = () => {
     </Text>
     <ButtonStyled
       appearance='default'
-      onClick={() => router.back()}
+      onClick={() => setStage('start')}
     >
       Back
     </ButtonStyled>

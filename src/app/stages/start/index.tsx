@@ -47,14 +47,14 @@ const Start: FC<TProps> = ({ setStage }) => {
     async () => {
 
       if (isMobile()) {
-        router.push('/wrong-device')
+        setStage('wrong_device')
         return
       }
 
       const browserIsValid = defineIfBrowserIsValid()
 
       if (!browserIsValid) {
-        router.push('/wrong-browser')
+        setStage('wrong_browser')
         return
       }
 
