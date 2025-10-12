@@ -20,6 +20,7 @@ import {
   WrongDevice,
   WrongBrowser
 } from '../stages'
+import PlausibleProvider from 'next-plausible'
 
 const defineStage = (
   stage: TProcessStage,
@@ -64,9 +65,11 @@ const LaunchTransaction: FC = () => {
     setStage
   )
 
-  return <Page>
-    {content}
-  </Page>
+  return <PlausibleProvider domain='app.bringid.org'>
+    <Page>
+      {content}
+    </Page>
+  </PlausibleProvider>
 }
 
 export default LaunchTransaction
