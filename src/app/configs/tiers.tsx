@@ -6,7 +6,7 @@ const tiers: TTier[] = [
     max: Infinity,
     name: 'Max',
     id: '1',
-    value: '2.5M',
+    value: '250K',
     description: 'Maximum Sybil resistance'
   },
   {
@@ -14,7 +14,7 @@ const tiers: TTier[] = [
     max: 19,
     name: 'Advanced',
     id: '2',
-    value: '500K',
+    value: '50K',
     description: 'Stronger verification'
   },
   {
@@ -22,7 +22,7 @@ const tiers: TTier[] = [
     max: 9,
     name: 'Basic',
     id: '3',
-    value: '100K',
+    value: '10K',
     description: 'Entry-level verification',
   },
 ]
