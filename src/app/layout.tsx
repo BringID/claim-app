@@ -9,6 +9,7 @@ import { cookieToInitialState } from 'wagmi'
 import { headers } from 'next/headers' // added
 import { config } from './configs/wagmi'
 import { plausibleDomain } from '@/app/configs'
+import Script from 'next/script';
 
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -32,7 +33,20 @@ export default async function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        <Script
+          src="https://plausible.io/js/pa-sF6xtSBFIr_aRpTWCAI55.js"
+          strategy="afterInteractive"
+        />
 
+        {/* Optional inline init script */}
+        <Script id="plausible-init" strategy="afterInteractive">
+          {`
+            window.plausible = window.plausible || function () {
+              (window.plausible.q = window.plausible.q || []).push(arguments)
+            };
+            plausible.init && plausible.init();
+          `}
+        </Script>
 
       </head>
       <body className={styles.page}>
