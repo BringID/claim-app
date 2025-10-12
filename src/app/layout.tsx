@@ -32,12 +32,7 @@ export default async function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-        <script async src="https://plausible.io/js/pa-sF6xtSBFIr_aRpTWCAI55.js"></script>
-        <script>
-          {/* @ts-ignore */}
-          window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-          plausible.init()
-        </script>
+
 
       </head>
       <body className={styles.page}>
