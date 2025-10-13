@@ -20,6 +20,7 @@ import TProps from './types'
 import { useRouter } from 'next/navigation'
 import isMobile from 'is-mobile'
 import getSDK from '@/app/sdk'
+import { usePlausible } from 'next-plausible'
 
 const defineButton = (
   extensionInstallationStarted: boolean,
@@ -35,6 +36,7 @@ const defineButton = (
 }
 
 const Start: FC<TProps> = ({ setStage }) => {
+  const plausible = usePlausible()
   const router = useRouter()
   const [
     extensionInstallationStarted,
@@ -47,6 +49,11 @@ const Start: FC<TProps> = ({ setStage }) => {
     async () => {
 
       if (isMobile()) {
+        plausible('go_to_wrong_device_screen', {
+          props: {
+            from: 'start_screen',
+          }
+        })
         setStage('wrong_device')
         return
       }
@@ -54,6 +61,11 @@ const Start: FC<TProps> = ({ setStage }) => {
       const browserIsValid = defineIfBrowserIsValid()
 
       if (!browserIsValid) {
+        plausible('go_to_wrong_browser_screen', {
+          props: {
+            from: 'start_screen',
+          }
+        })
         setStage('wrong_browser')
         return
       }
@@ -69,10 +81,19 @@ const Start: FC<TProps> = ({ setStage }) => {
       setExtensionInstallationStarted(false)
 
       if (isInstalled) {
+        plausible('go_to_connect_screen', {
+          props: {
+            from: 'start_screen',
+          }
+        })
         setStage('connect')
         return
       }
-
+      plausible('go_to_install_extension_screen', {
+        props: {
+          from: 'start_screen',
+        }
+      })
       setStage('install_extension')
     },
   )
@@ -82,6 +103,11 @@ const Start: FC<TProps> = ({ setStage }) => {
       const balanceLeft = await getTokensLeftCount()
 
       if (balanceLeft === 0n) {
+        plausible('go_to_drop_finished_screen', {
+          props: {
+            from: 'start_screen',
+          }
+        })
         setStage('drop_finished')
         return
       }

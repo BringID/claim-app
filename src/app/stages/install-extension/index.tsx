@@ -16,6 +16,7 @@ import TProps from './types'
 import { Link, ExternalLinkIconStyled } from './styled-components'
 
 import { extensionDownloadLink, githubLink } from '@/app/configs'
+import { usePlausible } from 'next-plausible'
 
 const defineButton = (
   extensionInstalled: boolean | null,
@@ -60,6 +61,7 @@ const defineButton = (
 }
 
 const InstallExtension: FC<TProps> = ({ setStage }) => {
+  const plausible = usePlausible()
 
   const [
     extensionInstalled,
@@ -85,13 +87,28 @@ const InstallExtension: FC<TProps> = ({ setStage }) => {
     extensionInstalled,
     extensionInstallationStarted,
     () => {
+      plausible('go_to_connection_screen', {
+        props: {
+          from: 'install_extension_screen',
+        }
+      })
       setStage('connect')
     },
     () => {
+      plausible('open_chrome_extension_store', {
+        props: {
+          from: 'install_extension_screen',
+        }
+      })
       window.open(extensionDownloadLink, '_blank')
       setExtensionInstallationStarted(true)
     },
     () => {
+      plausible('reload_after_extension_install', {
+        props: {
+          from: 'install_extension_screen',
+        }
+      })
       window.location.reload()
     }
   )

@@ -25,13 +25,20 @@ import {
 import { BrowserProvider, JsonRpcSigner } from 'ethers'
 import TProps from './types'
 import { networkId } from '@/app/configs'
+import { usePlausible } from 'next-plausible'
 
 const defineButton = (
-  txHash: string
+  txHash: string,
+  plausible: any
 ) => {
     return <ButtonStyled
       onClick={async () => {
       const txHashScannerUrl = defineExplorerURL(Number(networkId))
+        plausible('go_to_explorer', {
+          props: {
+            from: 'claim_started',
+          }
+        })
         window.open(`${txHashScannerUrl}/tx/${txHash}`)
       }}
     >
@@ -58,10 +65,13 @@ const ClaimStarted: FC<TProps> = ({ setStage }) => {
   ))
 
   console.log({ txHash })
+  const plausible = usePlausible()
 
   const button = defineButton(
-    txHash as string
+    txHash as string,
+    plausible
   )
+
 
   useEffect(() => {
     const interval = window.setInterval(async () => {
@@ -71,6 +81,11 @@ const ClaimStarted: FC<TProps> = ({ setStage }) => {
       )
       if (isClaimed) {
         window.clearInterval(interval)
+        plausible('claim_finished', {
+          props: {
+            from: 'claim_started_screen',
+          }
+        })
         setStage('claim_finished')
 
         return 
@@ -83,11 +98,21 @@ const ClaimStarted: FC<TProps> = ({ setStage }) => {
         console.log({ transactionSuccess })
 
         if (transactionSuccess === false) {
+          plausible('claim_failed', {
+            props: {
+              from: 'claim_started_screen',
+            }
+          })
           setStage('claim_failed')
           window.clearInterval(interval)
         }
 
         if (transactionSuccess) {
+          plausible('claim_finished', {
+            props: {
+              from: 'claim_started_screen',
+            }
+          })
           setStage('claim_finished')
         }
       }
