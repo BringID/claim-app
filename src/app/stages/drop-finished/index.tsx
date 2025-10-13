@@ -26,7 +26,11 @@ const defineButton = (
     appearance='action'
     onClick={() => {
       window.open(xLink, '_blank')
-      plausible('open_x_account')
+      plausible('open_x_account' , {
+        props: {
+          from: 'drop_finished_screen',
+        }
+      })
     }}
     target='_blank'
   >

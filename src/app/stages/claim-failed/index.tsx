@@ -19,9 +19,11 @@ import {
 } from '@/lib/hooks'
 import { defineExplorerURL } from '@/utils'
 import TProps from './types'
+import { usePlausible } from 'next-plausible'
 
 const defineButton = (
-  txHash: string
+  txHash: string,
+  plausible: any
 ) => {
 
   if (!txHash) {
@@ -31,6 +33,11 @@ const defineButton = (
   return <ButtonStyled
     onClick={async () => {
       const txHashScannerUrl = defineExplorerURL(Number(networkId))
+      plausible('go_to_explorer', {
+        props: {
+          from: 'claim_failed_screen',
+        }
+      })
       window.open(`${txHashScannerUrl}/tx/${txHash}`)
     }}
   >
@@ -51,8 +58,11 @@ const Content: FC<TProps> = ({ setStage }) => {
     }
   ))
 
+  const plausible = usePlausible()
+
   const button = defineButton(
-    txHash as string
+    txHash as string,
+    plausible
   )
 
   const {

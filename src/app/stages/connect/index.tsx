@@ -16,6 +16,7 @@ import { useDispatch } from 'react-redux'
 import {
   setAuthorizationStep
 } from '@/lib/slices'
+import { usePlausible } from 'next-plausible'
 
 const defineIfKeyHasAlreadyBeenCreated = async () => {
     window.postMessage({
@@ -45,6 +46,7 @@ const defineIfKeyHasAlreadyBeenCreated = async () => {
 
 
 const Connect: FC<TProps> = ({ setStage }) => {
+  const plausible = usePlausible()
 
   const {
     user: {
@@ -65,13 +67,21 @@ const Connect: FC<TProps> = ({ setStage }) => {
 
     (async () => {
       if (authorizationStep === 'connected') {
-        console.log(111)
         const hasUserKey = await defineIfKeyHasAlreadyBeenCreated()
-        console.log(222)
 
         if (hasUserKey) {
+          plausible('go_to_claim_screen', {
+            props: {
+              from: 'connect_screen',
+            }
+          })
           setStage('claim')
         } else {
+          plausible('go_to_user_key_screen', {
+            props: {
+              from: 'connect_screen',
+            }
+          })
           setStage('create_id')
         }
       }
