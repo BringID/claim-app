@@ -36,7 +36,7 @@ const defineButton = (
       const txHashScannerUrl = defineExplorerURL(Number(networkId))
         plausible('go_to_explorer', {
           props: {
-            from: 'claim_started',
+            from: 'claim_started_screen',
           }
         })
         window.open(`${txHashScannerUrl}/tx/${txHash}`)
