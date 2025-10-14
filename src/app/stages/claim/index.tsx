@@ -91,7 +91,7 @@ const defineButton = (
             const bringIDSDK = getSDK()
 
             const data = await bringIDSDK.requestProofs({
-              drop: dropAddress,
+              drop: dropAddress as string,
               address: address as string,
               pointsRequired
             })
@@ -139,7 +139,7 @@ const defineButton = (
             })
             const result = await taskManager.addClaim(
               proofs,
-              dropAddress,
+              dropAddress as string,
               address as string
             )
             const { tx_hash } = result
