@@ -7,6 +7,8 @@ import CreateID from './create-id'
 import InstallExtension from './install-extension'
 import ClaimFailed from './claim-failed'
 import DropFinished from './drop-finished'
+import WrongBrowser from './wrong-browser'
+import WrongDevice from './wrong-device'
 
 export {
   Start,
@@ -17,5 +19,7 @@ export {
   CreateID,
   InstallExtension,
   ClaimFailed,
-  DropFinished
+  DropFinished,
+  WrongDevice,
+  WrongBrowser
 }

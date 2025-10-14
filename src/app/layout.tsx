@@ -32,7 +32,7 @@ export default async function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-        <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js"></script>
+        
       </head>
       <body className={styles.page}>
         <Provider initialState={initialState}>

@@ -6,6 +6,8 @@ type TProcessStage = 'start' |
               'create_id' |
               'install_extension' |
               'connect' |
-              'drop_finished'
+              'drop_finished' |
+              'wrong_device' |
+              'wrong_browser'
 
 export default TProcessStage

@@ -20,9 +20,11 @@ import {
 } from '@/lib/hooks'
 import { defineExplorerURL } from '@/utils'
 import { networkId, telegramChatLink } from '@/app/configs'
+import { usePlausible } from 'next-plausible'
 
 const defineSecondaryButton = (
-  txHash: string
+  txHash: string,
+  plausible: any
 ) => {
 
   if (!txHash) {
@@ -32,6 +34,11 @@ const defineSecondaryButton = (
   return <ButtonStyled
     onClick={async () => {
       const txHashScannerUrl = defineExplorerURL(Number(networkId))
+      plausible('go_to_explorer', {
+        props: {
+          from: 'claim_finished_screen',
+        }
+      })
       window.open(`${txHashScannerUrl}/tx/${txHash}`)
     }}
   >
@@ -41,11 +48,19 @@ const defineSecondaryButton = (
   return 
 }
 
-const definePrimaryButton = () => {
+const definePrimaryButton = (
+  plausible: any
+) => {
 
   return <ButtonStyled
-    href={telegramChatLink}
-    target='_blank'
+    onClick={() => {
+      window.open(telegramChatLink, '_open')
+      plausible('go_to_telegram_chat', {
+        props: {
+          from: 'claim_finished_screen',
+        }
+      })
+    }}
     appearance='action'
   >
     Join Telegram group
@@ -65,11 +80,16 @@ const ClaimFinished: FC<TProps> = ({ setStage }) => {
     }
   ))
 
+  const plausible = usePlausible()
+
   const secondaryButton = defineSecondaryButton(
-   txHash as string
+   txHash as string,
+   plausible
   )
 
-  const primaryButton = definePrimaryButton()
+  const primaryButton = definePrimaryButton(
+    plausible
+  )
 
   const {
     user: {

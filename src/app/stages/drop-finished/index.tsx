@@ -17,11 +17,21 @@ import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
 import tiers from '../../configs/tiers'
 import TProps from './types'
 import { xLink } from '@/app/configs'
+import {usePlausible} from 'next-plausible'
 
-const defineButton = () => {
+const defineButton = (
+  plausible: any
+) => {
   return <ButtonStyled
     appearance='action'
-    href={xLink}
+    onClick={() => {
+      window.open(xLink, '_blank')
+      plausible('open_x_account' , {
+        props: {
+          from: 'drop_finished_screen',
+        }
+      })
+    }}
     target='_blank'
   >
     Follow @BringID on X <ExternalLinkIconStyled />
@@ -30,8 +40,8 @@ const defineButton = () => {
 
 
 const DropFinished: FC<TProps> = ({ setStage }) => {
-  const button = defineButton()
-
+  const plausible = usePlausible()
+  const button = defineButton(plausible)
   return <WidgetStyled
     title="Prove You're Human & Claim BRING"
     image={<ShieldIcon />}

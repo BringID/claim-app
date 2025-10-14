@@ -20,9 +20,9 @@ import {
 } from './styled-components'
 import { keccak256, toUtf8Bytes } from 'ethers'
 import TProps from './types'
+import { usePlausible } from 'next-plausible'
 
 const prepareMessage = async (
-
 ) => {
   const timestamp = Date.now()
   const statement = `Sign to derive your BringID key (used for zero-knowledge proofs).
@@ -38,13 +38,20 @@ Only sign this message on bringid.org.`
 async function generatePrivateKey(
   message: string,
   signer: JsonRpcSigner,
-  address: string
+  address: string,
+  plausible: any
 ) {
   
   const sig = await signer.signMessage(String(message))
   const bytes = toUtf8Bytes(sig)
 
   const hash = keccak256(bytes)
+
+  plausible('user_key_created', {
+    props: {
+      from: 'user_key_screen',
+    }
+  })
 
   // Post a message to the extension content script
   window.postMessage({
@@ -53,6 +60,7 @@ async function generatePrivateKey(
     address,
     host: window.location.host
   }, '*') // You can restrict the origin in production
+
 }
 
 const CreateID: FC<TProps> = ({ setStage }) => {
@@ -64,6 +72,8 @@ const CreateID: FC<TProps> = ({ setStage }) => {
   } = useAppSelector(state => ({
     user: state.user
   }))
+
+  const plausible = usePlausible()
 
   const [ message, setMessage ] = useState<string>('')
   const [ timestamp, setTimestamp ] = useState<number>(0)
@@ -126,8 +136,14 @@ const CreateID: FC<TProps> = ({ setStage }) => {
           await generatePrivateKey(
             message as string,
             signer as JsonRpcSigner,
-            address as string
+            address as string,
+            plausible
           )
+          plausible('go_to_claim_screen', {
+            props: {
+              from: 'user_key_screen',
+            }
+          })
           setStage('claim')
         } catch (err) {
           console.log({ err })

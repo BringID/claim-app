@@ -16,8 +16,11 @@ import {
   CreateID,
   InstallExtension,
   ClaimFailed,
-  DropFinished
+  DropFinished,
+  WrongDevice,
+  WrongBrowser
 } from '../stages'
+import PlausibleProvider from 'next-plausible'
 
 const defineStage = (
   stage: TProcessStage,
@@ -42,6 +45,11 @@ const defineStage = (
       return <ClaimFinished setStage={setStage} />
     case 'drop_finished':
       return <DropFinished setStage={setStage} />
+    case 'wrong_device':
+      return <WrongDevice setStage={setStage} />
+    case 'wrong_browser':
+      return <WrongBrowser setStage={setStage} />
+
   }
 }
 
@@ -57,9 +65,11 @@ const LaunchTransaction: FC = () => {
     setStage
   )
 
-  return <Page>
-    {content}
-  </Page>
+  return <PlausibleProvider domain='app.bringid.org'>
+    <Page>
+      {content}
+    </Page>
+  </PlausibleProvider>
 }
 
 export default LaunchTransaction
