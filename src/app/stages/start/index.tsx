@@ -73,8 +73,6 @@ const Start: FC<TProps> = ({ setStage }) => {
 
       setExtensionInstallationStarted(true)
 
-
-
       const bringIDSDK = getSDK()
 
       const isInstalled = await bringIDSDK.isExtensionInstalled()

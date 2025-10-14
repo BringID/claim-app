@@ -7,17 +7,14 @@ import defineNetworkName from './define-network-name'
 import defineExplorerURL from "./define-explorer-url"
 import ipfsRedefineURL from './ipfs-redefine-url'
 import getValidImage from './get-valid-image'
-import getAlchemyTokenImage from './get-alchemy-token-image'
 import shortenString from './shorten-string'
 import defineQRScreen from './define-qr-screen'
-import resolveAddress from './resolve-address'
 import defineNetworkIcon from './define-network-icon'
 import generateMetadataUtil from './generate-metadata'
 import metadataUrlResolve from './metadata-resolve-url'
 import createQueryString from './create-query-string'
 import defineIfUserOwnsContractERC20 from './define-if-user-owns-erc20-contract'
 import countLaunchAmounts from './count-launch-amounts'
-import getERC20TokenBalance from './get-erc20-token-balance'
 import defineEthersSigner from './define-ethers-signer'
 import copyToClipboard from './copy-to-clipboard'
 import formatDate from './format-date'
@@ -30,7 +27,7 @@ import defineAudienceLaunchIcon from './define-audience-launch-icon'
 import defineAudiencePreviewIcon from "./define-audience-preview-icon"
 import defineAppNetwork from './define-app-network'
 import formatTokensAmount from './format-tokens-amount'
-import defineNetworkZerionId from './define-network-zerion-id'
+import defineZuploNetworkName from './define-zuplo-network-name'
 import formatExpiration from './format-expiration'
 import api from './api'
 import checkIfTokenIsClaimed from './check-if-token-is-claimed'
@@ -53,9 +50,7 @@ export {
   createQueryString,
   generateMetadataUtil,
   defineNetworkIcon,
-  resolveAddress,
   defineQRScreen,
-  getAlchemyTokenImage,
   shortenString,
   getValidImage,
   ipfsRedefineURL,
@@ -65,7 +60,6 @@ export {
   defineExplorerURL,
   defineIfUserOwnsContractERC20,
   countLaunchAmounts,
-  getERC20TokenBalance,
   createSDK,
   createWarpcastShareLink,
   checkApproveTransaction,
@@ -74,7 +68,7 @@ export {
   defineAppNetwork,
   toHex,
   switchNetwork,
-  defineNetworkZerionId,
+  defineZuploNetworkName,
   formatExpiration,
   api,
   checkIfTokenIsClaimed,
