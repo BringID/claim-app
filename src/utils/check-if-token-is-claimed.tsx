@@ -13,7 +13,7 @@ const checkIfTokenIsClaimed: TCheckIfTokenIsClaimed = async (
   signer
 ) => {
     const contract = new ethers.Contract(
-      dropAddress,
+      dropAddress as string,
       DropFactory,
       signer as JsonRpcSigner
     )
