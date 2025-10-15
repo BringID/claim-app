@@ -96,6 +96,7 @@ const Start: FC<TProps> = ({ setStage }) => {
     },
   )
 
+
   useEffect(() => {
     (async () => {
       const balanceLeft = await getTokensLeftCount()
