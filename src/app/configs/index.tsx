@@ -17,5 +17,5 @@ export const githubLink = 'https://github.com/BringID'
 export const bringTokenUrl = 'https://dexscreener.com/base/0xceb9ce741dc04e87366198c7dc96d76ed74dce6c'
 // sepolia
 // export const dropAddress = '0x9821dbaC1C9AbE875cE78cf577C97Bf540c70C32'
-export const pointsRequired = 10
+export const pointsRequired = 5
 export const bringIDLink = 'https://www.bringid.org/'
