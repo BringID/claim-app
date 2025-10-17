@@ -15,7 +15,7 @@ import {
 import { ShieldIcon } from '@/components/icons'
 import { TOKEN_MAX_SUPPLY, TOKEN_SYMBOL } from '@/app/configs/app-token'
 import tiers from '../../configs/tiers'
-import { getTokensLeftCount, defineIfBrowserIsValid } from '@/utils'
+import { getTokensLeftCount, defineIfBrowserIsValid, defineIfBrowserIsMises } from '@/utils'
 import TProps from './types'
 import { useRouter } from 'next/navigation'
 import isMobile from 'is-mobile'
@@ -49,13 +49,18 @@ const Start: FC<TProps> = ({ setStage }) => {
     async () => {
 
       if (isMobile()) {
-        plausible('go_to_wrong_device_screen', {
-          props: {
-            from: 'start_screen',
-          }
-        })
-        setStage('wrong_device')
-        return
+
+        const isMises = defineIfBrowserIsMises()
+        if (!isMises) {
+          plausible('go_to_wrong_device_screen', {
+            props: {
+              from: 'start_screen',
+            }
+          })
+          setStage('wrong_device')
+          return
+        }
+        
       }
 
       const browserIsValid = defineIfBrowserIsValid()
@@ -95,6 +100,7 @@ const Start: FC<TProps> = ({ setStage }) => {
       setStage('install_extension')
     },
   )
+
 
   useEffect(() => {
     (async () => {
