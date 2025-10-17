@@ -1,3 +1,5 @@
+import defineIfBrowserIsMises from './define-if-browser-is-mises'
+
 function defineIfBrowserIsValid(): boolean {
   const ua = navigator.userAgent;
 
@@ -11,7 +13,7 @@ function defineIfBrowserIsValid(): boolean {
     typeof (navigator as any).brave !== 'undefined' &&
     typeof (navigator as any).brave.isBrave === 'function';
 
-  const isMises = ua.includes('MisesBrowser')
+  const isMises = defineIfBrowserIsMises()
     
   // Detect Chrome ONLY if it's not another Chromium-based browser
   const isChrome =
