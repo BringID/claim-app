@@ -37,6 +37,7 @@ import defineTierData from './define-tier-data'
 import convertNumber from './convert-number'
 import getTokensLeftCount from './get-tokens-left-count'
 import defineIfBrowserIsValid from './define-if-browser-is-valid'
+import defineIfBrowserIsMises from './define-if-browser-is-mises'
 
 export {
   alertError,
@@ -77,5 +78,6 @@ export {
   defineTierData,
   convertNumber,
   getTokensLeftCount,
-  defineIfBrowserIsValid
+  defineIfBrowserIsValid,
+  defineIfBrowserIsMises
 }
