@@ -1,7 +1,8 @@
 'use client'
 import {
   FC,
-  useState
+  useState,
+  useEffect
 } from 'react'
 import {
   Page
@@ -21,10 +22,15 @@ import {
   WrongBrowser
 } from '../stages'
 import PlausibleProvider from 'next-plausible'
+import {
+  useAppSelector
+} from '@/lib/hooks'
 
 const defineStage = (
   stage: TProcessStage,
-  setStage: (stage: TProcessStage) => void
+  setStage: (stage: TProcessStage) => void,
+  claimAddress: string | null,
+  setClaimAddress: (claimAddress: string,) => void,
 ) => {
   switch (stage) {
     case 'start':
@@ -36,13 +42,26 @@ const defineStage = (
     case 'create_id':
       return <CreateID setStage={setStage} />
     case 'claim':
-      return <Claim setStage={setStage} />
+      return <Claim
+        setStage={setStage}
+        claimAddress={claimAddress}
+        setClaimAddress={setClaimAddress}
+      />
     case 'claim_started':
-      return <ClaimStarted setStage={setStage} />
+      return <ClaimStarted
+        claimAddress={claimAddress}
+        setStage={setStage}
+      />
     case 'claim_failed':
-      return <ClaimFailed setStage={setStage} />
+      return <ClaimFailed
+        setStage={setStage}
+        claimAddress={claimAddress}
+      />
     case 'claim_finished':
-      return <ClaimFinished setStage={setStage} />
+      return <ClaimFinished
+        setStage={setStage}
+        claimAddress={claimAddress}
+      />
     case 'drop_finished':
       return <DropFinished setStage={setStage} />
     case 'wrong_device':
@@ -55,14 +74,40 @@ const defineStage = (
 
 const LaunchTransaction: FC = () => {
 
+  const {
+    user: {
+      address,
+    },
+  } = useAppSelector(state => (
+    {
+      user: {
+        address: state.user.address,
+      }
+    }
+  ))
+
   const [
     stage,
     setStage
   ] = useState<TProcessStage>('start')
 
+
+  const [
+    claimAddress,
+    setClaimAddress
+  ] = useState<string | null>(null)
+
+  useEffect(() => {
+    setClaimAddress(address)
+  }, [
+    address
+  ])
+
   const content = defineStage(
     stage,
-    setStage
+    setStage,
+    claimAddress,
+    setClaimAddress
   )
 
   return <PlausibleProvider domain='app.bringid.org'>

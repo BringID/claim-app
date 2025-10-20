@@ -46,11 +46,10 @@ const defineButton = (
     </ButtonStyled>
 }
 
-const ClaimStarted: FC<TProps> = ({ setStage }) => {
+const ClaimStarted: FC<TProps> = ({ setStage, claimAddress }) => {
 
   const {
     user: {
-      address,
       signer,
       provider
     },
@@ -76,7 +75,7 @@ const ClaimStarted: FC<TProps> = ({ setStage }) => {
   useEffect(() => {
     const interval = window.setInterval(async () => {
       const isClaimed = await checkIfTokenIsClaimed(
-        address as string,
+        claimAddress as string,
         signer as JsonRpcSigner
       )
       if (isClaimed) {
@@ -136,7 +135,7 @@ const ClaimStarted: FC<TProps> = ({ setStage }) => {
       title='Bring tokens'
       status='warning'
     >
-      Will be sent to {shortenString(address as string)}
+      Will be sent to {shortenString(claimAddress as string)}
     </SuccessNoteStyled>
     {button}
   </WidgetStyled>    

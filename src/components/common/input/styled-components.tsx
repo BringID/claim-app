@@ -31,7 +31,7 @@ export const InputTitle = styled.h3<TInputTitleProps>`
 export const InputFieldContainer = styled.div`
   display: grid;
   grid-template-columns: min-content 1fr;
-  border: 1px solid ${props => props.theme.secondaryBorderColor};
+  border: 1px solid ${props => props.theme.primaryBorderColor};
   border-radius: 8px;
   overflow: hidden;
 `
@@ -41,14 +41,21 @@ export const InputPrefix = styled.div`
   padding: 13px 16px;
   align-items: center;
   justify-content: cetner;
-  border-right: 1px solid ${props => props.theme.secondaryBorderColor};
-  background-color: ${props => props.theme.inputIconZoneBackgroundColor};
+  border-right: 1px solid ${props => props.theme.primaryBorderColor};
+  background-color: ${props => props.theme.primaryBackgroundColor};
+
+
+  svg {
+    path {
+      fill: ${(props) => (props.theme && props.theme.primaryTextColor)};;
+    }
+  }
 `
 
 
 export const InputField = styled.input<TInputFieldProps>`
   color: ${(props) => (props.theme && props.theme.primaryTextColor)};
-  font-size: 16px;
+  font-size: 14px;
   width: 100%;
   line-height: 20px;
   font-weight: 500;
@@ -57,7 +64,7 @@ export const InputField = styled.input<TInputFieldProps>`
   border: none;
   outline: none;
   margin: 0;
-  background-color: ${props => props.theme.widgetBackgroundColor};
+  background-color: ${props => props.theme.primaryBackgroundColor};
 
   &::placeholder {
     color: ${(props) => (props.theme && props.theme.placeholderTextColor)};
@@ -65,7 +72,7 @@ export const InputField = styled.input<TInputFieldProps>`
 
   &:focus {
     outline: none;
-    font-size: 16px;
+    font-size: 14px;
   }
 
   ${(props) =>

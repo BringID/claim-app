@@ -69,7 +69,7 @@ const definePrimaryButton = (
   return 
 }
 
-const ClaimFinished: FC<TProps> = ({ setStage }) => {
+const ClaimFinished: FC<TProps> = ({ setStage, claimAddress }) => {
   const {
     claim: {
       txHash
@@ -91,15 +91,6 @@ const ClaimFinished: FC<TProps> = ({ setStage }) => {
     plausible
   )
 
-  const {
-    user: {
-      address
-    }
-  } = useAppSelector(state => ({
-    user: state.user
-  }))
-
-
   return <WidgetStyled
     title='Bring tokens Claimed!'
     image={<ShieldIcon />}
@@ -108,7 +99,7 @@ const ClaimFinished: FC<TProps> = ({ setStage }) => {
     <SuccessNoteStyled
       title='Bring tokens'
     >
-      Were sent to {shortenString(address as string)}
+      Were sent to {shortenString(claimAddress as string)}
     </SuccessNoteStyled>
     <Buttons>
       {primaryButton}
