@@ -32,11 +32,33 @@ import { getTokensLeftCount } from '@/utils'
 import { TClaimStage, TProcessStage, TSemaphoreProof, TTier } from '@/types'
 import TProps from './types'
 import { 
-  CurrentScoreStyled
+  CurrentScoreStyled,
+  InputStyled,
+  SubtitleStyled,
+  SmallTextStyled
 } from './styled-components'
 import { usePlausible } from 'next-plausible'
 
+const defineIfButtonIsDisabled = (
+  claimAddress: string | null
+) => {
+  if (!claimAddress) {
+    return true
+  }
+
+  if (!claimAddress.startsWith('0x')) {
+    return true
+  }
+
+  if (claimAddress.length !== 42) {
+    return true
+  }
+
+  return false
+}
+
 const defineButton = (
+  disabled: boolean,
   loading: boolean,
   setLoading: (
     loading: boolean
@@ -53,7 +75,7 @@ const defineButton = (
   setStage: (
     setStage: TProcessStage
   ) => void,
-  address: string,
+  address: string | null,
   signer: JsonRpcSigner,
   proofs: TSemaphoreProof[],
   currentTier: TTier | null,
@@ -68,23 +90,8 @@ const defineButton = (
         loading={loading}
         onClick={async () => {
 
-          try {
-            const isClaimed = await checkIfTokenIsClaimed(
-              address as string,
-              signer as JsonRpcSigner
-            )
-
-            if (isClaimed) {
-              plausible('already_claimed', {
-                props: {
-                  from: 'claim_screen',
-                }
-              })
-              setStage(`claim_finished`)
-              return
-            }
-          } catch (err) {
-            console.error({ err })
+          if (!address) {
+            return alert(`No address provided for claim`)
           }
 
           try {
@@ -129,8 +136,32 @@ const defineButton = (
       return <ButtonStyled
         appearance='action'
         loading={loading}
+        disabled={disabled}
         onClick={async () => {
           setLoading(true)
+
+          try {
+            const isClaimed = await checkIfTokenIsClaimed(
+              address as string,
+              signer as JsonRpcSigner
+            )
+
+            if (isClaimed) {
+              plausible('already_claimed', {
+                props: {
+                  from: 'claim_screen',
+                }
+              })
+              alert(`Already claimed to ${address}`)
+              setLoading(false)
+
+              return
+            }
+          } catch (err) {
+            console.error({ err })
+          }
+
+
           try {
             plausible('claim_starting', {
               props: {
@@ -174,7 +205,7 @@ const defineButton = (
 }
 
 
-const Claim: FC<TProps> = ({ setStage }) => {
+const Claim: FC<TProps> = ({ setStage, claimAddress, setClaimAddress }) => {
   const dispatch = useDispatch()
   const [ loading, setLoading ] = useState<boolean>(false)
   const [ claimStage, setClaimStage ] = useState<TClaimStage>('initial')
@@ -183,14 +214,11 @@ const Claim: FC<TProps> = ({ setStage }) => {
 
   const {
     user: {
-      address,
       signer
     },
   } = useAppSelector(state => (
     {
       user: {
-        chainId: state.user.chainId,
-        address: state.user.address,
         signer: state.user.signer
       }
     }
@@ -199,6 +227,9 @@ const Claim: FC<TProps> = ({ setStage }) => {
   const currentTierId = defineCurrentTier(selectedPoints)
   const currentTier = defineTierData(currentTierId)
   const [ currentSupply, setCurrentSupply ] = useState<bigint>(TOKEN_MAX_SUPPLY)
+
+  const note = `Enter a valid wallet address where you want to receive ${TOKEN_SYMBOL} tokens`
+
   useEffect(() => {
     (async () => {
       const balanceLeft = await getTokensLeftCount()
@@ -207,6 +238,7 @@ const Claim: FC<TProps> = ({ setStage }) => {
   }, [])
 
   const button = defineButton(
+    defineIfButtonIsDisabled(claimAddress),
     loading,
     setLoading,
     claimStage,
@@ -221,7 +253,7 @@ const Claim: FC<TProps> = ({ setStage }) => {
     ) => {
       setStage(stage)
     },
-    address as string,
+    claimAddress,
     signer as JsonRpcSigner,
     proofs,
     currentTier,
@@ -229,32 +261,47 @@ const Claim: FC<TProps> = ({ setStage }) => {
   )
 
 
-  return <WidgetStyled
-    title='Claim Your Bring Tokens'
-    image={<ShieldIcon />}
-  >
-    <TextStyled>Complete verifications to unlock your airdrop</TextStyled>
-    <TokenCounterStyled
-      currentValue={currentSupply}
-      max={TOKEN_MAX_SUPPLY}
-    />
+  return <>
+    <WidgetStyled
+      title='Claim Your Bring Tokens'
+      image={<ShieldIcon />}
+    >
+      <TextStyled>Complete verifications to unlock your airdrop</TextStyled>
+      <TokenCounterStyled
+        currentValue={currentSupply}
+        max={TOKEN_MAX_SUPPLY}
+      />
 
-    <OptionWidgetsStyled
-      activeOption={currentTierId}
-    
-      data={tiers.map(tier => ({
-        title: tier.name,
-        description: tier.description,
-        subtitle: `${tier.min}+ pts.` ,
-        value: `${tier.value} ${TOKEN_SYMBOL}`,
-        id: tier.id
-      }))}
-    />
+      <OptionWidgetsStyled
+        activeOption={currentTierId}
+      
+        data={tiers.map(tier => ({
+          title: tier.name,
+          description: tier.description,
+          subtitle: `${tier.min}+ pts.` ,
+          value: `${tier.value} ${TOKEN_SYMBOL}`,
+          id: tier.id
+        }))}
+      />
 
-    <CurrentScoreStyled points={selectedPoints} />
+      <CurrentScoreStyled points={selectedPoints} />
+
+    </WidgetStyled>
+    {claimStage === 'ready_to_claim' && <WidgetStyled>
+      <SubtitleStyled>Destination Address</SubtitleStyled>
+      <InputStyled
+        onChange={(value) => {
+          setClaimAddress(value)
+        }}
+        error={defineIfButtonIsDisabled(claimAddress) ? note : undefined}
+        note={defineIfButtonIsDisabled(claimAddress) ? undefined : note}
+        value={claimAddress || ''}
+        placeholder='0x...'
+      />
+    </WidgetStyled>}
 
     {button}
-  </WidgetStyled>
+  </>
 }
 
 export default Claim

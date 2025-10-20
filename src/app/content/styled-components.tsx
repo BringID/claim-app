@@ -51,7 +51,7 @@ export const StepsContainer = styled.div`
 `
 
 export const WidgetStyled = styled(Widget)`
-
+  margin-bottom: 16px;
 `
 
 

@@ -47,7 +47,7 @@ const defineButton = (
   return 
 }
 
-const Content: FC<TProps> = ({ setStage }) => {
+const Content: FC<TProps> = ({ claimAddress }) => {
   const {
     claim: {
       txHash
@@ -65,15 +65,6 @@ const Content: FC<TProps> = ({ setStage }) => {
     plausible
   )
 
-  const {
-    user: {
-      address
-    }
-  } = useAppSelector(state => ({
-    user: state.user
-  }))
-
-
   return <WidgetStyled
     title='Bring tokens transaction failed!'
     image={<ShieldIcon />}
@@ -83,7 +74,7 @@ const Content: FC<TProps> = ({ setStage }) => {
       status='error'
       title='Bring tokens'
     >
-      Attempted to send to {shortenString(address as string)}
+      Attempted to send to {shortenString(claimAddress as string)}
     </SuccessNoteStyled>
 
     {button}

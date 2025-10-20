@@ -17,7 +17,8 @@ import {
   arbitrumSepolia,
   scrollSepolia,
   polygonZkEvm,
-  tron
+  tron,
+  linea
 } from 'wagmi/chains'
 
 export const allChains = [
@@ -37,6 +38,7 @@ export const allChains = [
   celo,
   moonbeam,
   moonriver,
+  linea,
   scrollSepolia,
   polygonZkEvm,
   tron
